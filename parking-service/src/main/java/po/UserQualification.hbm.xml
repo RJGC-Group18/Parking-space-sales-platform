@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2021-11-25 22:16:02 by Hibernate Tools 5.3.0.Beta2 --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="parkingsafesdb" dynamic-insert="false" dynamic-update="false" mutable="true" name="UserQualification" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="user_qualification">
+        <id name="qid" type="int">
+            <column name="qid"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="User" embed-xml="true" fetch="select" insert="true" name="user" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="uid" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="image" optimistic-lock="true" type="binary" unique="false">
+            <column name="image"/>
+        </property>
+        <property generated="never" lazy="false" name="qualification" optimistic-lock="true" type="java.lang.Boolean" unique="false">
+            <column name="qualification"/>
+        </property>
+    </class>
+</hibernate-mapping>

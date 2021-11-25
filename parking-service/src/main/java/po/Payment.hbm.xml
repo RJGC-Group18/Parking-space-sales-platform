@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2021-11-25 22:16:02 by Hibernate Tools 5.3.0.Beta2 --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="parkingsafesdb" dynamic-insert="false" dynamic-update="false" mutable="true" name="Payment" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="payment">
+        <composite-id class="PaymentId" mapped="false" name="id" unsaved-value="undefined">
+            <key-property name="no" type="int">
+                <column name="no"/>
+            </key-property>
+            <key-property name="cid" type="int">
+                <column name="cid"/>
+            </key-property>
+            <key-property name="pid" type="int">
+                <column name="pid"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="Client" embed-xml="true" fetch="select" insert="false" name="client" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column name="cid" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="Dealing" embed-xml="true" fetch="select" insert="false" name="dealing" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column name="no" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="Parking" embed-xml="true" fetch="select" insert="false" name="parking" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column name="pid" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="User" embed-xml="true" fetch="select" insert="true" name="user" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="uid" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="time" optimistic-lock="true" type="timestamp" unique="false">
+            <column length="26" name="time"/>
+        </property>
+        <property generated="never" lazy="false" name="pay" optimistic-lock="true" type="java.lang.Boolean" unique="false">
+            <column name="pay"/>
+        </property>
+        <property generated="never" lazy="false" name="paid" optimistic-lock="true" type="big_decimal" unique="false">
+            <column name="paid" precision="9"/>
+        </property>
+        <property generated="never" lazy="false" name="unpaid" optimistic-lock="true" type="big_decimal" unique="false">
+            <column name="unpaid" precision="9"/>
+        </property>
+        <property generated="never" lazy="false" name="deadline" optimistic-lock="true" type="timestamp" unique="false">
+            <column length="26" name="deadline"/>
+        </property>
+    </class>
+</hibernate-mapping>
