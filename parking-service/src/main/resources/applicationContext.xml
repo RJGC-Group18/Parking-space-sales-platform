@@ -35,25 +35,30 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
         <property name="user" value="${jdbc.username}"></property>
         <property name="password" value="${jdbc.password}"></property>
     </bean>
-    <!--  entityManagerFactory 作用: 类似sessionFactory  需要注入连接池   -->
-    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <!-- 扫描实体类  实体类注册 -->
-        <property name="packagesToScan" value="com.demo.usermanager.domain" />
-        <property name="jpaVendorAdapter">
-            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-                <property name="database" value="ORACLE" />
-                <property name="generateDdl" value="true" />
-                <property name="showSql" value="true" />
-                <property name="databasePlatform" value="${jdbc.dialect}" />
-            </bean>
-        </property>
-    </bean>
-    <!-- jpa 事务管理，这里的事务是使用jpa的事务管理 -->
-    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="entityManagerFactory" />
-    </bean>
-    <tx:annotation-driven transaction-manager="transactionManager"/>
-
+    <!--  sessionFactory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+	<property name="dataSource" ref="dataSource"/>
+	<property name="hibernateProperties">
+		<props>
+			<prop key="hibernate.dialect">
+				org.hibernate.dialect.MySQL5Dialect
+			</prop>
+		</props>
+	</property>
+	<property name="mappingResources">
+		<list><!-- hbm.xml配置写这里 例：<value>cn/edu/zjut/po/Customer.hbm.xml</value>-->
+			<value>po/Client.hbm.xml</value>
+			<value>po/ClientInformation.hbm.xml</value>
+			<value>po/ClientQualification.hbm.xml</value>
+			<value>po/Dealing.hbm.xml</value>
+			<value>po/Parking.hbm.xml</value>
+			<value>po/Payment.hbm.xml</value>
+			<value>po/Reservation.hbm.xml</value>
+			<value>po/User.hbm.xml</value>
+			<value>po/UserInformation.hbm.xml</value>
+			<value>po/UserQualification.hbm.xml</value>
+		</list>
+	</property>
+	</bean>
 
 </beans>
