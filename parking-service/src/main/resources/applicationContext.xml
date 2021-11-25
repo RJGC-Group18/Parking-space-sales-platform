@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/data/jpa
+http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+
+    <!--
+    <context:component-scan base-package="com.demo.usermanager"></context:component-scan>
+    @Service  @Con  @Res @Aut @Com
+     -->
+    <!--扫描包事务包，这里是扫描的基本包，只要前缀是一样的都会被spring扫描-->
+
+    <context:component-scan base-package="com.demo.usermanager"> </context:component-scan>
+    <!-- 激活jpa 接口注册  spring data jpa 提供实现类，这里是使用的hibernate提供的jpa方法  -->
+    <jpa:repositories base-package="com.demo.usermanager.dao"/>
+    <!--sprin容器加载本地jdbc配置-->
+    <context:property-placeholder location="classpath:jdbc.properties" />
+    <!--sprin容器配置c3p0连接池-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driverClass}"></property>
+        <property name="jdbcUrl" value="${jdbc.url}"></property>
+        <property name="user" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+    <!--  entityManagerFactory 作用: 类似sessionFactory  需要注入连接池   -->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <!-- 扫描实体类  实体类注册 -->
+        <property name="packagesToScan" value="com.demo.usermanager.domain" />
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="database" value="ORACLE" />
+                <property name="generateDdl" value="true" />
+                <property name="showSql" value="true" />
+                <property name="databasePlatform" value="${jdbc.dialect}" />
+            </bean>
+        </property>
+    </bean>
+    <!-- jpa 事务管理，这里的事务是使用jpa的事务管理 -->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
 
 </beans>

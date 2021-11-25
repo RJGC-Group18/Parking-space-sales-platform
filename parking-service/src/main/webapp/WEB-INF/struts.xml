@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <!-- 不用重启服务器 -->
+    <constant name="struts.i18n.reload" value="true" />
+    <constant name="struts.configuration.xml.reload" value="true" />
+    <!-- 表单样式 -->
+    <constant name="struts.ui.theme" value="simple" />
+    <!-- 国际化文件 -->
+    <constant name="struts.custom.i18n.resources" value="messages" />
+    <!-- 动态方法调用 -->
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <!-- 请求参数的编码方式-->
+    <constant name="struts.i18n.encoding" value="UTF-8"/>
+    <!-- 指定被struts2处理的请求后缀类型。多个用逗号隔开-->
+    <constant name="struts.action.extension" value="action,do,htm,html"/>
+    <!-- 当struts.xml改动后，是否重新加载。默认值为false(生产环境下使用),开发阶段最好打开  -->
+    <constant name="struts.configuration.xml.reload" value="true"/>
+    <!-- 是否使用struts的开发模式。开发模式会有更多的调试信息。默认值为false(生产环境下使用),开发阶段最好打开  -->
+    <constant name="struts.devMode" value="false"/>
+    <!-- 设置浏览器是否缓存静态内容。默认值为true(生产环境下使用),开发阶段最好关闭  -->
+    <constant name="struts.serve.static.browserCache" value="false" />
+    <!-- 指定由spring负责action对象的创建      -->
+    <constant name="struts.objectFactory" value="spring" />
+
+    <!--
+    不用注解模式
+     <package name="book" namespace="/" extends="struts-default">
+    <action name="login" class="struts2.LoginAction" method="login">
+    <result name="success">../views/login.jsp</result>
+    </action>
+    </package>
+     -->
+
+
+    <!-- 是否开启动态方法调用-->
+
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+    <package name="demo" extends="json-default">
+
+        <!--struts的配置顺序： Element : package
+        Content Model : (result-types?, interceptors?, default-interceptor-ref?, default-action-ref?,
+         default-class-ref?, global-results?, global-exception-mappings?, action*) -->
+        <!--登录拦截的配置，interceptors表示拦截器的标签  -->
+        <!-- <interceptors>
+        <interceptor name="mylogin" class="cn.itcast.mavenbos.interceptor.LonginInterceptor">
+        配置需要经过拦截器执行方法 或者不需要拦截方法
+        excludeMethods这个表示对哪些方法不拦截，includeMethods对哪些 方法进行拦截
+        <param name="excludeMethods">login</param>
+        </interceptor>
+         -->
+        <!--定义自定义拦截器  -->
+        <!-- <interceptor-stack name="mystack"> -->
+        <!--放值栈的信息  -->
+        <!-- <interceptor-ref name="mystack"></interceptor-ref> -->
+        <!--默认栈  -->
+        <!-- <interceptor-ref name="defaultStack"></interceptor-ref> -->
+        <!-- </interceptor-stack>
+        </interceptors> -->
+        <!--启用自定义拦截器，对所有包类有效  -->
+        <!-- <default-interceptor-ref name="mystack"></default-interceptor-ref> -->
+        <!--全局结果集 -->
+        <!-- <global-results> -->
+        <!--使用重定义redirect地址会改变跳转到指定页面  -->
+        <!-- <result name="no_login" type="redirect">/login.jsp</result>
+        </global-results> -->
+
+        <!--没有配置class 默认class ActionSupport implements Action SUCCESS转发  -->
+        <action name="index">
+            <result>/index.jsp</result>
+        </action>
+    </package>
+
+
+
+</struts>
