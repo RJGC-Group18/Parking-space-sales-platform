@@ -61,4 +61,7 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 	</property>
 	</bean>
 
+<bean id="baseDAO" class="po.BaseHibernateDAO">
+	<property name="sessionFactory" ref="sessionFactory"/>
+</bean>
 </beans>
