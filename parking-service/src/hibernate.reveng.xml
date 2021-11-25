@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-reverse-engineering-3.0.dtd" >
+<!-- 本文件仅作逆向工程使用 -->
+<hibernate-reverse-engineering>
+	<table-filter match-catalog="parkingsafesdb" match-name="client" />
+	<table-filter match-catalog="parkingsafesdb"
+		match-name="client_information" />
+	<table-filter match-catalog="parkingsafesdb"
+		match-name="client_qualification" />
+	<table-filter match-catalog="parkingsafesdb" match-name="dealing" />
+	<table-filter match-catalog="parkingsafesdb" match-name="parking" />
+	<table-filter match-catalog="parkingsafesdb" match-name="payment" />
+	<table-filter match-catalog="parkingsafesdb"
+		match-name="reservation" />
+	<table-filter match-catalog="parkingsafesdb" match-name="user" />
+	<table-filter match-catalog="parkingsafesdb"
+		match-name="user_information" />
+	<table-filter match-catalog="parkingsafesdb"
+		match-name="user_qualification" />
+	<table catalog="parkingsafesdb" name="client">
+		<column name="cid"></column>
+		<column name="username"></column>
+		<column name="password"></column>
+	</table>
+	<table catalog="parkingsafesdb" name="client_information">
+		<column name="cid"></column>
+		<column name="sex"></column>
+		<column name="email"></column>
+		<column name="name"></column>
+		<column name="phone"></column>
+		<column name="age"></column>
+		<column name="birthday"></column>
+	</table>
+	<table catalog="parkingsafesdb" name="client_qualification">
+		<column name="qid"></column>
+		<column name="image"></column>
+		<column name="cid"></column>
+		<column name="qualification"></column>
+		<column name="adress"></column>
+	</table>
+	<table catalog="parkingsafesdb" name="dealing">
+		<column name="no"></column>
+		<column name="uid"></column>
+		<column name="phone"></column>
+		<column name="cid"></column>
+		<column name="time"></column>
+		<column name="name"></column>
+		<column name="pid"></column>
+		<column name="pay"></column>
+	</table>
+	<table catalog="parkingsafesdb" name="parking">
+		<column name="pid"></column>
+		<column name="address"></column>
+		<column name="sublevel"></column>
+		<column name="area"></column>
+		<column name="type"></column>
+		<column name="price_unit"></column>
+	</table>
+	<table catalog="parkingsafesdb" name="payment">
+		<column name="no"></column>
+		<column name="cid"></column>
+		<column name="pid"></column>
+		<column name="no"></column>
+		<column name="cid"></column>
+		<column name="pid"></column>
+		<column name="unpaid"></column>
+		<column name="time"></column>
+		<column name="deadline"></column>
+		<column name="pay"></column>
+		<column name="paid"></column>
+		<column name="uid"></column>
+	</table>
+	<table catalog="parkingsafesdb" name="reservation">
+		<column name="cid"></column>
+		<column name="pid"></column>
+		<column name="cid"></column>
+		<column name="pid"></column>
+		<column name="time"></column>
+	</table>
+	<table catalog="parkingsafesdb" name="user">
+		<column name="uid"></column>
+		<column name="identity"></column>
+		<column name="username"></column>
+		<column name="password"></column>
+	</table>
+	<table catalog="parkingsafesdb" name="user_information">
+		<column name="uid"></column>
+		<column name="name"></column>
+		<column name="address"></column>
+		<column name="intro"></column>
+		<column name="contacts_phone"></column>
+		<column name="contacts_name"></column>
+	</table>
+	<table catalog="parkingsafesdb" name="user_qualification">
+		<column name="qid"></column>
+		<column name="uid"></column>
+		<column name="qualification"></column>
+		<column name="image"></column>
+	</table>
+</hibernate-reverse-engineering>
