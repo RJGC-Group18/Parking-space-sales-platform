@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2021-11-27 1:43:04 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.group18.po.UserQualification" table="user_qualification" catalog="parkingsafesdb">
+        <id name="qid" type="int">
+            <column name="qid" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="user" class="com.group18.po.User" fetch="select">
+            <column name="uid" not-null="true" />
+        </many-to-one>
+        <property name="image" type="binary">
+            <column name="image" />
+        </property>
+        <property name="qualification" type="java.lang.Boolean">
+            <column name="qualification" />
+        </property>
+    </class>
+</hibernate-mapping>

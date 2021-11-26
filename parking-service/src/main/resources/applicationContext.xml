@@ -23,45 +23,30 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
      -->
     <!--扫描包事务包，这里是扫描的基本包，只要前缀是一样的都会被spring扫描-->
 
-    <context:component-scan base-package="com.demo.usermanager"> </context:component-scan>
+    <context:component-scan base-package="com.group18"> </context:component-scan>
     <!-- 激活jpa 接口注册  spring data jpa 提供实现类，这里是使用的hibernate提供的jpa方法  -->
-    <jpa:repositories base-package="com.demo.usermanager.dao"/>
-    <!--sprin容器加载本地jdbc配置-->
     <context:property-placeholder location="classpath:jdbc.properties" />
     <!--sprin容器配置c3p0连接池-->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-        <property name="driverClass" value="${jdbc.driverClass}"></property>
-        <property name="jdbcUrl" value="${jdbc.url}"></property>
-        <property name="user" value="${jdbc.username}"></property>
-        <property name="password" value="${jdbc.password}"></property>
+		<property name="driverClass" value="${driver}"/>
+		<property name="jdbcUrl" value="${url}"/>
+		<property name="user" value="${user}"/>
+		<property name="password" value="${password}"/>
     </bean>
     <!--  sessionFactory -->
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 	<property name="dataSource" ref="dataSource"/>
 	<property name="hibernateProperties">
 		<props>
 			<prop key="hibernate.dialect">
-				org.hibernate.dialect.MySQL5Dialect
+				org.hibernate.dialect.MySQLDialect
 			</prop>
 		</props>
 	</property>
-	<property name="mappingResources">
-		<list><!-- hbm.xml配置写这里 例：<value>cn/edu/zjut/po/Customer.hbm.xml</value>-->
-			<value>po/Client.hbm.xml</value>
-			<value>po/ClientInformation.hbm.xml</value>
-			<value>po/ClientQualification.hbm.xml</value>
-			<value>po/Dealing.hbm.xml</value>
-			<value>po/Parking.hbm.xml</value>
-			<value>po/Payment.hbm.xml</value>
-			<value>po/Reservation.hbm.xml</value>
-			<value>po/User.hbm.xml</value>
-			<value>po/UserInformation.hbm.xml</value>
-			<value>po/UserQualification.hbm.xml</value>
-		</list>
-	</property>
+		<property name="mappingDirectoryLocations" value="classpath:com/group18/po"/>
 	</bean>
 
-<bean id="baseDAO" class="po.BaseHibernateDAO">
+<bean id="baseDAO" class="com.group18.dao.BaseHibernateDAO">
 	<property name="sessionFactory" ref="sessionFactory"/>
 </bean>
 </beans>

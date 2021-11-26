@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2021-11-27 1:43:04 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.group18.po.Dealing" table="dealing" catalog="parkingsafesdb">
+        <id name="no" type="int">
+            <column name="no" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="parking" class="com.group18.po.Parking" fetch="select">
+            <column name="pid" not-null="true" />
+        </many-to-one>
+        <many-to-one name="client" class="com.group18.po.Client" fetch="select">
+            <column name="cid" not-null="true" />
+        </many-to-one>
+        <many-to-one name="user" class="com.group18.po.User" fetch="select">
+            <column name="uid" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" />
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" />
+        </property>
+        <property name="time" type="timestamp">
+            <column name="time" length="26" />
+        </property>
+        <property name="pay" type="java.lang.Boolean">
+            <column name="pay" />
+        </property>
+        <set name="payments" table="payment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="no" not-null="true" />
+            </key>
+            <one-to-many class="com.group18.po.Payment" />
+        </set>
+    </class>
+</hibernate-mapping>

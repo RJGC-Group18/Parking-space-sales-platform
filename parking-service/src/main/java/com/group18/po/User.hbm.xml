@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2021-11-27 1:43:04 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.group18.po.User" table="user" catalog="parkingsafesdb">
+        <id name="uid" type="int">
+            <column name="uid" />
+            <generator class="assigned" />
+        </id>
+        <property name="username" type="string">
+            <column name="username" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" />
+        </property>
+        <property name="identity" type="java.lang.Boolean">
+            <column name="identity" />
+        </property>
+        <one-to-one name="userInformation" class="com.group18.po.UserInformation"></one-to-one>
+        <set name="userQualifications" table="user_qualification" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="uid" not-null="true" />
+            </key>
+            <one-to-many class="com.group18.po.UserQualification" />
+        </set>
+        <set name="dealings" table="dealing" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="uid" not-null="true" />
+            </key>
+            <one-to-many class="com.group18.po.Dealing" />
+        </set>
+        <set name="payments" table="payment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="uid" not-null="true" />
+            </key>
+            <one-to-many class="com.group18.po.Payment" />
+        </set>
+        <set name="userQualifications_1" table="user_qualification" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="uid" not-null="true" />
+            </key>
+            <one-to-many class="com.group18.po.UserQualification" />
+        </set>
+    </class>
+</hibernate-mapping>

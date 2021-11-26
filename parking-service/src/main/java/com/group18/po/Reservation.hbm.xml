@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2021-11-27 1:43:04 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.group18.po.Reservation" table="reservation" catalog="parkingsafesdb">
+        <composite-id name="id" class="com.group18.po.ReservationId">
+            <key-property name="cid" type="int">
+                <column name="cid" />
+            </key-property>
+            <key-property name="pid" type="int">
+                <column name="pid" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="parking" class="com.group18.po.Parking" update="false" insert="false" fetch="select">
+            <column name="pid" not-null="true" />
+        </many-to-one>
+        <many-to-one name="client" class="com.group18.po.Client" update="false" insert="false" fetch="select">
+            <column name="cid" not-null="true" />
+        </many-to-one>
+        <property name="time" type="timestamp">
+            <column name="time" length="26" />
+        </property>
+    </class>
+</hibernate-mapping>

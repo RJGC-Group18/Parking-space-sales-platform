@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2021-11-27 1:43:04 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.group18.po.Parking" table="parking" catalog="parkingsafesdb">
+        <id name="pid" type="int">
+            <column name="pid" />
+            <generator class="assigned" />
+        </id>
+        <property name="sublevel" type="java.lang.Boolean">
+            <column name="sublevel" />
+        </property>
+        <property name="area" type="java.lang.Integer">
+            <column name="area" />
+        </property>
+        <property name="priceUnit" type="java.lang.Integer">
+            <column name="price_unit" />
+        </property>
+        <property name="type" type="java.lang.Boolean">
+            <column name="type" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" />
+        </property>
+        <set name="dealings" table="dealing" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pid" not-null="true" />
+            </key>
+            <one-to-many class="com.group18.po.Dealing" />
+        </set>
+        <set name="payments" table="payment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pid" not-null="true" />
+            </key>
+            <one-to-many class="com.group18.po.Payment" />
+        </set>
+        <set name="reservations" table="reservation" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pid" not-null="true" />
+            </key>
+            <one-to-many class="com.group18.po.Reservation" />
+        </set>
+    </class>
+</hibernate-mapping>
