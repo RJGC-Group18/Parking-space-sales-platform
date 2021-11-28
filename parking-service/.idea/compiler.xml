@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="parkingSales-service" />
+        <module name="struts2-spring-hibernate.zh" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="parkingSales-service" target="1.5" />
+      <module name="struts2-spring-hibernate.zh" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

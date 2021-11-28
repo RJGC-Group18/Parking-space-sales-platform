@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/parkingSales-service.iml" filepath="$PROJECT_DIR$/parkingSales-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/struts2-spring-hibernate.zh.iml" filepath="$PROJECT_DIR$/struts2-spring-hibernate.zh.iml" />
     </modules>
   </component>
 </project>
