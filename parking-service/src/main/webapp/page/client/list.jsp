@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>列表</title>
+		<title>车主列表</title>
 		<link  rel="stylesheet"  href="${basePath}static/css/styles.css" />
 		<link rel="stylesheet"  href="${basePath}static/css/font-awesome-4.7.0/css/font-awesome.min.css" />
 		<script  src="${basePath}static/js/jquery.min.js" type="text/javascript"></script>
@@ -25,14 +25,15 @@
 		<%--查询和新增--%>
 		<form action="${basePath}student?method=list" method="post">
 			<div class="condition">
-				ID：<input type="text" name="stuId" value="${student.stuId}">
-				姓名：<input type="text" name="stuName" value="${student.stuName}">
-				学号：<input type="text" name="stuNo" value="${student.stuNo}">
+				ID：<input type="text" name="stuId" value="${Client.stuId}">
+				姓名：<input type="text" name="stuName" value="${Client.stuName}">
+				手机号：<input type="text" name="stuNo" value="${Client.stuNo}">
 				<button>
 					<i class="fa fa-search"></i>
 					查询
 				</button>
-				<button type="button" onclick="window.location.href='page/student/add.jsp'">
+				<%--跳转到增加车主页面--%>
+				<button type="button" onclick="window.location.href='page/student/add.jsp'">//
 					<i class="fa fa-plus"></i>
 					新增
 				</button>
@@ -41,9 +42,9 @@
 		<%--列表信息显示--%>
 		<form action="${basePath}student?method=list" id="tableList" method="post">
 		<input type="hidden" name="pageNo" value="${pageInfo.pageNo}">
-		<input type="hidden" name="stuId" value="${student.stuId}">
-		<input type="hidden" name="stuName" value="${student.stuName}">
-		<input type="hidden" name="stuNo" value="${student.stuNo}">
+		<input type="hidden" name="cId" value="${Client.cId}">
+		<input type="hidden" name="cName" value="${Client.cName}">
+		<input type="hidden" name="cPhone" value="${Client.phone}">
 
 		<%--设计表头--%>
 		<table class="tablelist">
@@ -51,22 +52,22 @@
 				<tr>
 					<th>ID</th>
 					<th>姓名</th>
-					<th>学号</th>
+					<th>手机号</th>
 					<th width="120px">操作</th>
 				</tr>
 			</thead>
-			<%--将学生信息存入表格--%>
+			<%--将车主信息存入表格--%>
 			<c:forEach items="${pageInfo.list}" var="student">
 			<tr>
-				<td>${student.stuId}</td>
-				<td>${student.stuName}</td>
-				<td>${student.stuNo}</td>
+				<td>${Client.cId}</td>
+				<td>${Client.cName}</td>
+				<td>${Client.cphone}</td>
 				<td>
-					<button class="edit" type="button" onclick="window.location.href='${basePath}student?method=edit&id=${student.stuId}'">
+					<button class="edit" type="button" onclick="window.location.href='${basePath}student?method=edit&id=${Client.cId}'">
 						<i class="fa fa-edit"></i>
 						修改
 					</button>
-					<button class="remove" type="button" keyword="${student.stuId}">
+					<button class="remove" type="button" keyword="${Client.cId}">
 						<i class="fa fa-remove"></i>
 						删除
 					</button>

@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>新增</title>
+		<title>车位发布</title>
 		<link  rel="stylesheet"  href="${basePath}static/css/styles.css" />
 		<link rel="stylesheet"  href="${basePath}static/css/font-awesome-4.7.0/css/font-awesome.min.css" />
 		<script  src="${basePath}static/js/jquery.min.js" type="text/javascript"></script>
@@ -27,19 +27,24 @@
 			<form id="addForm" action="${basePath}course?method=add" method="post">
 				<table class="tableadd" style="width: 50%;">
 					<tr>
-						<td>社团课程名称</td>
-						<td style="color: red;"><input type="text" name="cName"></td>
+						<td>地下几层</td>
+						<td style="color: red;"><input type="text" name="sublevel"></td>
 					</tr>
 					<tr>
-						<td>老师</td>
-						<td>
-							<select name="tId">
-								<option value="">请选择老师</option>
-								<c:forEach items="${teachers}" var="teacher">
-								<option value="${teacher.tId}">${teacher.tName}</option>
-								</c:forEach>
-							</select>
-						</td>
+						<td>区域</td>
+						<td style="color: red;"><input type="text" name="area"></td>
+					</tr>
+					<tr>
+						<td>价格</td>
+						<td style="color: red;"><input type="text" name="price"></td>
+					</tr>
+					<tr>
+						<td>类型</td>
+						<td style="color: red;"><input type="text" name="type"></td>
+					</tr>
+					<tr>
+						<td>地址</td>
+						<td style="color: red;"><input type="text" name="address"></td>
 					</tr>
 					
 					<tr>

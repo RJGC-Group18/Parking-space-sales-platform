@@ -13,34 +13,47 @@
 	</head>
 	<body>
 
-		<c:if test="${param.msg == 0}">
-			<span style="color:red;">操作失败！</span>
-		</c:if>
+<%--		<c:if test="${param.msg == 0}">--%>
+<%--			<span style="color:red;">操作失败！</span>--%>
+<%--		</c:if>--%>
 
-		<c:if test="${param.msg == 1}">
-			<span style="color:green;">操作成功！</span>
-		</c:if>
+<%--		<c:if test="${param.msg == 1}">--%>
+<%--			<span style="color:green;">操作成功！</span>--%>
+<%--		</c:if>--%>
 
 		<form action="${basePath}sc?method=submit" method="post">
 			<table class="tablelist">
-				<c:forEach items="${courses}" var="course">
+				<c:forEach items="${parkings}" var="parking">
 				<tr>
 					<td width="50px" align="center">
 						<!-- 选中的cId -->
 						<input type="checkbox"
+							<%--   确认报名--%>
 							<c:forEach items="${scs}" var="sc">
 								<c:if test="${sc.cId eq course.cId}">checked="checked"</c:if>
 							</c:forEach>
 						 name="cId" value="${course.cId}">
 					</td>
 					<td>
-					${course.cName}
+					${parking.pid}
 					</td>
 					<td>
-					${course.teacher.tName}
+							${parking.sublevel}
 					</td>
 					<td>
-					${course.info}
+							${parking.area}
+					</td>
+					<td>
+							${parking.pid}
+					</td>
+					<td>
+							${parking.price}
+					</td>
+					<td>
+							${parking.type}
+					</td>
+					<td>
+							${parking.address}
 					</td>
 				</tr>
 				</c:forEach>

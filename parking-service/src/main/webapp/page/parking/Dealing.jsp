@@ -22,48 +22,60 @@
 	<body>
 		<form action="${basePath}course?method=list" method="post">
 			<div class="condition">
-				ID：<input type="text" name="cId" value="${course.cId}">
-				社团课程名：<input type="text" name="cName" value="${course.cName}">
-				老师：<input type="text" name="tName" value="${course.teacher.tName}">
-				老师账号：<input type="text" name="userName" value="${course.teacher.userName}">
+				合同编号：<input type="text" name="No" value="${No}">
+				车主ID：<input type="text" name="cId" value="${client.cId}">
+				车主姓名：<input type="text" name="cName" value="${client.cName}">
+				车主手机号：<input type="text" name="cPhone" value="${client.cPhone}">
+				车位ID：<input type="text" name="pId" value="${parking.pId}">
+				经销商ID：<input type="text" name="Id" value="${user.Id}">
+				订单时间：<input type="date" name="date" value="${date}">
 				<button>
 					<i class="fa fa-search"></i>
 					查询
 				</button>
-				<button type="button"  onclick="window.location.href='course?method=v_add'">
-					<i class="fa fa-plus"></i>
-					新增
-				</button>
+				<%--<button type="button"  onclick="window.location.href='course?method=v_add'">--%>
+				<%--	<i class="fa fa-plus"></i>--%>
+				<%--	新增--%>
+				<%--</button>--%>
 			</div>
 		</form>
 		<form action="${basePath}course?method=list" id="tableList" method="post">
-		<input type="hidden" name="pageNo" value="${pageInfo.pageNo}">
-		<input type="hidden" name="cId" value="${course.cId}">
-		<input type="hidden" name="cName" value="${course.cName}">
-		<input type="hidden" name="tName" value="${course.teacher.tName}">
-		<input type="hidden" name="userName" value="${course.teacher.userName}">
+		<input type="hidden" name="No" value="${No}">
+		<input type="hidden" name="cId" value="${client.cId}">
+		<input type="hidden" name="cName" value="${client.cName}">
+		<input type="hidden" name="cPhone" value="${client.cPhone}">
+		<input type="hidden" name="pId" value="${parking.pId}">
+		<input type="hidden" name="Id" value="${user.Id}">
+		<input type="date" name="date" value="${date}">
 		<table class="tablelist">
 			<thead>
 				<tr>
-					<th>ID</th>
-					<th>社团课程名</th>
-					<th>老师</th>
-					<th>社团信息</th>
+					<th>合同编号</th>
+					<th>车主ID</th>
+					<th>车主姓名</th>
+					<th>车主手机号</th>
+					<th>车位ID</th>
+					<th>经销商ID</th>
+					<th>订单时间</th>
+					<th>车位ID</th>
 					<th width="120px">操作</th>
 				</tr>
 			</thead>
 			<c:forEach items="${pageInfo.list}" var="course">
 			<tr>
-				<td>${course.cId}</td>
-				<td>${course.cName}</td>
-				<td>${course.teacher.tName}</td>
-				<td>${course.info}</td>
+				<td>${No}</td>
+				<td>${client.cId}</td>
+				<td>${client.cName}</td>
+				<td>${client.cPhone}</td>
+				<td>${parking.pId}</td>
+				<td>${user.Id}</td>
+				<td>${date}</td>
 				<td>
 					<button class="edit" type="button" onclick="window.location.href='${basePath}course?method=edit&id=${course.cId}'">
 						<i class="fa fa-edit"></i>
-						修改
+						确认
 					</button>
-					<button class="remove" type="button" keyword="${course.cId}">
+					<button class="remove" type="button" keyword="${No}">
 						<i class="fa fa-remove"></i>
 						删除
 					</button>
