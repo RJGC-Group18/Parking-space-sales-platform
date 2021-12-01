@@ -57,6 +57,10 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 <bean id="userInformationDAO" class="com.group18.dao.UserInformationDAO" parent="baseDAO"/>
 <bean id="clientQualificationDAO" class="com.group18.dao.ClientQualificationDAO" parent="baseDAO"/>
 <bean id="userQualificationDAO" class="com.group18.dao.UserQualificationDAO" parent="baseDAO"/>
+<bean id="dealingDAO" class="com.group18.dao.DealingDAO" parent="baseDAO"/>
+<bean id="parkingDAO" class="com.group18.dao.ParkingDAO" parent="baseDAO"/>
+<bean id="paymentDAO" class="com.group18.dao.PaymentDAO" parent="baseDAO"/>
+<bean id="reservationDAO" class="com.group18.dao.ReservationDAO" parent="baseDAO"/>
 <!-- Service -->
 <bean id="clientService" class="com.group18.service.ClientService">
 	<property name="clientDAO" ref="clientDAO"/>
@@ -76,6 +80,20 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 <bean id="userQualificationService" class="com.group18.service.UserQualificationService">
 	<property name="userQualificationDAO" ref="userQualificationDAO"/>
 </bean>
+<bean id="dealingService" class="com.group18.service.DealingService">
+	<property name="dealingDAO" ref="dealingDAO"/>
+</bean>
+<bean id="parkingService" class="com.group18.service.ParkingService">
+	<property name="parkingDAO" ref="parkingDAO"/>
+	<property name="dealingDAO" ref="dealingDAO"/>
+</bean>
+<bean id="paymentService" class="com.group18.service.PaymentService">
+	<property name="paymentDAO" ref="paymentDAO"/>
+</bean>
+<bean id="reservationService" class="com.group18.service.ReservationService">
+	<property name="reservationDAO" ref="reservationDAO"/>
+</bean>
+
 <!-- Controller/Action -->
 
 
