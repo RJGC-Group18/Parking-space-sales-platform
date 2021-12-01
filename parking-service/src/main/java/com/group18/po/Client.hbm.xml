@@ -33,12 +33,6 @@
             </key>
             <one-to-many class="com.group18.po.Reservation" />
         </set>
-        <set name="clientQualifications_1" table="client_qualification" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="cid" not-null="true" />
-            </key>
-            <one-to-many class="com.group18.po.ClientQualification" />
-        </set>
         <set name="payments" table="payment" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="cid" not-null="true" />

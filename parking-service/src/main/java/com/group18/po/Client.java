@@ -25,7 +25,6 @@ public class Client implements java.io.Serializable {
 	private Set<ClientQualification> clientQualifications = new HashSet<ClientQualification>(0);
 	private Set<Dealing> dealings = new HashSet<Dealing>(0);
 	private Set<Reservation> reservations = new HashSet<Reservation>(0);
-	private Set<ClientQualification> clientQualifications_1 = new HashSet<ClientQualification>(0);
 	private Set<Payment> payments = new HashSet<Payment>(0);
 
 	public Client() {
@@ -36,8 +35,7 @@ public class Client implements java.io.Serializable {
 	}
 
 	public Client(int cid, String username, String password, ClientInformation clientInformation,
-			Set<ClientQualification> clientQualifications, Set<Dealing> dealings, Set<Reservation> reservations,
-			Set<ClientQualification> clientQualifications_1, Set<Payment> payments) {
+			Set<ClientQualification> clientQualifications, Set<Dealing> dealings, Set<Reservation> reservations, Set<Payment> payments) {
 		this.cid = cid;
 		this.username = username;
 		this.password = password;
@@ -45,7 +43,6 @@ public class Client implements java.io.Serializable {
 		this.clientQualifications = clientQualifications;
 		this.dealings = dealings;
 		this.reservations = reservations;
-		this.clientQualifications_1 = clientQualifications_1;
 		this.payments = payments;
 		this.clientInformation = clientInformation;
 	}
@@ -113,15 +110,6 @@ public class Client implements java.io.Serializable {
 
 	public void setReservations(Set<Reservation> reservations) {
 		this.reservations = reservations;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
-	public Set<ClientQualification> getClientQualifications_1() {
-		return this.clientQualifications_1;
-	}
-
-	public void setClientQualifications_1(Set<ClientQualification> clientQualifications_1) {
-		this.clientQualifications_1 = clientQualifications_1;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "client")

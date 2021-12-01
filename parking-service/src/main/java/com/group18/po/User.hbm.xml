@@ -36,11 +36,5 @@
             </key>
             <one-to-many class="com.group18.po.Payment" />
         </set>
-        <set name="userQualifications_1" table="user_qualification" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="uid" not-null="true" />
-            </key>
-            <one-to-many class="com.group18.po.UserQualification" />
-        </set>
     </class>
 </hibernate-mapping>

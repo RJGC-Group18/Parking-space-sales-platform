@@ -26,7 +26,6 @@ public class User implements java.io.Serializable {
 	private Set<UserQualification> userQualifications = new HashSet<UserQualification>(0);
 	private Set<Dealing> dealings = new HashSet<Dealing>(0);
 	private Set<Payment> payments = new HashSet<Payment>(0);
-	private Set<UserQualification> userQualifications_1 = new HashSet<UserQualification>(0);
 
 	public User() {
 	}
@@ -37,7 +36,7 @@ public class User implements java.io.Serializable {
 
 	public User(int uid, String username, String password, Boolean identity, UserInformation userInformation,
 		 Set<UserQualification> userQualifications, Set<Dealing> dealings,
-			Set<Payment> payments, Set<UserQualification> userQualifications_1) {
+			Set<Payment> payments) {
 		this.uid = uid;
 		this.username = username;
 		this.password = password;
@@ -47,7 +46,6 @@ public class User implements java.io.Serializable {
 		this.userQualifications = userQualifications;
 		this.dealings = dealings;
 		this.payments = payments;
-		this.userQualifications_1 = userQualifications_1;
 	}
 
 	@Id
@@ -123,15 +121,6 @@ public class User implements java.io.Serializable {
 
 	public void setPayments(Set<Payment> payments) {
 		this.payments = payments;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<UserQualification> getUserQualifications_1() {
-		return this.userQualifications_1;
-	}
-
-	public void setUserQualifications_1(Set<UserQualification> userQualifications_1) {
-		this.userQualifications_1 = userQualifications_1;
 	}
 
 }
