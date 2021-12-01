@@ -49,4 +49,18 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 <bean id="baseDAO" class="com.group18.dao.BaseHibernateDAO">
 	<property name="sessionFactory" ref="sessionFactory"/>
 </bean>
+
+<!-- DAO -->
+<bean id="clientDAO" class="com.group18.dao.ClientDAO" parent="baseDAO" />
+<bean id="userDAO" class="com.group18.dao.UserDAO" parent="baseDAO"></bean>
+<!-- Service -->
+<bean id="clientService" class="com.group18.service.ClientService">
+	<property name="clientDAO" ref="clientDAO"/>
+</bean>
+<bean id="userService" class="com.group18.service.UserService">
+	<property name="userDAO" ref="userDAO"/>
+</bean>
+<!-- Controller/Action -->
+
+
 </beans>
