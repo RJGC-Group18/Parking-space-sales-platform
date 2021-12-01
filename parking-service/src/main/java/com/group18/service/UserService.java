@@ -23,6 +23,11 @@ public class UserService implements IUserService {
 	public void register(User user) {
 		userDAO.save(user);
 	}
+	
+	public void update(User user)
+	{
+		userDAO.update(user);
+	}
 
 	public User findByName(User user) {
 		String hql= "from User where username='" + user.getUsername()+ "'";
@@ -35,7 +40,7 @@ public class UserService implements IUserService {
 	}
 
 	public User findById(User user) {
-		String hql= "from User where username='" + String.valueOf(user.getUid())+ "'";
+		String hql= "from User where cid='" + String.valueOf(user.getUid())+ "'";
 		List list=userDAO.findByHql(hql);
 		if(list.isEmpty())
 		{

@@ -2,17 +2,16 @@ package com.group18.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.Query;
 
-import com.group18.po.User;
+import com.group18.po.ClientQualification;
 
-public class UserDAO extends BaseHibernateDAO implements IUserDAO {
+public class ClientQualificationDAO extends BaseHibernateDAO implements IClientQualificationDAO {
 
-	public List findByHql(String hql)
-	{
-		try 
+	public List findByHql(String hql) {
+		try
 		{
 			String queryString = hql;
 			Query queryObject = getSession().createQuery(queryString);
@@ -24,15 +23,39 @@ public class UserDAO extends BaseHibernateDAO implements IUserDAO {
 		}
 	}
 
-	public void save(User user) 
-	{
+	public void save(ClientQualification clientQualification) {
 		Transaction tran=null;
 		Session session=null;
 		try
 		{
 			session=getSession();
 			tran=session.beginTransaction();
-			session.save(user);
+			session.save(clientQualification);
+			tran.commit();
+		}
+		catch(RuntimeException re)
+		{
+			if(tran!=null)
+			{
+				tran.rollback();
+			}
+			throw re;
+		}
+		finally
+		{
+			session.close();
+		}
+
+	}
+
+	public void delete(ClientQualification clientQualification) {
+		Transaction tran=null;
+		Session session=null;
+		try
+		{
+			session=getSession();
+			tran=session.beginTransaction();
+			session.delete(clientQualification);
 			tran.commit();
 		}
 		catch(RuntimeException re)
@@ -49,14 +72,14 @@ public class UserDAO extends BaseHibernateDAO implements IUserDAO {
 		}
 	}
 
-	public void update(User user) {
+	public void update(ClientQualification clientQualification) {
 		Transaction tran=null;
 		Session session=null;
 		try
 		{
 			session=getSession();
 			tran=session.beginTransaction();
-			session.update(user);
+			session.update(clientQualification);
 			tran.commit();
 		}
 		catch(RuntimeException re)
@@ -71,6 +94,7 @@ public class UserDAO extends BaseHibernateDAO implements IUserDAO {
 		{
 			session.close();
 		}
+		
 	}
 
 }

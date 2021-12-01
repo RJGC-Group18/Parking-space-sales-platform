@@ -32,7 +32,31 @@ public class ClientDAO extends BaseHibernateDAO implements IClientDAO {
 		{
 			session=getSession();
 			tran=session.beginTransaction();
-			session.saveOrUpdate(client);
+			session.save(client);
+			tran.commit();
+		}
+		catch(RuntimeException re)
+		{
+			if(tran!=null)
+			{
+				tran.rollback();
+			}
+			throw re;
+		}
+		finally
+		{
+			session.close();
+		}
+	}
+
+	public void update(Client client) {
+		Transaction tran=null;
+		Session session=null;
+		try
+		{
+			session=getSession();
+			tran=session.beginTransaction();
+			session.update(client);
 			tran.commit();
 		}
 		catch(RuntimeException re)

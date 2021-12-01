@@ -2,16 +2,15 @@ package com.group18.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.Query;
 
-import com.group18.po.User;
+import com.group18.po.UserQualification;
 
-public class UserDAO extends BaseHibernateDAO implements IUserDAO {
+public class UserQualificationDAO extends BaseHibernateDAO implements IUserQualificationDAO {
 
-	public List findByHql(String hql)
-	{
+	public List findByHql(String hql) {
 		try 
 		{
 			String queryString = hql;
@@ -24,15 +23,14 @@ public class UserDAO extends BaseHibernateDAO implements IUserDAO {
 		}
 	}
 
-	public void save(User user) 
-	{
+	public void save(UserQualification userQualification) {
 		Transaction tran=null;
 		Session session=null;
 		try
 		{
 			session=getSession();
 			tran=session.beginTransaction();
-			session.save(user);
+			session.save(userQualification);
 			tran.commit();
 		}
 		catch(RuntimeException re)
@@ -49,14 +47,14 @@ public class UserDAO extends BaseHibernateDAO implements IUserDAO {
 		}
 	}
 
-	public void update(User user) {
+	public void delete(UserQualification userQualification) {
 		Transaction tran=null;
 		Session session=null;
 		try
 		{
 			session=getSession();
 			tran=session.beginTransaction();
-			session.update(user);
+			session.delete(userQualification);
 			tran.commit();
 		}
 		catch(RuntimeException re)
@@ -71,6 +69,31 @@ public class UserDAO extends BaseHibernateDAO implements IUserDAO {
 		{
 			session.close();
 		}
+	}
+
+	public void update(UserQualification userQualification) {
+		Transaction tran=null;
+		Session session=null;
+		try
+		{
+			session=getSession();
+			tran=session.beginTransaction();
+			session.update(userQualification);
+			tran.commit();
+		}
+		catch(RuntimeException re)
+		{
+			if(tran!=null)
+			{
+				tran.rollback();
+			}
+			throw re;
+		}
+		finally
+		{
+			session.close();
+		}
+		
 	}
 
 }

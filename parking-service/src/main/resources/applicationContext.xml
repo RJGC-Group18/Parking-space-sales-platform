@@ -52,13 +52,29 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
 <!-- DAO -->
 <bean id="clientDAO" class="com.group18.dao.ClientDAO" parent="baseDAO" />
-<bean id="userDAO" class="com.group18.dao.UserDAO" parent="baseDAO"></bean>
+<bean id="userDAO" class="com.group18.dao.UserDAO" parent="baseDAO"/>
+<bean id="clientInformationDAO" class="com.group18.dao.ClientInformationDAO" parent="baseDAO"/>
+<bean id="userInformationDAO" class="com.group18.dao.UserInformationDAO" parent="baseDAO"/>
+<bean id="clientQualificationDAO" class="com.group18.dao.ClientQualificationDAO" parent="baseDAO"/>
+<bean id="userQualificationDAO" class="com.group18.dao.UserQualificationDAO" parent="baseDAO"/>
 <!-- Service -->
 <bean id="clientService" class="com.group18.service.ClientService">
 	<property name="clientDAO" ref="clientDAO"/>
 </bean>
 <bean id="userService" class="com.group18.service.UserService">
 	<property name="userDAO" ref="userDAO"/>
+</bean>
+<bean id="clientInformationService" class="com.group18.service.ClientInformationService">
+	<property name="clientInformationDAO" ref="clientInformationDAO"/>
+</bean>
+<bean id="userInformationService" class="com.group18.service.UserInformationService">
+	<property name="userInformationDAO" ref="userInformationDAO"/>
+</bean>
+<bean id="clientQualificationService" class="com.group18.service.ClientQualificationService">
+	<property name="clientQualificationDAO" ref="clientQualificationDAO"/>
+</bean>
+<bean id="userQualificationService" class="com.group18.service.UserQualificationService">
+	<property name="userQualificationDAO" ref="userQualificationDAO"/>
 </bean>
 <!-- Controller/Action -->
 

@@ -22,6 +22,11 @@ public class ClientService implements IClientService {
 		clientDAO.save(client);
 	}
 
+	public void update(Client client)
+	{
+		clientDAO.update(client);
+	}
+	
 	public Client findByName(Client client) {
 		String hql= "from Client where username='" + client.getUsername()+ "'";
 		List list=clientDAO.findByHql(hql);
