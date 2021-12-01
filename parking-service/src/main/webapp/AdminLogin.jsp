@@ -108,14 +108,7 @@
 				<div class="p">
 					<input type="password" class="pwd" name="password" value=""  />
 				</div>
-				<div class="s">
-					<select name="type">
-						<option value="">请选择登陆类型</option>
-						<option value="0">车主</option>
-						<option value="1">经销商</option>
-						<option selected="selected" value="2">管理员</option>
-					</select>
-				</div>
+
 				<div class="l">
 					<button type="submit">登录</button>
 				</div>
