@@ -8,6 +8,9 @@
             <column name="pid" />
             <generator class="increment" />
         </id>
+        <many-to-one name="user" class="com.group18.po.User" fetch="select">
+            <column name="uid" not-null="true" />
+        </many-to-one>
         <property name="sublevel" type="java.lang.Boolean">
             <column name="sublevel" />
         </property>

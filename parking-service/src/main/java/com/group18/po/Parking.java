@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,6 +25,7 @@ public class Parking implements java.io.Serializable {
 	private Integer priceUnit;
 	private Boolean type;
 	private String address;
+	private User user;
 	private Set<Dealing> dealings = new HashSet<Dealing>(0);
 	private Set<Payment> payments = new HashSet<Payment>(0);
 	private Set<Reservation> reservations = new HashSet<Reservation>(0);
@@ -30,13 +33,15 @@ public class Parking implements java.io.Serializable {
 	public Parking() {
 	}
 
-	public Parking(int pid) {
+	public Parking(int pid,User user) {
 		this.pid = pid;
+		this.user=user;
 	}
 
-	public Parking(int pid, Boolean sublevel, Integer area, Integer priceUnit, Boolean type, String address,
+	public Parking(int pid, User user,Boolean sublevel, Integer area, Integer priceUnit, Boolean type, String address,
 			Set<Dealing> dealings, Set<Payment> payments, Set<Reservation> reservations) {
 		this.pid = pid;
+		this.user=user;
 		this.sublevel = sublevel;
 		this.area = area;
 		this.priceUnit = priceUnit;
@@ -58,6 +63,16 @@ public class Parking implements java.io.Serializable {
 		this.pid = pid;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "uid", nullable = false)
+	public User getUser() {
+		return this.user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
 	@Column(name = "sublevel")
 	public Boolean getSublevel() {
 		return this.sublevel;
