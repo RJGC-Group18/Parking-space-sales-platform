@@ -6,7 +6,7 @@
     <class name="com.group18.po.Parking" table="parking" catalog="parkingsafesdb">
         <id name="pid" type="int">
             <column name="pid" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="sublevel" type="java.lang.Boolean">
             <column name="sublevel" />

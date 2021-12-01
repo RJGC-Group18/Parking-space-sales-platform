@@ -6,7 +6,7 @@
     <class name="com.group18.po.Dealing" table="dealing" catalog="parkingsafesdb">
         <id name="no" type="int">
             <column name="no" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <many-to-one name="parking" class="com.group18.po.Parking" fetch="select">
             <column name="pid" not-null="true" />

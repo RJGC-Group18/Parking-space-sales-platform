@@ -6,7 +6,7 @@
     <class name="com.group18.po.User" table="user" catalog="parkingsafesdb">
         <id name="uid" type="int">
             <column name="uid" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="username" type="string">
             <column name="username" />

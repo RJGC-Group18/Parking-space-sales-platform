@@ -6,7 +6,7 @@
     <class name="com.group18.po.Client" table="client" catalog="parkingsafesdb">
         <id name="cid" type="int">
             <column name="cid" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="username" type="string">
             <column name="username" />

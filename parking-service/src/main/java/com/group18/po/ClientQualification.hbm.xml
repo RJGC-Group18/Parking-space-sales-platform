@@ -6,7 +6,7 @@
     <class name="com.group18.po.ClientQualification" table="client_qualification" catalog="parkingsafesdb">
         <id name="qid" type="int">
             <column name="qid" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <many-to-one name="client" class="com.group18.po.Client" fetch="select">
             <column name="cid" not-null="true" />
