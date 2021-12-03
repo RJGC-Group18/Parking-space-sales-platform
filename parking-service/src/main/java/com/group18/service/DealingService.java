@@ -6,6 +6,7 @@ import com.group18.dao.IDealingDAO;
 import com.group18.po.Client;
 import com.group18.po.Dealing;
 import com.group18.po.Parking;
+import com.group18.po.User;
 
 public class DealingService implements IDealingService {
 
@@ -32,6 +33,16 @@ public class DealingService implements IDealingService {
 		return list;
 		}
 
+	public List<Dealing> findByUid(User user) {
+		String hql= "from Dealing where uid='" + String.valueOf(user.getUid())+"'";
+		List list=dealingDAO.findByHql(hql);
+		if(list.isEmpty())
+		{
+			return null;
+		}
+		return list;
+		}
+	
 	public Dealing findByNo(Dealing dealing)
 	{
 		String hql= "from Dealing where no='" + String.valueOf(dealing.getNo())+"'";
