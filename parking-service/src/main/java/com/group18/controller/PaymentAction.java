@@ -89,6 +89,7 @@ public class PaymentAction {
 	{
 		return "failed";
 	}
+	
 	public Payment getPayment() {
 		return payment;
 	}
