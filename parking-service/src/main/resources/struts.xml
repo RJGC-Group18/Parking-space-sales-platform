@@ -39,7 +39,7 @@
 
 
     <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
-    <package name="demo" extends="json-default">
+    <package name="demo" extends="struts-default" namespace="/">
 
         <!--struts的配置顺序： Element : package
         Content Model : (result-types?, interceptors?, default-interceptor-ref?, default-action-ref?,
@@ -69,8 +69,9 @@
         </global-results> -->
 
         <!--没有配置class 默认class ActionSupport implements Action SUCCESS转发  -->
-        <action name="index">
-            <result>/index.jsp</result>
+        <action name="clientLogin" class="clientAction" method="login">
+            <result name="success">/ClientIndex.jsp</result>
+            <result name="failed">/ClientLogin.jsp</result>
         </action>
     </package>
 
