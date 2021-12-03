@@ -95,6 +95,25 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 </bean>
 
 <!-- Controller/Action -->
-
+<bean id="clientAction" class="cn.edu.zjut.action.ClientAction" scope="prototype">
+	<property name="clientService" ref="clientService" />
+	<property name="clientQualificationService" ref="clientQualificationService" />
+</bean>
+<bean id="userAction" class="cn.edu.zjut.action.UserAction" scope="prototype">
+	<property name="userService" ref="userService" />
+	<property name="userQualificationService" ref="userQualificationService" />
+</bean>
+<bean id="parkingAction" class="cn.edu.zjut.action.ParkingAction" scope="prototype">
+	<property name="parkingService" ref="parkingService" />
+</bean>
+<bean id="reservationAction" class="cn.edu.zjut.action.ReservationAction" scope="prototype">
+	<property name="reservationService" ref="reservationService" />
+	<property name="parkingService" ref="parkingService" />
+	<property name="clientService" ref="clientService" />
+	<property name="dealingService" ref="dealingService" />
+</bean>
+<bean id="dealingAction" class="cn.edu.zjut.action.DealingAction" scope="prototype">
+	<property name="dealingService" ref="dealingService" />
+</bean>
 
 </beans>
