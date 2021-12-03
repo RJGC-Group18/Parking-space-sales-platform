@@ -39,7 +39,7 @@
 
 
     <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
-    <package name="demo" extends="struts-default" namespace="/">
+    <package name="demo" namespace="/" extends="struts-default">
 
         <!--struts的配置顺序： Element : package
         Content Model : (result-types?, interceptors?, default-interceptor-ref?, default-action-ref?,
