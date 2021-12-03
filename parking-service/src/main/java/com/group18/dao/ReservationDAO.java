@@ -70,7 +70,6 @@ public class ReservationDAO extends BaseHibernateDAO implements IReservationDAO 
 		{
 			session.close();
 		}
-
 	}
-
+	
 }

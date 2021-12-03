@@ -22,8 +22,8 @@ public class DealingService implements IDealingService {
 		return (Dealing)list.get(0);
 	}
 
-	public List<Dealing> findByPid(Parking parking) {
-		String hql= "from Dealing where pid='" + String.valueOf(parking.getPid())+"'";
+	public List<Dealing> findByCid(Client client) {
+		String hql= "from Dealing where cid='" + String.valueOf(client.getCid())+"'";
 		List list=dealingDAO.findByHql(hql);
 		if(list.isEmpty())
 		{

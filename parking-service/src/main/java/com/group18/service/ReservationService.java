@@ -2,15 +2,16 @@ package com.group18.service;
 
 import java.util.List;
 
+import com.group18.dao.DealingDAO;
 import com.group18.dao.ReservationDAO;
 import com.group18.po.Client;
-import com.group18.po.Dealing;
 import com.group18.po.Parking;
 import com.group18.po.Reservation;
 
 public class ReservationService implements IReservationService {
 
 	ReservationDAO reservationDAO=null;
+	DealingDAO dealingDAO=null;
 	
 	public List<Reservation> findByCid(Client client) {
 		String hql= "from Reservation where cid='" + String.valueOf(client.getCid())+"'";
@@ -40,6 +41,14 @@ public class ReservationService implements IReservationService {
 		reservationDAO.delete(reservation);
 	}
 
+	public Reservation selectReservation(Parking parking)//车位摇号,返回被选中的预约信息
+	{
+		List<Reservation> reservationList=findByPid(parking);
+		int selected=(int)(Math.random()*(reservationList.size()));//随机选择
+		Reservation reservation=reservationList.get(selected);
+		return reservation;
+	}
+	
 	public ReservationDAO getReservationDAO() {
 		return reservationDAO;
 	}
