@@ -1,4 +1,5 @@
 <%@page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -97,25 +98,25 @@
 		</style>
 	</head>
 	<body>
-		<div class="login">
-			<div class="title">
+		<s:div cssClass="login">
+			<s:div cssClass="title">
 				车位销售系统
-			</div>
+			</s:div>
 			<form action="login" method="post">
-				<div class="u">
-					<input type="text" class="uname" name="userName" value=""  />
-				</div>
-				<div class="p">
-					<input type="password" class="pwd" name="password" value=""  />
-				</div>
+				<s:div cssClass="u">
+					<s:textfield theme="simple" cssClass="uname" name="user.username" value="账号名"/>
+				</s:div>
+				<s:div cssClass="p">
+					<s:password theme="simple" cssClass="pwd" name="user.password" value="密码"/>
+				</s:div>
 
-				<div class="l">
-					<button type="submit">登录</button>
-				</div>
+				<s:div cssClass="l">
+					<s:submit theme="simple" value="登录"/>
+				</s:div>
 			</form>
-			<div class="tips">
+			<div cssClass="tips">
 				${error}
 			</div>
-		</div>
+		</s:div>
 	</body>
 </html>

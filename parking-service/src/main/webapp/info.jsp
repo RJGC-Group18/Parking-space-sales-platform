@@ -13,21 +13,42 @@
 <body style="height: 100%; margin: 0">
 <div class="add">
 	<table class="tablelist" style="width: 50%;margin-left:50px">
-		<c:if test="${type == 2}">
+		<c:if test="${type == 0}">
 			<tr>
 				<td width="120px">ID</td>
-				<td>${user.id}</td>
+				<td>${client.cid}</td>
 			</tr>
 			<tr>
 				<td width="120px">用户名</td>
-				<td>${user.userName}</td>
+				<td>${client.username}</td>
 			</tr>
 			<tr>
 				<td width="120px">姓名</td>
-				<td>${user.name}</td>
+				<td>${client.clientInformation.name}</td>
+			</tr>
+			<tr>
+				<td width="120px">姓别</td>
+				<c:if test="${client.clientInformation.sex == true}"><td>男</td></c:if>
+				<c:if test="${client.clientInformation.sex == false}"><td>女</td></c:if>
+			</tr>
+			<tr>
+				<td width="120px">年龄</td>
+				<td>${client.clientInformation.age}</td>
+			</tr>
+			<tr>
+				<td width="120px">生日</td>
+				<td>${client.clientInformation.birthday}</td>
+			</tr>
+			<tr>
+				<td width="120px">电子邮箱</td>
+				<td>${client.clientInformation.email}</td>
+			</tr>
+			<tr>
+				<td width="120px">电话</td>
+				<td>${client.clientInformation.phone}</td>
 			</tr>
 		</c:if>
-		<c:if test="${type == 1}">
+		<%-- <c:if test="${type == 1}">
 			<tr>
 				<td width="120px">ID</td>
 				<td>${user.tId}</td>
@@ -54,7 +75,7 @@
 				<td width="120px">姓名</td>
 				<td>${user.stuName}</td>
 			</tr>
-		</c:if>
+		</c:if> --%>
 		
 	</table>
 	</div>

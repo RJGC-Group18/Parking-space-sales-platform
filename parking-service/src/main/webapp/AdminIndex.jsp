@@ -1,5 +1,6 @@
 <%@page contentType="text/html; charset=utf-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <%--通过type的类型来设置登陆后的权限，即看到的内容--%>
 <!DOCTYPE html>
 <html>
@@ -33,11 +34,11 @@
     </script>
 </head>
 <body>
-<div class="header">
-    <div class="logo">车位销售系统后台管理</div>
-    <div class="user">
-        <i class="fa fa-caret-down point"></i>
-        <i class="fa fa-user"></i>
+<s:div cssClass="" class="header">
+    <s:div cssClass="logo">车位销售系统后台管理</s:div>
+    <s:div cssClass="user">
+        <i Class="fa fa-caret-down point"></i>
+        <i Class="fa fa-user"></i>
 
             ${user.userName}
 
@@ -46,14 +47,14 @@
             <li><a  target="mainFrame" href="info.jsp">个人信息</a></li>
             <li><a  href="javascript:void(0)" class="logout">退出登录</a></li>
         </ul>
-    </div>
-</div>
-<div class="left">
-    <div class="title">
+    </s:div>
+</s:div>
+<s:div cssClass="left">
+    <s:div cssClass="title">
         <i class="fa fa-home"></i>
         系统功能
-    </div>
-    <div class="menux">
+    </s:div>
+    <s:div cssClass="menux">
 
             <p>
                 <i class="fa fa-info-circle"></i>
@@ -97,14 +98,14 @@
 
             </ul>
 
-    </div>
-</div>
-<div class="main">
-    <div class="location">
+    </s:div>
+</s:div>
+<s:div cssClass="main">
+    <s:div cssClass="" class="location">
         <i class="fa fa-home"></i>
         <span class="menu_title">用户管理</span>
-    </div>
+    </s:div>
     <iframe src="welcome.jsp"  width="100%" height="90%" name="mainFrame"  id="mainFrame" frameborder="0px"></iframe>
-</div>
+</s:div>
 </body>
 </html>

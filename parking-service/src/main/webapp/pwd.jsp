@@ -1,5 +1,6 @@
 <%@page contentType="text/html; charset=utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html style="height: 100%">
 <head>
@@ -11,42 +12,37 @@
 		<script  src="${basePath}static/js/jquery-validation-1.14.0/localization/messages_zh.js" type="text/javascript"></script>
 </head>
 <body style="height: 100%; margin: 0">
-	<div class="add">
+	<s:div cssClass="add">
 	   ${msg}
-			<form id="addForm" action="${basePath}pwd" method="post">
-					<c:if test="${type == 2}">
+					<%-- <c:if test="${type == 2}">
 						<input type="hidden" name="id" value="${user.id}">
 						<input type="hidden" name="type" value="2">
 					</c:if>
 					<c:if test="${type == 1}">
 						<input type="hidden" name="id" value="${user.tId}">
 						<input type="hidden" name="type" value="1">
-					</c:if>
+					</c:if> --%>
 					<c:if test="${type == 0}">
-					<input type="hidden" name="id" value="${user.stuId}">
-					<input type="hidden" name="type" value="0">
-					</c:if>
-				<table class="tableadd" style="width: 50%;">
+					<s:form name="changePassword" action="clientChangePassword" method="post">
+					<table class="tableadd" style="width: 50%;">
 					<tr>
 						<td>新密码</td>
-						<td style="color: red;"><input type="password" name="newPwd"></td>
+						<td style="color: red;"><s:password theme="simple" cssClass="pwd" name="client.password"/></td>
 					</tr>
 					<tr>
 						<td>确认密码</td>
 						<td>
-							<input type="password" name="newPwd2">
+							<s:password theme="simple" cssClass="pwd" name="enterPassword"/>
 						</td>
 					</tr>
 					<tr>
 						<td colspan="4" align="left">
-							<button class="remove" type="submit">
-								<i class="fa fa-save"></i>
-								提交
-							</button>
+							<s:submit theme="simple" cssClass="remove" value="提交"/>
 						</td>
 					</tr>
 				</table>
-			</form>
-		</div>
+					</s:form>
+					</c:if>
+		</s:div>
 </body>
 </html>
