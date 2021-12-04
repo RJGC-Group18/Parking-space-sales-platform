@@ -73,6 +73,17 @@
             <result name="success">/ClientIndex.jsp</result>
             <result name="failed">/ClientLogin.jsp</result>
         </action>
+        <action name="clientLoginOut" class="clientAction" method="loginOut">
+        	<result name="success">/ClientLogin.jsp</result>
+        </action>
+        <action name="clientChangePassword" class="clientAction" method="changePassword">
+        	<result name="success">/welcome.jsp</result>
+            <result name="failed">/pwd.jsp</result>
+        </action>
+        <action name="Userlogin" class="userAction" method="login">
+        	<result name="success">/UserIndex.jsp</result>
+            <result name="failed">/UserLogin.jsp</result>
+        </action>
     </package>
 
 
