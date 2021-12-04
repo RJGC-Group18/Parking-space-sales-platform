@@ -1,5 +1,8 @@
 package com.group18.dao;
 
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 //基础DAO类，用来定义获取session的方法
@@ -14,4 +17,5 @@ public class BaseHibernateDAO {
 	{
 		this.sessionFactory=sessionFactory;
 	}
+	
 }

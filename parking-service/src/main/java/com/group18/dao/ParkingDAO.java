@@ -10,19 +10,26 @@ import com.group18.po.Parking;
 
 public class ParkingDAO extends BaseHibernateDAO implements IParkingDAO {
 
-	public List findByHql(String hql) {
+	public List findByHql(String hql)
+	{
+		Session session=null;
 		try 
 		{
 			String queryString = hql;
-			Query queryObject = getSession().createQuery(queryString);
+			session=getSession();
+			Query queryObject = session.createQuery(queryString);
 			return queryObject.list();
 		} 
 		catch (RuntimeException re) 
 		{
 			throw re;
 		}
+		finally
+		{
+			session.close();
+		}
 	}
-
+	
 	public void save(Parking parking) {
 		Transaction tran=null;
 		Session session=null;

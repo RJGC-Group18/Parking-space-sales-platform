@@ -17,6 +17,8 @@ public class ClientAction {
 	private ClientService clientService=null;
 	private List<ClientQualification> clientQualificationList;
 	private ClientQualificationService clientQualificationService=null;
+	
+	String enterPassword;
 	HttpServletRequest request;
 	HttpSession session;
 	public ClientAction()
@@ -28,6 +30,7 @@ public class ClientAction {
 	{
 		if(clientService.loginInfoCheck(client))
 		{
+			client=clientService.findByName(client);
 			session.setAttribute("client", client);
 			return "success";
 		}
@@ -39,6 +42,7 @@ public class ClientAction {
 	public String loginOut()//登出
 	{
 		session.removeAttribute("client");
+		session.removeAttribute("type");
 		return"success";
 	}
 	public String register()//注册
@@ -79,6 +83,30 @@ public class ClientAction {
 			return "failed";
 		}
 	}
+	public String changePassword()//修改密码
+	{
+		try
+		{
+			if(client.getPassword().equals(enterPassword))//如果新密码与确认密码输入都没问题
+			{
+				Client oldClient=(Client) session.getAttribute("client");
+				System.out.println(client.getPassword());
+				oldClient.setPassword(client.getPassword());
+				/*client=clientService.findByName(client);*/
+				/*client.setPassword(enterPassword);*/
+				clientService.update(oldClient);
+				session.removeAttribute("msg");;
+				return "success";
+			}
+			session.setAttribute("msg","密码错误");
+			return "failed";
+		}
+		catch(Exception e)
+		{
+			session.setAttribute("msg", e.getMessage());
+			return "failed";
+		}
+	}
 	public String update()//更新业主信息
 	{
 		try
@@ -114,5 +142,11 @@ public class ClientAction {
 	}
 	public void setClientQualificationService(ClientQualificationService clientQualificationService) {
 		this.clientQualificationService = clientQualificationService;
+	}
+	public String getEnterPassword() {
+		return enterPassword;
+	}
+	public void setEnterPassword(String enterPassword) {
+		this.enterPassword = enterPassword;
 	}
 }

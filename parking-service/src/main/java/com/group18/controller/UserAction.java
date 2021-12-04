@@ -30,6 +30,7 @@ public class UserAction {
 	{
 		if(userService.loginInfoCheck(user))
 		{
+			user=userService.findByName(user);
 			session.setAttribute("user", user);
 			return "success";
 		}
@@ -41,6 +42,7 @@ public class UserAction {
 	public String loginOut()//登出
 	{
 		session.removeAttribute("user");
+		session.removeAttribute("type");
 		return"success";
 	}
 	public String register()//注册
