@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.group18.po.Client;
 import com.group18.po.User;
 import com.group18.po.UserQualification;
 import com.group18.service.ClientQualificationService;
@@ -16,9 +17,12 @@ import com.group18.service.UserService;
 
 public class UserAction {
 	private User user;
+	private UserQualification userQualification;
 	private UserService userService=null;
 	private List<UserQualification> userQualificationList;
 	private UserQualificationService userQualificationService=null;
+	
+	String enterPassword;
 	HttpServletRequest request;
 	HttpSession session;
 	public UserAction()
@@ -28,36 +32,78 @@ public class UserAction {
 	}
 	public String login()//登录
 	{
-		if(userService.loginInfoCheck(user))
+		try
 		{
-			user=userService.findByName(user);
-			session.setAttribute("user", user);
-			return "success";
+			if(userService.loginInfoCheck(user))
+			{
+				user=userService.findByName(user);
+				session.setAttribute("user", user);
+				session.removeAttribute("error");
+				return "success";
+			}
+			else
+			{
+				session.setAttribute("error", "登录失败");
+				return "failed";
+			}
 		}
-		else
+		catch(Exception e)
 		{
+			session.setAttribute("error", e.getMessage());
 			return "failed";
 		}
 	}
 	public String loginOut()//登出
 	{
-		session.removeAttribute("user");
-		session.removeAttribute("type");
+		session.invalidate();
 		return"success";
 	}
 	public String register()//注册
 	{
 		try
 		{
-			user.setIdentity(false);
-			userService.register(user);
+			if(user.getPassword().equals(enterPassword))//如果新密码与确认密码输入都没问题
+			{
+				user.setIdentity(false);
+				userService.register(user);
+				userQualification.setUser(user);
+				userQualification.setQualification(true);
+				userQualificationService.add(userQualification);
+				session.setAttribute("user", user);
+				return "success";
+			}
+			else
+			{
+				session.setAttribute("msg","密码错误");
+				return "failed";
+			}
 		}
 		catch(Exception e)
 		{
 			return "failed";
 		}
-		session.setAttribute("user", user);
-		return "success";
+	}
+	public String changePassword()//修改密码
+	{
+		try
+		{
+			if(user.getPassword().equals(enterPassword))//如果新密码与确认密码输入都没问题
+			{
+				User oldUser=(User) session.getAttribute("user");
+				System.out.println(user.getPassword());
+				oldUser.setPassword(user.getPassword());
+				userService.update(oldUser);
+				session.removeAttribute("msg");;
+				return "success";
+			}
+			session.setAttribute("msg","密码修改成功");
+			return "failed";
+		}
+		catch(Exception e)
+		{
+			session.setAttribute("msg", e.getMessage());
+			return "failed";
+		}
 	}
 	public String lookUser()//查看销售方信息
 	{
@@ -119,5 +165,17 @@ public class UserAction {
 	}
 	public void setUserQualificationService(UserQualificationService userQualificationService) {
 		this.userQualificationService = userQualificationService;
+	}
+	public String getEnterPassword() {
+		return enterPassword;
+	}
+	public void setEnterPassword(String enterPassword) {
+		this.enterPassword = enterPassword;
+	}
+	public HttpServletRequest getRequest() {
+		return request;
+	}
+	public void setRequest(HttpServletRequest request) {
+		this.request = request;
 	}
 }

@@ -26,11 +26,13 @@ public class ParkingAction {
 	{
 		try
 		{
+			session.removeAttribute("msg");
 			parkingList=parkingService.findAll();
 			return "success";
 		}
 		catch(Exception e)
 		{
+			session.setAttribute("msg", e.getMessage());
 			return "failed";
 		}
 	}
@@ -38,12 +40,14 @@ public class ParkingAction {
 	{
 		try
 		{
+			session.removeAttribute("msg");
 			User user=(User) session.getAttribute("user");
 			parkingList=parkingService.fingByUid(user);
 			return "success";
 		}
 		catch(Exception e)
 		{
+			session.setAttribute("msg", e.getMessage());
 			return "failed";
 		}
 	}
@@ -51,11 +55,16 @@ public class ParkingAction {
 	{
 		try
 		{
+			session.removeAttribute("msg");
+			String pid=request.getParameter("pid");
+			parking.setPid(Integer.parseInt(pid));
 			parking=parkingService.findByPid(parking);
+			session.setAttribute("parking", parking);
 			return "success";
 		}
 		catch(Exception e)
 		{
+			session.setAttribute("msg", e.getMessage());
 			return "failed";
 		}
 	}
@@ -63,11 +72,16 @@ public class ParkingAction {
 	{
 		try
 		{
+			session.removeAttribute("msg");
+			User user=(User) session.getAttribute("user");
+			parking.setUser(user);
 			parkingService.add(parking);
+			session.setAttribute("msg", "车位信息添加成功");
 			return "success";
 		}
 		catch(Exception e)
 		{
+			session.setAttribute("msg",e.getMessage());
 			return "failed";	
 		}
 	}

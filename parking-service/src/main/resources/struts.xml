@@ -69,20 +69,86 @@
         </global-results> -->
 
         <!--没有配置class 默认class ActionSupport implements Action SUCCESS转发  -->
+        
+        <!--业主-->
+        <!--登录-->
         <action name="clientLogin" class="clientAction" method="login">
             <result name="success">/ClientIndex.jsp</result>
             <result name="failed">/ClientLogin.jsp</result>
         </action>
+        <!--登出-->
         <action name="clientLoginOut" class="clientAction" method="loginOut">
         	<result name="success">/ClientLogin.jsp</result>
         </action>
+        <!--修改密码-->
         <action name="clientChangePassword" class="clientAction" method="changePassword">
         	<result name="success">/welcome.jsp</result>
             <result name="failed">/pwd.jsp</result>
         </action>
-        <action name="Userlogin" class="userAction" method="login">
+        <!-- 注册 -->
+        <action name="clientRegister" class="clientAction"	method="register">
+        	<result name="success">/ClientIndex.jsp</result>
+            <result name="failed">/ClientRegister.jsp</result>
+        </action>
+        <!-- 车位列表查看 -->
+        <action name="clientLookParkingList" class="parkingAction" method="findAll">
+        	<result name="success">/ParkingList.jsp</result>
+            <result name="failed">/ClientIndex.jsp</result>
+        </action>
+        
+        <!--销售方-->
+        <!--登录-->
+        <action name="userLogin" class="userAction" method="login">
         	<result name="success">/UserIndex.jsp</result>
             <result name="failed">/UserLogin.jsp</result>
+        </action>
+        <!--登出-->
+        <action name="userLoginOut" class="userAction" method="loginOut">
+        	<result name="success">/UserLogin.jsp</result>
+        </action>
+        <!--修改密码-->
+        <action name="userChangePassword" class="userAction" method="changePassword">
+        	<result name="success">/welcome.jsp</result>
+            <result name="failed">/pwd.jsp</result>
+        </action>
+        <!-- 注册 -->
+        <action name="userRegister" class="userAction"	method="register">
+        	<result name="success">/UserIndex.jsp</result>
+            <result name="failed">/UserRegister.jsp</result>
+        </action>
+        <!-- 车位列表查看 -->
+        <action name="userLookParkingList" class="parkingAction" method="findAllByUser">
+        	<result name="success">/ParkingList.jsp</result>
+            <result name="failed">/UserIndex.jsp</result>
+        </action>
+        
+        <!--管理员-->
+        <!--登录-->
+        <action name="adminLogin" class="userAction" method="login">
+        	<result name="success">/AdmingIndex.jsp</result>
+            <result name="failed">/AdminLogin.jsp</result>
+        </action>
+        <!--登出-->
+        <action name="adminLoginOut" class="userAction" method="loginOut">
+        	<result name="success">/AdminLogin.jsp</result>
+        </action>
+        <!--修改密码-->
+        <action name="adminChangePassword" class="userAction" method="changePassword">
+        	<result name="success">/welcome.jsp</result>
+            <result name="failed">/pwd.jsp</result>
+        </action>
+        <!-- 车位列表查看和user共用 -->
+        
+        <!-- 交易流程相关 -->
+        <!-- 查看车位具体消息 -->
+        <action name="lookParking" class="parkingAction" method="lookParking">
+        	<result name="success">/Parking.jsp</result>
+            <result name="failed">/ParkingList.jsp</result>
+        </action>
+        <!-- 预约 -->
+        <action name="reservation" class="reservationAction" method="add">
+        	<result name="success">/welcome.jsp</result>
+            <result name="failed">/Parking.jsp</result>
         </action>
     </package>
 

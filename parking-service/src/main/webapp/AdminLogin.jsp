@@ -102,7 +102,7 @@
 			<s:div cssClass="title">
 				车位销售系统
 			</s:div>
-			<form action="login" method="post">
+			<s:form action="adminLogin" method="post">
 				<s:div cssClass="u">
 					<s:textfield theme="simple" cssClass="uname" name="user.username" value="账号名"/>
 				</s:div>
@@ -113,7 +113,7 @@
 				<s:div cssClass="l">
 					<s:submit theme="simple" value="登录"/>
 				</s:div>
-			</form>
+			</s:form>
 			<div cssClass="tips">
 				${error}
 			</div>

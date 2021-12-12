@@ -64,7 +64,9 @@ public class ReservationAction {
 	{
 		try 
 		{
+			session.removeAttribute("msg");
 			Client client=(Client)session.getAttribute("client");
+			parking=(Parking)session.getAttribute("parking");
 			reservation=new Reservation();
 			ReservationId reservationId=new ReservationId();
 			reservationId.setCid(client.getCid());
@@ -72,10 +74,12 @@ public class ReservationAction {
 			reservation.setId(reservationId);
 			reservation.setTime(new Date());
 			reservationService.add(reservation);
+			session.setAttribute("msg", "车位预约成功");
 			return "success";
 		}
 		catch(Exception e)
 		{
+			session.setAttribute("msg", e.getMessage());
 			return "failed";
 		}
 	}

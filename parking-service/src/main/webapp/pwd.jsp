@@ -14,14 +14,48 @@
 <body style="height: 100%; margin: 0">
 	<s:div cssClass="add">
 	   ${msg}
-					<%-- <c:if test="${type == 2}">
-						<input type="hidden" name="id" value="${user.id}">
-						<input type="hidden" name="type" value="2">
+					<c:if test="${type == 2}">
+						<s:form name="changePassword" action="adminChangePassword" method="post">
+					<table class="tableadd" style="width: 50%;">
+					<tr>
+						<td>新密码</td>
+						<td style="color: red;"><s:password theme="simple" cssClass="pwd" name="user.password"/></td>
+					</tr>
+					<tr>
+						<td>确认密码</td>
+						<td>
+							<s:password theme="simple" cssClass="pwd" name="enterPassword"/>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4" align="left">
+							<s:submit theme="simple" cssClass="remove" value="提交"/>
+						</td>
+					</tr>
+				</table>
+					</s:form>
 					</c:if>
 					<c:if test="${type == 1}">
-						<input type="hidden" name="id" value="${user.tId}">
-						<input type="hidden" name="type" value="1">
-					</c:if> --%>
+						<s:form name="changePassword" action="userChangePassword" method="post">
+					<table class="tableadd" style="width: 50%;">
+					<tr>
+						<td>新密码</td>
+						<td style="color: red;"><s:password theme="simple" cssClass="pwd" name="user.password"/></td>
+					</tr>
+					<tr>
+						<td>确认密码</td>
+						<td>
+							<s:password theme="simple" cssClass="pwd" name="enterPassword"/>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4" align="left">
+							<s:submit theme="simple" cssClass="remove" value="提交"/>
+						</td>
+					</tr>
+				</table>
+					</s:form>
+					</c:if>
 					<c:if test="${type == 0}">
 					<s:form name="changePassword" action="clientChangePassword" method="post">
 					<table class="tableadd" style="width: 50%;">

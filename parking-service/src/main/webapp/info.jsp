@@ -48,34 +48,47 @@
 				<td>${client.clientInformation.phone}</td>
 			</tr>
 		</c:if>
-		<%-- <c:if test="${type == 1}">
+		<c:if test="${type == 1}">
 			<tr>
 				<td width="120px">ID</td>
-				<td>${user.tId}</td>
+				<td>${user.uid}</td>
 			</tr>
 			<tr>
 				<td width="120px">用户名</td>
-				<td>${user.userName}</td>
+				<td>${user.username}</td>
 			</tr>
 			<tr>
-				<td width="120px">姓名</td>
-				<td>${user.tName}</td>
+				<td width="120px">公司名</td>
+				<td>${user.userInformation.name}</td>
 			</tr>
+			<tr>
+				<td width="120px">地址</td>
+				<td>${user.userInformation.address}</td>
+			</tr>
+			<tr>
+				<td width="120px">联系人</td>
+				<td>${user.userInformation.contactsName}</td>
+			</tr>
+			<tr>
+				<td width="120px">联系电话</td>
+				<td>${user.userInformation.contactsPhone}</td>
+			</tr>
+			<tr>
+				<td width="120px">公司简介</td>
+				<td>${user.userInformation.intro}</td>
+			</tr>
+			
 		</c:if>
-		<c:if test="${type == 0}">
+		<c:if test="${type == 2}">
 			<tr>
 				<td width="120px">ID</td>
-				<td>${user.stuId}</td>
+				<td>${user.uid}</td>
 			</tr>
 			<tr>
-				<td width="120px">学号</td>
-				<td>${user.stuNo}</td>
+				<td width="120px">用户名</td>
+				<td>${user.username}</td>
 			</tr>
-			<tr>
-				<td width="120px">姓名</td>
-				<td>${user.stuName}</td>
-			</tr>
-		</c:if> --%>
+		</c:if>
 		
 	</table>
 	</div>

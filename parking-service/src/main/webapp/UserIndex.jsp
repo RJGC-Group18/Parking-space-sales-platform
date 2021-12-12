@@ -34,17 +34,18 @@
     </script>
 </head>
 <body>
+<% session.setAttribute("type", 1); %><!-- 设置用户类型为1 -->
 <s:div cssClass="header">
     <s:div cssClass="logo">车位销售系统</s:div>
     <s:div cssClass="user">
         <i class="fa fa-caret-down point"></i>
         <i class="fa fa-user"></i>
-            ${user.userName}
+            ${user.username}
 
         <ul>
             <li><a  target="mainFrame" href="pwd.jsp">修改密码</a></li>
             <li><a  target="mainFrame" href="info.jsp">个人信息</a></li>
-            <li><a  href="javascript:void(0)" class="logout">退出登录</a></li>
+            <li><a  href="userLoginOut.action" class="logout">退出登录</a></li>
         </ul>
     </s:div>
 </s:div>
@@ -55,11 +56,11 @@
     </s:div>
     <s:div cssClass="menux">
 
-            <p>
+          <!--   <p>
                 <i class="fa fa-info-circle"></i>
                 <i class="fa fa-angle-right point"></i>
                 经销商权限
-            </p>
+            </p> -->
             <ul>
                 <li>
                         <%--parking里的add.jsp--%>

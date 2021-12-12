@@ -5,6 +5,7 @@
     <title>欢迎进入车位在线销售系统</title>
 </head>
 <body>
+${msg}
 欢迎进入车位在线销售系统
 </body>
 </html>

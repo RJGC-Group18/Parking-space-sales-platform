@@ -98,11 +98,11 @@
     </style>
 </head>
 <body>
-<s:div cssclass="login">
-    <s:div cssclass="title">
+<s:div cssClass="login">
+    <s:div cssClass="title">
         车位销售系统
     </s:div>
-    <form action="Userlogin" method="post">
+    <s:form action="userLogin" method="post">
         <s:div cssClass="u">
             <s:textfield theme="simple" cssClass="uname" name="user.username" value="账号名"/>
         </s:div>
@@ -113,7 +113,7 @@
         <s:div cssClass="l">
             <s:submit theme="simple" value="登录"/>
         </s:div>
-    </form>
+    </s:form>
     <s:div cssClass="tips">
         ${error}
     </s:div>
