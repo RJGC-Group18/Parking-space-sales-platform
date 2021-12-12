@@ -25,7 +25,7 @@
         bottom: 25%;
         border-radius: 5px;
     }
-    .title,.u,.p,.l,.tips,.s{
+    .title,.u,.p,.l,.xl,.tips,.s{
         position: absolute;
         width: 100%;
     }
@@ -89,6 +89,11 @@
         bottom: 15%;
         left: 10%;
     }
+    .xl{
+        top: 85%;
+        bottom: 15%;
+        left: 10%;
+    }
     .tips{
         top: 90%;
         font-size: 13px;
@@ -111,8 +116,13 @@
        </s:div>
         
         <s:div cssClass="l">
-            <s:submit theme="simple" value="登录"/>
-       </s:div>
+             <s:submit theme="simple" value="登录"/>
+       </s:div> 
+       
+       <s:div cssClass="xl">
+             <s:a href="ClientRegister.jsp"><input type="button" value="注册"/></s:a>
+       </s:div> 
+      
     </s:form>
     <s:div cssClass="tips">
 				${error}

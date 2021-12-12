@@ -3,6 +3,8 @@ package com.group18.controller;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,14 +19,17 @@ import com.group18.service.ClientQualificationService;
 import com.group18.service.ClientService;
 import com.group18.service.UserQualificationService;
 import com.group18.service.UserService;
+import com.opensymphony.xwork2.ActionSupport;
 
-public class UserAction {
+public class UserAction extends ActionSupport{
 	private User user;
 	private UserQualification userQualification;
 	private UserService userService=null;
 	private List<UserQualification> userQualificationList;
 	private UserQualificationService userQualificationService=null;
-	private List<File> file;
+	private File upFile;
+	private String upFileFileName;
+    private String upFileContentType;
 	
 	String enterPassword;
 	HttpServletRequest request;
@@ -34,7 +39,7 @@ public class UserAction {
 		request= ServletActionContext.getRequest();
 		session = request.getSession();
 	}
-	public String login()//登录
+	public String login()//ç™»å½•
 	{
 		try
 		{
@@ -47,7 +52,7 @@ public class UserAction {
 			}
 			else
 			{
-				session.setAttribute("error", "登录失败");
+				session.setAttribute("error", "ç™»å½•å¤±è´¥");
 				return "failed";
 			}
 		}
@@ -57,26 +62,32 @@ public class UserAction {
 			return "failed";
 		}
 	}
-	public String loginOut()//登出
+	public String loginOut()//ç™»å‡º
 	{
 		session.invalidate();
 		return"success";
 	}
-	public String register()//注册
+	public String register()//æ³¨å†Œ
 	{
 		try
 		{
-			if(user.getPassword().equals(enterPassword))//如果新密码与确认密码输入都没问题
+			if(user.getPassword().equals(enterPassword))//å¦‚æžœæ–°å¯†ç �ä¸Žç¡®è®¤å¯†ç �è¾“å…¥éƒ½æ²¡é—®é¢˜
 			{
-				FileInputStream fis=new FileInputStream(file.get(0));
+				System.out.println(upFile.getAbsolutePath());
+				InputStream is = new FileInputStream(upFile);
+				/*
+				 * String path = ServletActionContext.getServletContext().getRealPath("/");
+				 * ArrayList<String>dataUrl = new ArrayList<String>();
+				 * dataUrl.add(imgpath+this.getFileFileName().get(i));
+				 */
 				ByteArrayOutputStream bos = new ByteArrayOutputStream();
 				byte[] b=null;
 				int n;
-				while((n=fis.read(b))!=-1)
+				while((n=is.read(b))!=-1)
 				{
 					bos.write(b, 0, n);
 				}
-				fis.close();
+				is.close();
 				bos.close();
 				
 				user.setIdentity(false);
@@ -90,20 +101,21 @@ public class UserAction {
 			}
 			else
 			{
-				session.setAttribute("msg","密码错误");
+				session.setAttribute("msg","å¯†ç �é”™è¯¯");
 				return "failed";
 			}
 		}
 		catch(Exception e)
 		{
+			session.setAttribute("msg",e.getMessage());
 			return "failed";
 		}
 	}
-	public String changePassword()//修改密码
+	public String changePassword()//ä¿®æ”¹å¯†ç �
 	{
 		try
 		{
-			if(user.getPassword().equals(enterPassword))//如果新密码与确认密码输入都没问题
+			if(user.getPassword().equals(enterPassword))//å¦‚æžœæ–°å¯†ç �ä¸Žç¡®è®¤å¯†ç �è¾“å…¥éƒ½æ²¡é—®é¢˜
 			{
 				User oldUser=(User) session.getAttribute("user");
 				System.out.println(user.getPassword());
@@ -112,7 +124,7 @@ public class UserAction {
 				session.removeAttribute("msg");;
 				return "success";
 			}
-			session.setAttribute("msg","密码修改成功");
+			session.setAttribute("msg","å¯†ç �ä¿®æ”¹æˆ�åŠŸ");
 			return "failed";
 		}
 		catch(Exception e)
@@ -121,7 +133,7 @@ public class UserAction {
 			return "failed";
 		}
 	}
-	public String lookUser()//查看销售方信息
+	public String lookUser()//æŸ¥çœ‹é”€å”®æ–¹ä¿¡æ�¯
 	{
 		try
 		{
@@ -134,7 +146,7 @@ public class UserAction {
 			return "failed";
 		}
 	}
-	public String lookUserQualification()//查看销售方资质信息
+	public String lookUserQualification()//æŸ¥çœ‹é”€å”®æ–¹èµ„è´¨ä¿¡æ�¯
 	{
 		try
 		{
@@ -146,7 +158,7 @@ public class UserAction {
 			return "failed";
 		}
 	}
-	public String update()//更新销售方信息
+	public String update()//æ›´æ–°é”€å”®æ–¹ä¿¡æ�¯
 	{
 		try
 		{
@@ -194,10 +206,22 @@ public class UserAction {
 	public void setUserQualification(UserQualification userQualification) {
 		this.userQualification = userQualification;
 	}
-	public List<File> getFile() {
-		return file;
+	public File getUpFile() {
+		return upFile;
 	}
-	public void setFile(List<File> file) {
-		this.file = file;
+	public void setUpFile(File upFile) {
+		this.upFile = upFile;
+	}
+	public String getUpFileFileName() {
+		return upFileFileName;
+	}
+	public void setUpFileFileName(String upFileFileName) {
+		this.upFileFileName = upFileFileName;
+	}
+	public String getUpFileContentType() {
+		return upFileContentType;
+	}
+	public void setUpFileContentType(String upFileContentType) {
+		this.upFileContentType = upFileContentType;
 	}
 }

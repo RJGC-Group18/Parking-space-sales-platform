@@ -7,8 +7,8 @@
 <head>
     <meta charset="utf-8" />
     <title>车位销售系统后台管理</title>
-    <link  rel="stylesheet"  href="${basePath}static/css/styles.css" />
-    <link rel="stylesheet"  href="${basePath}static/css/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <style type="text/css"><!--<%@ include file="static/css/styles.css"%>--></style>
+    <style type="text/css"><!--<%@ include file="static/css/font-awesome-4.7.0/css/font-awesome.min.css"%>--></style>
     <script  src="${basePath}static/js/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript">//引入jquery
     $(function(){

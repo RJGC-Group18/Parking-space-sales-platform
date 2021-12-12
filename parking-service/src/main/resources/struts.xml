@@ -93,7 +93,7 @@
             <interceptor-ref name="fileUpload">
             	<param name="maximumSize">409600</param><!-- 限制文件大小400KB -->
             	<param name="allowedTypes">
-            			image/jpeg
+            			image/jpeg,image/jpg
             	</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
@@ -127,7 +127,7 @@
             <interceptor-ref name="fileUpload">
             	<param name="maximumSize">409600</param><!-- 限制文件大小400KB -->
             	<param name="allowedTypes">
-            			image/jpeg
+            			image/jpeg,image/jpg
             	</param>
             </interceptor-ref>
             <interceptor-ref name="defaultStack"/>
