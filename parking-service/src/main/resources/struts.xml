@@ -121,6 +121,11 @@
         	<result name="success">/ParkingList.jsp</result>
             <result name="failed">/UserIndex.jsp</result>
         </action>
+        <!-- 添加车位信息 -->
+        <action name="parkingAdd" class="parkingAction" method="add">
+        	<result name="success">/ParkingList.jsp</result>
+            <result name="failed">/UserIndex.jsp</result>
+        </action>
         
         <!--管理员-->
         <!--登录-->
