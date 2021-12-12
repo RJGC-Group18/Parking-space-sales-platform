@@ -1,5 +1,8 @@
 package com.group18.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +24,7 @@ public class UserAction {
 	private UserService userService=null;
 	private List<UserQualification> userQualificationList;
 	private UserQualificationService userQualificationService=null;
+	private List<File> file;
 	
 	String enterPassword;
 	HttpServletRequest request;
@@ -64,10 +68,22 @@ public class UserAction {
 		{
 			if(user.getPassword().equals(enterPassword))//如果新密码与确认密码输入都没问题
 			{
+				FileInputStream fis=new FileInputStream(file.get(0));
+				ByteArrayOutputStream bos = new ByteArrayOutputStream();
+				byte[] b=null;
+				int n;
+				while((n=fis.read(b))!=-1)
+				{
+					bos.write(b, 0, n);
+				}
+				fis.close();
+				bos.close();
+				
 				user.setIdentity(false);
 				userService.register(user);
 				userQualification.setUser(user);
 				userQualification.setQualification(true);
+				userQualification.setImage(bos.toByteArray());
 				userQualificationService.add(userQualification);
 				session.setAttribute("user", user);
 				return "success";
@@ -172,10 +188,16 @@ public class UserAction {
 	public void setEnterPassword(String enterPassword) {
 		this.enterPassword = enterPassword;
 	}
-	public HttpServletRequest getRequest() {
-		return request;
+	public UserQualification getUserQualification() {
+		return userQualification;
 	}
-	public void setRequest(HttpServletRequest request) {
-		this.request = request;
+	public void setUserQualification(UserQualification userQualification) {
+		this.userQualification = userQualification;
+	}
+	public List<File> getFile() {
+		return file;
+	}
+	public void setFile(List<File> file) {
+		this.file = file;
 	}
 }

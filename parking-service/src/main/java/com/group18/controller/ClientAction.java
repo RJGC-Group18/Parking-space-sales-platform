@@ -1,5 +1,8 @@
 package com.group18.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +21,7 @@ public class ClientAction {
 	private ClientService clientService=null;
 	private List<ClientQualification> clientQualificationList;
 	private ClientQualificationService clientQualificationService=null;
+	private List<File> file;
 	
 	String enterPassword;
 	HttpServletRequest request;
@@ -66,9 +70,21 @@ public class ClientAction {
 		{
 			if(client.getPassword().equals(enterPassword))//如果新密码与确认密码输入都没问题
 			{
+				FileInputStream fis=new FileInputStream(file.get(0));
+				ByteArrayOutputStream bos = new ByteArrayOutputStream();
+				byte[] b=null;
+				int n;
+				while((n=fis.read(b))!=-1)
+				{
+					bos.write(b, 0, n);
+				}
+				fis.close();
+				bos.close();
+				
 				clientService.register(client);
 				clientQualification.setClient(client);
 				clientQualification.setQualification(true);
+				clientQualification.setImage(bos.toByteArray());
 				clientQualificationService.add(clientQualification);
 				session.setAttribute("client", client);
 				return "success";
@@ -185,5 +201,13 @@ public class ClientAction {
 
 	public void setClientQualification(ClientQualification clientQualification) {
 		this.clientQualification = clientQualification;
+	}
+
+	public List<File> getFile() {
+		return file;
+	}
+
+	public void setFile(List<File> file) {
+		this.file = file;
 	}
 }

@@ -89,6 +89,14 @@
         <action name="clientRegister" class="clientAction"	method="register">
         	<result name="success">/ClientIndex.jsp</result>
             <result name="failed">/ClientRegister.jsp</result>
+            <!-- 文件上传拦截器 -->
+            <interceptor-ref name="fileUpload">
+            	<param name="maximumSize">409600</param><!-- 限制文件大小400KB -->
+            	<param name="allowedTypes">
+            			image/jpeg
+            	</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
         </action>
         <!-- 车位列表查看 -->
         <action name="clientLookParkingList" class="parkingAction" method="findAll">
@@ -115,6 +123,14 @@
         <action name="userRegister" class="userAction"	method="register">
         	<result name="success">/UserIndex.jsp</result>
             <result name="failed">/UserRegister.jsp</result>
+            <!-- 文件上传拦截器 -->
+            <interceptor-ref name="fileUpload">
+            	<param name="maximumSize">409600</param><!-- 限制文件大小400KB -->
+            	<param name="allowedTypes">
+            			image/jpeg
+            	</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
         </action>
         <!-- 车位列表查看 -->
         <action name="userLookParkingList" class="parkingAction" method="findAllByUser">
