@@ -166,6 +166,11 @@
         	<result name="success">/page/user/Parking.jsp</result>
             <result name="failed">/welcome.jsp</result>
         </action>
+        <!-- 根据价格和地址查找车位信息 -->
+        <action name="findAllByPriceOrAddress" class="parkingAction" method="findAllByPriceOrAddress">
+        	<result name="success">/page/user/ParkingList.jsp</result>
+            <result name="failed">/welcome.jsp</result>
+        </action>
         <!-- 预约 -->
         <action name="reservation" class="reservationAction" method="add">
         	<result name="success">/welcome.jsp</result>

@@ -23,10 +23,10 @@
 	<body>
 	
 		<!-- 查询输入框 -->
-		<form action="${basePath}teacher?method=list" method="post">
+		<form action="findAllByPriceOrAddress.action" method="post">
 			<div class="condition">
-				价格：<input type="text" name="priceUnit" value="${user.uId}">
-				地址：<input type="text" name="address" value="${user.userName}">
+				价格：<input type="text" name="price">
+				地址：<input type="text" name="address">
 				<button>
 					<i class="fa fa-search"></i>
 					查询

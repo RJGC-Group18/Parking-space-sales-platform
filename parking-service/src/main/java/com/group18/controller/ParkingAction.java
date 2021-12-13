@@ -1,5 +1,6 @@
 package com.group18.controller;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,8 @@ public class ParkingAction {
 	HttpSession session;
 	
 	String pid;
+	String price;
+	String address;
 	
 	public ParkingAction()
 	{
@@ -48,6 +51,32 @@ public class ParkingAction {
 			session.removeAttribute("msg");
 			User user=(User) session.getAttribute("user");
 			parkingList=parkingService.fingByUid(user);
+			return "success";
+		}
+		catch(Exception e)
+		{
+			session.setAttribute("msg", e.getMessage());
+			return "failed";
+		}
+	}
+	public String findAllByPriceOrAddress()//查找车位信息满足输入的价格或地址
+	{
+		try
+		{
+			session.removeAttribute("msg");
+			parkingList=parkingService.findAll();
+			int priceInt=-1;
+			if(price!=null&&!price.equals(""))
+				priceInt=Integer.parseInt(price);
+			for(Iterator<Parking> it=parkingList.iterator();it.hasNext();)
+			{
+				Parking p=it.next();
+				if((priceInt>0&&priceInt!=p.getPriceUnit())||
+						!p.getAddress().contains(address))
+				{
+					it.remove();
+				}
+			}
 			return "success";
 		}
 		catch(Exception e)
@@ -147,5 +176,17 @@ public class ParkingAction {
 	}
 	public void setUserService(UserService userService) {
 		this.userService = userService;
+	}
+	public String getPrice() {
+		return price;
+	}
+	public void setPrice(String price) {
+		this.price = price;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 }
