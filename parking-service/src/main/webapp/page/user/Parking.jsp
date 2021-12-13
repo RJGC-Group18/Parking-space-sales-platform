@@ -28,20 +28,23 @@
 				<td>${parking.priceUnit}</td>
 			</tr>
 			<tr>
-				<td width="120px">车位类型</td>
-				<td>${parking.type}</td>
-			</tr>
-			<tr>
 				<td width="120px">地址</td>
 				<td>${parking.address}</td>
 			</tr>
 			<tr>
-				<a  href="javascript:void(0);" url="${basePath}reservation.action?pid=parking.pid>"  title="预约"></a>
+				<td width="120px">销售公司名</td>
+				<td>${parking.user.userInformation.name}</td>
 			</tr>
-			
 			<tr>
-				<td width="120px">信息</td>
-				<td>${client.clientInformation.phone}</td>
+				<td width="120px">销售公司联系人</td>
+				<td>${parking.user.userInformation.contactsName}</td>
+			</tr>
+			<tr>
+				<td width="120px">销售公司联系电话</td>
+				<td>${parking.user.userInformation.contactsPhone}</td>
+			</tr>
+			<tr>
+				<td><a href="reservation.action?pid=${parking.pid}"></a></td>
 			</tr>
 		</c:if>
 		<c:if test="${type == 1}">
@@ -56,10 +59,6 @@
 			<tr>
 				<td width="120px">价格</td>
 				<td>${parking.priceUnit}</td>
-			</tr>
-			<tr>
-				<td width="120px">车位类型</td>
-				<td>${parking.type}</td>
 			</tr>
 			<tr>
 				<td width="120px">地址</td>
@@ -79,10 +78,6 @@
 			<tr>
 				<td width="120px">价格</td>
 				<td>${parking.priceUnit}</td>
-			</tr>
-			<tr>
-				<td width="120px">车位类型</td>
-				<td>${parking.type}</td>
 			</tr>
 			<tr>
 				<td width="120px">地址</td>

@@ -11,7 +11,7 @@
         <many-to-one name="user" class="com.group18.po.User" fetch="select">
             <column name="uid" not-null="true" />
         </many-to-one>
-        <property name="sublevel" type="java.lang.Boolean">
+        <property name="sublevel" type="java.lang.Integer">
             <column name="sublevel" />
         </property>
         <property name="area" type="java.lang.Integer">
@@ -19,9 +19,6 @@
         </property>
         <property name="priceUnit" type="java.lang.Integer">
             <column name="price_unit" />
-        </property>
-        <property name="type" type="java.lang.Boolean">
-            <column name="type" />
         </property>
         <property name="address" type="string">
             <column name="address" />

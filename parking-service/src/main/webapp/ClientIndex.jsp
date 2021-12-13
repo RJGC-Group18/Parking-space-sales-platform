@@ -63,7 +63,7 @@
             <ul>
                 <li>
                         <%--dealing里的select.jsp--%>
-                    <a  href="javascript:void(0);" url="${basePath}sc?method=select"  title="报名摇号">
+                    <a  href="javascript:void(0);" url="clientLookParkingList.action"  title="报名摇号">
                         <i class="fa fa-caret-right"></i>
                         报名
                             <%--包括了查看车位状态--%>

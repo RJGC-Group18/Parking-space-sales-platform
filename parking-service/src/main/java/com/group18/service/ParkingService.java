@@ -25,7 +25,7 @@ public class ParkingService implements IParkingService {
 			Parking p=it.next();
 			String hql2="from Dealing where pid='"+p.getPid()+"'";
 			List findDealing=dealingDAO.findByHql(hql2);
-			if(findDealing!=null)
+			if(findDealing.size()!=0)
 			{
 				it.remove();
 			}
@@ -34,7 +34,7 @@ public class ParkingService implements IParkingService {
 	}
 
 	public List<Parking> fingByUid(User user) {
-		String hql= "from Parking where uid='" + String.valueOf(user.getUid())+"'";
+		String hql= "from Parking where uid='" + user.getUid()+"'";
 		List list=parkingDAO.findByHql(hql);
 		if(list.isEmpty())
 		{
@@ -44,7 +44,7 @@ public class ParkingService implements IParkingService {
 	}
 
 	public Parking findByPid(Parking parking) {
-		String hql= "from Parking where pid='" + String.valueOf(parking.getPid())+"'";
+		String hql= "from Parking where pid='"+parking.getPid()+"'";
 		List list=parkingDAO.findByHql(hql);
 		if(list.isEmpty())
 		{

@@ -41,6 +41,15 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 			<prop key="hibernate.dialect">
 				org.hibernate.dialect.MySQLDialect
 			</prop>
+			<!-- <prop key="hibernate.show_sql">
+				true
+			</prop>
+			<prop key="hibernate.format_sql">
+				true
+			</prop>
+			<prop key="hibernate.use_sql_comments">
+				true
+			</prop> -->
 		</props>
 	</property>
 		<property name="mappingDirectoryLocations" value="classpath:com/group18/po"/>
@@ -106,6 +115,7 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 </bean>
 <bean id="parkingAction" class="com.group18.controller.ParkingAction" scope="prototype">
 	<property name="parkingService" ref="parkingService" />
+	<property name="userService" ref="userService" />
 </bean>
 <bean id="reservationAction" class="com.group18.controller.ReservationAction" scope="prototype">
 	<property name="reservationService" ref="reservationService" />

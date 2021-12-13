@@ -89,19 +89,19 @@
         <action name="clientRegister" class="clientAction"	method="register">
         	<result name="success">/ClientIndex.jsp</result>
             <result name="failed">/ClientRegister.jsp</result>
-            <!-- 文件上传拦截器 -->
+            <!--
             <interceptor-ref name="fileUpload">
-            	<param name="maximumSize">409600</param><!-- 限制文件大小400KB -->
+            	<param name="maximumSize">409600</param>
             	<param name="allowedTypes">
             			image/jpeg,image/jpg
             	</param>
             </interceptor-ref>
-            <interceptor-ref name="defaultStack"/>
+            <interceptor-ref name="defaultStack"/> -->
         </action>
         <!-- 车位列表查看 -->
         <action name="clientLookParkingList" class="parkingAction" method="findAll">
-        	<result name="success">/ParkingList.jsp</result>
-            <result name="failed">/ClientIndex.jsp</result>
+        	<result name="success">/page/user/ParkingList.jsp</result>
+            <result name="failed">/welcome.jsp</result>
         </action>
         
         <!--销售方-->
@@ -134,13 +134,13 @@
         </action>
         <!-- 车位列表查看 -->
         <action name="userLookParkingList" class="parkingAction" method="findAllByUser">
-        	<result name="success">/ParkingList.jsp</result>
-            <result name="failed">/UserIndex.jsp</result>
+        	<result name="success">/page/user/ParkingList.jsp</result>
+            <result name="failed">/welcome.jsp</result>
         </action>
         <!-- 添加车位信息 -->
         <action name="parkingAdd" class="parkingAction" method="add">
-        	<result name="success">/ParkingList.jsp</result>
-            <result name="failed">/UserIndex.jsp</result>
+        	<result name="success">/page/user/ParkingList.jsp</result>
+            <result name="failed">/user/Parking.jsp</result>
         </action>
         
         <!--管理员-->
@@ -163,13 +163,13 @@
         <!-- 交易流程相关 -->
         <!-- 查看车位具体消息 -->
         <action name="lookParking" class="parkingAction" method="lookParking">
-        	<result name="success">/Parking.jsp</result>
-            <result name="failed">/ParkingList.jsp</result>
+        	<result name="success">/page/user/Parking.jsp</result>
+            <result name="failed">/welcome.jsp</result>
         </action>
         <!-- 预约 -->
         <action name="reservation" class="reservationAction" method="add">
         	<result name="success">/welcome.jsp</result>
-            <result name="failed">/Parking.jsp</result>
+            <result name="failed">/welcome.jsp</result>
         </action>
     </package>
 

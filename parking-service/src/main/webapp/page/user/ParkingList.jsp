@@ -51,10 +51,10 @@
 			</thead>
 			
 			
-			<c:forEach items="${pageInfo.list}" var="teacher">
+			<c:forEach items="${parkingList}" var="parking">
 			<tr>
-				<td>${priceUnit}</td>
-				<td>${address}</td>
+				<td>${parking.priceUnit}</td>
+				<td>${parking.address}</td>
 				<td>
 					<button class="edit" type="button" onclick="window.location.href='${basePath}teacher?method=edit&id=${user.uId}'">
 						<i class="fa fa-edit"></i>
@@ -64,7 +64,7 @@
 						<i class="fa fa-remove"></i>
 						删除
 					</button>
-					<button class="edit" type="button" onclick="window.location.href='${basePath}'">
+					<button class="edit" type="button" onclick="window.location.href='lookParking.action?pid=${parking.pid}'">
 						<i class="fa fa-edit"></i>
 						查看详细信息
 					</button>

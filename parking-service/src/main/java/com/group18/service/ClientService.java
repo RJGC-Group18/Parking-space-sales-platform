@@ -38,7 +38,7 @@ public class ClientService implements IClientService {
 	}
 
 	public Client findById(Client client) {
-		String hql= "from Client where username='" + String.valueOf(client.getCid())+ "'";
+		String hql= "from Client where cid='" + String.valueOf(client.getCid())+ "'";
 		List list=clientDAO.findByHql(hql);
 		if(list.isEmpty())
 		{

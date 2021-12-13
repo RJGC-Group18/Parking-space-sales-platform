@@ -20,10 +20,9 @@ import javax.persistence.Table;
 public class Parking implements java.io.Serializable {
 
 	private int pid;
-	private Boolean sublevel;
+	private Integer sublevel;
 	private Integer area;
 	private Integer priceUnit;
-	private Boolean type;
 	private String address;
 	private User user;
 	private Set<Dealing> dealings = new HashSet<Dealing>(0);
@@ -38,14 +37,13 @@ public class Parking implements java.io.Serializable {
 		this.user=user;
 	}
 
-	public Parking(int pid, User user,Boolean sublevel, Integer area, Integer priceUnit, Boolean type, String address,
+	public Parking(int pid, User user,Integer sublevel, Integer area, Integer priceUnit,  String address,
 			Set<Dealing> dealings, Set<Payment> payments, Set<Reservation> reservations) {
 		this.pid = pid;
 		this.user=user;
 		this.sublevel = sublevel;
 		this.area = area;
 		this.priceUnit = priceUnit;
-		this.type = type;
 		this.address = address;
 		this.dealings = dealings;
 		this.payments = payments;
@@ -74,11 +72,11 @@ public class Parking implements java.io.Serializable {
 	}
 	
 	@Column(name = "sublevel")
-	public Boolean getSublevel() {
+	public Integer getSublevel() {
 		return this.sublevel;
 	}
 
-	public void setSublevel(Boolean sublevel) {
+	public void setSublevel(Integer sublevel) {
 		this.sublevel = sublevel;
 	}
 
@@ -98,15 +96,6 @@ public class Parking implements java.io.Serializable {
 
 	public void setPriceUnit(Integer priceUnit) {
 		this.priceUnit = priceUnit;
-	}
-
-	@Column(name = "type")
-	public Boolean getType() {
-		return this.type;
-	}
-
-	public void setType(Boolean type) {
-		this.type = type;
 	}
 
 	@Column(name = "address")

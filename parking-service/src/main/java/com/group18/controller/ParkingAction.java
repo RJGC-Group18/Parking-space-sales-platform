@@ -10,13 +10,18 @@ import org.apache.struts2.ServletActionContext;
 import com.group18.po.Parking;
 import com.group18.po.User;
 import com.group18.service.ParkingService;
+import com.group18.service.UserService;
 
 public class ParkingAction {
 	Parking parking;
 	List<Parking> parkingList;
 	ParkingService parkingService=null;
+	UserService userService=null;
 	HttpServletRequest request;
 	HttpSession session;
+	
+	String pid;
+	
 	public ParkingAction()
 	{
 		request= ServletActionContext.getRequest();
@@ -56,15 +61,19 @@ public class ParkingAction {
 		try
 		{
 			session.removeAttribute("msg");
-			String pid=request.getParameter("pid");
-			parking.setPid(Integer.parseInt(pid));
+			int pidInt=Integer.parseInt(pid);
+			parking=new Parking();
+			parking.setPid(pidInt);
 			parking=parkingService.findByPid(parking);
+			User user=parking.getUser();
+			user=userService.findById(user);
+			parking.setUser(user);
 			session.setAttribute("parking", parking);
 			return "success";
 		}
 		catch(Exception e)
 		{
-			session.setAttribute("msg", e.getMessage());
+			session.setAttribute("msg", e.getLocalizedMessage());
 			return "failed";
 		}
 	}
@@ -126,5 +135,17 @@ public class ParkingAction {
 	}
 	public void setParkingService(ParkingService parkingService) {
 		this.parkingService = parkingService;
+	}
+	public String getPid() {
+		return pid;
+	}
+	public void setPid(String pid) {
+		this.pid = pid;
+	}
+	public UserService getUserService() {
+		return userService;
+	}
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 }

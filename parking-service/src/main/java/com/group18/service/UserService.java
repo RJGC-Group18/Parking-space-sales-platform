@@ -40,7 +40,7 @@ public class UserService implements IUserService {
 	}
 
 	public User findById(User user) {
-		String hql= "from User where cid='" + String.valueOf(user.getUid())+ "'";
+		String hql= "from User where uid='" + String.valueOf(user.getUid())+ "'";
 		List list=userDAO.findByHql(hql);
 		if(list.isEmpty())
 		{
