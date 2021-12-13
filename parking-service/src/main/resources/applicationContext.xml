@@ -102,6 +102,7 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 <bean id="userAction" class="com.group18.controller.UserAction" scope="prototype">
 	<property name="userService" ref="userService" />
 	<property name="userQualificationService" ref="userQualificationService" />
+	<property name="userInformationService" ref="userInformationService"/>
 </bean>
 <bean id="parkingAction" class="com.group18.controller.ParkingAction" scope="prototype">
 	<property name="parkingService" ref="parkingService" />

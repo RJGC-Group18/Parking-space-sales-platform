@@ -17,7 +17,7 @@
         <property name="identity" type="java.lang.Boolean">
             <column name="identity" />
         </property>
-        <one-to-one name="userInformation" class="com.group18.po.UserInformation"></one-to-one>
+        <one-to-one name="userInformation" cascade="all" class="com.group18.po.UserInformation"></one-to-one>
         <set name="userQualifications" table="user_qualification" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="uid" not-null="true" />

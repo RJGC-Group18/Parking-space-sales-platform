@@ -3,6 +3,7 @@ package com.group18.controller;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 
 import com.group18.po.Client;
+import com.group18.po.ClientInformation;
 import com.group18.po.ClientQualification;
 import com.group18.service.ClientQualificationService;
 import com.group18.service.ClientService;
@@ -21,8 +23,8 @@ public class ClientAction {
 	private ClientService clientService=null;
 	private List<ClientQualification> clientQualificationList;
 	private ClientQualificationService clientQualificationService=null;
-	private List<File> file;
 	
+	String birthday;
 	String enterPassword;
 	HttpServletRequest request;
 	HttpSession session;
@@ -68,24 +70,20 @@ public class ClientAction {
 	{
 		try
 		{
+			session.removeAttribute("msg");
 			if(client.getPassword().equals(enterPassword))//如果新密码与确认密码输入都没问题
 			{
-				FileInputStream fis=new FileInputStream(file.get(0));
-				ByteArrayOutputStream bos = new ByteArrayOutputStream();
-				byte[] b=null;
-				int n;
-				while((n=fis.read(b))!=-1)
-				{
-					bos.write(b, 0, n);
-				}
-				fis.close();
-				bos.close();
-				
-				clientService.register(client);
-				clientQualification.setClient(client);
+				SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+				ClientInformation clientInformation=client.getClientInformation();
+				clientInformation.setClient(client);
+				clientInformation.setBirthday(sf.parse(birthday));
+				client.setClientInformation(clientInformation);
+				/*clientQualification=new ClientQualification();
 				clientQualification.setQualification(true);
-				clientQualification.setImage(bos.toByteArray());
-				clientQualificationService.add(clientQualification);
+				clientQualification.setClient(client);
+				clientQualification.setImage(null);*/
+				clientService.register(client);
+				/*clientQualificationService.add(clientQualification);*/
 				session.setAttribute("client", client);
 				return "success";
 			}
@@ -97,6 +95,7 @@ public class ClientAction {
 		}
 		catch(Exception e)
 		{
+			session.setAttribute("msg",e.getMessage());
 			return "failed";
 		}
 	}
@@ -203,11 +202,11 @@ public class ClientAction {
 		this.clientQualification = clientQualification;
 	}
 
-	public List<File> getFile() {
-		return file;
+	public String getBirthday() {
+		return birthday;
 	}
 
-	public void setFile(List<File> file) {
-		this.file = file;
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
 }

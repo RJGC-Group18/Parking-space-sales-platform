@@ -1,8 +1,10 @@
 <%@page contentType="text/html; charset=utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib uri="/struts-dojo-tags" prefix="sx"%>
 <!DOCTYPE html>
 <html style="height: 100%">
+<sx:head />
 <head>
 <meta charset="utf-8">
 <style type="text/css"><!--<%@ include file="static/css/styles.css"%>--></style>
@@ -14,13 +16,20 @@
 </head>
 <body style="height: 100%; margin: 0">
 	<s:div cssClass="add">
-					<s:form name="CRegister" action="ClientRegister" method="post">
+					<s:form name="CRegister" action="clientRegister" method="post">
 					<table class="tableadd" style="width: 50%;">
 				
 					<tr>
 						<td>用户名</td>
 						<td>
 						<s:textfield theme="simple" cssClass="name" name="client.username" />
+						</td>
+					</tr>
+					
+					<tr>
+						<td>真实姓名</td>
+						<td>
+						<s:textfield theme="simple" cssClass="name" name="client.clientInformation.name" />
 						</td>
 					</tr>
 					
@@ -41,7 +50,7 @@
 					<tr>
 						<td>性别</td>
 						<td>
-							<s:radio theme="simple" cssClass="pwd" name="sex" list="%{#{'true':'男','false':'女'}}" value="true"/>
+							<s:radio theme="simple" cssClass="pwd" name="client.clientInformation.sex" list="%{#{'true':'男','false':'女'}}" value="true"/>
 						</td>
 					</tr>			
 					
@@ -55,9 +64,10 @@
 					<tr>
 						<td>出生日期</td>
 						<td>
-						<s:textfield name="client.clientInformation.brithday" >   
-						<s:param name="value"><s:date name="birthday" format="yyyy-MM-dd"/></s:param>   
-						</s:textfield> 
+						<%-- <s:textfield name="client.clientInformation.brithday" >   
+						<s:param name="value"></s:param>   
+						</s:textfield>  --%>
+						 <sx:datetimepicker name="birthday" label="请求时间" displayFormat="yyyy-MM-dd" /> 
 						</td>
 					</tr>
 					
@@ -75,24 +85,28 @@
 						</td>
 					</tr>
 		
-					 <tr>
+					<%--  <tr>
                     	 <td>资质照片</td>
                     	 <td id="clientQualification.image">
                          <s:file name="file"></s:file>
                          <input type="button" value="浏览" οnclick="addMore()">
                     	 </td>
                	 	 </tr>
-
+ --%>
 					<tr>
 						<td colspan="4" align="left">
 							<s:submit theme="simple" cssClass="Reg" value="注册"/>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4" align="left">
+							${msg}
 						</td>
 					</tr>
 				</table>
 					</s:form>
 		</s:div>
 		<s:div>
-				${error}
 	</s:div>
 </body>
 </html>

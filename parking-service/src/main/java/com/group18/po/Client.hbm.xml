@@ -14,7 +14,7 @@
         <property name="password" type="string">
             <column name="password" />
         </property>
-        <one-to-one name="clientInformation" class="com.group18.po.ClientInformation"></one-to-one>
+        <one-to-one name="clientInformation"  cascade="all" class="com.group18.po.ClientInformation"></one-to-one>
         <set name="clientQualifications" table="client_qualification" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="cid" not-null="true" />

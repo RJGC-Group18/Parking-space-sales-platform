@@ -20,7 +20,7 @@ public class ClientQualification implements java.io.Serializable {
 	private Client client;
 	private byte[] image;
 	private Boolean qualification;
-	private String adress;
+	private String address;
 
 	public ClientQualification() {
 	}
@@ -35,7 +35,7 @@ public class ClientQualification implements java.io.Serializable {
 		this.client = client;
 		this.image = image;
 		this.qualification = qualification;
-		this.adress = adress;
+		this.address = address;
 	}
 
 	@Id
@@ -77,13 +77,13 @@ public class ClientQualification implements java.io.Serializable {
 		this.qualification = qualification;
 	}
 
-	@Column(name = "adress")
-	public String getAdress() {
-		return this.adress;
+	@Column(name = "address")
+	public String getAddress() {
+		return this.address;
 	}
 
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 }

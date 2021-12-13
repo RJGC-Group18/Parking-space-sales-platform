@@ -14,7 +14,7 @@
 </head>
 <body style="height: 100%; margin: 0">
 	<s:div cssClass="add">
-					<s:form name="CRegister" action="userRegister" method="post">
+					<s:form name="CRegister" action="userRegister" method="post"><!-- enctype="multipart/form" -->
 					<table class="tableadd" style="width: 50%;">
 				
 					<tr>
@@ -74,23 +74,28 @@
 						</td>
 					</tr>
 		
-					 <tr>
+					<%--  <tr>
                     	 <td>资质照片</td>
-                    	 <td id="userQualification.image">
+                    	 <td>
                          <s:file name="upFile"></s:file>
                     	 </td>
-               	 	 </tr>
+               	 	 </tr> --%>
 
 					<tr>
 						<td colspan="4" align="left">
 							<s:submit theme="simple" cssClass="Reg" value="注册"/>
 						</td>
 					</tr>
+					<tr>
+						<td colspan="4" align="left">
+							${msg}
+						</td>
+					</tr>
 				</table>
 					</s:form>
 		</s:div>
 		<s:div>
-				${msg}
+				
 	</s:div>
 </body>
 </html>
