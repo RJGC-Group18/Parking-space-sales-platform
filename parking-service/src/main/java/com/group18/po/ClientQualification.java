@@ -30,7 +30,7 @@ public class ClientQualification implements java.io.Serializable {
 		this.client = client;
 	}
 
-	public ClientQualification(int qid, Client client, byte[] image, Boolean qualification, String adress) {
+	public ClientQualification(int qid, Client client, byte[] image, Boolean qualification, String address) {
 		this.qid = qid;
 		this.client = client;
 		this.image = image;

@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -77,13 +78,41 @@ public class ClientAction {
 				ClientInformation clientInformation=client.getClientInformation();
 				clientInformation.setClient(client);
 				clientInformation.setBirthday(sf.parse(birthday));
+				
+				//以下部分计算年龄
+				Calendar cal = Calendar.getInstance();
+				if(cal.before(clientInformation.getBirthday()))
+				{
+					session.setAttribute("msg","出生日期在当前日期之后");
+					return "failed";
+				}
+				int yearNow = cal.get(Calendar.YEAR);  //当前年份
+		        int monthNow = cal.get(Calendar.MONTH);  //当前月份
+		        int dayOfMonthNow = cal.get(Calendar.DAY_OF_MONTH); //当前日期
+		        cal.setTime(clientInformation.getBirthday()); 
+		        int yearBirth = cal.get(Calendar.YEAR);
+		        int monthBirth = cal.get(Calendar.MONTH);
+		        int dayOfMonthBirth = cal.get(Calendar.DAY_OF_MONTH);  
+		        int age = yearNow - yearBirth;   //计算整岁数
+	            if (monthNow <= monthBirth) 
+	            {
+	            	if (monthNow == monthBirth) 
+	            	{
+	            		if (dayOfMonthNow < dayOfMonthBirth) age--;//当前日期在生日之前，年龄减一
+	            	}
+	            	else
+	            	{
+	            		age--;//当前月份在生日之前，年龄减一
+	                } 
+	            }
+				
+	            clientInformation.setAge(age);
 				client.setClientInformation(clientInformation);
-				/*clientQualification=new ClientQualification();
 				clientQualification.setQualification(true);
 				clientQualification.setClient(client);
-				clientQualification.setImage(null);*/
+				clientQualification.setImage(null);
 				clientService.register(client);
-				/*clientQualificationService.add(clientQualification);*/
+				clientQualificationService.add(clientQualification);
 				session.setAttribute("client", client);
 				return "success";
 			}

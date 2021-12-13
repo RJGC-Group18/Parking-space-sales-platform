@@ -54,12 +54,12 @@
 						</td>
 					</tr>			
 					
-					<tr>
+					<%-- <tr>
 						<td>年龄</td>
 						<td>
 						<s:textfield theme="simple" cssClass="name" name="client.clientInformation.age" />
 						</td>
-					</tr>
+					</tr> --%>
 					
 					<tr>
 						<td>出生日期</td>
@@ -82,6 +82,13 @@
 						<td>电话</td>
 						<td>
 						<s:textfield theme="simple" cssClass="name" name="client.clientInformation.phone" />
+						</td>
+					</tr>
+		
+					<tr>
+						<td>地址</td>
+						<td>
+						<s:textfield theme="simple" cssClass="name" name="clientQualification.address" />
 						</td>
 					</tr>
 		
