@@ -24,7 +24,7 @@
     <constant name="struts.serve.static.browserCache" value="false" />
     <!-- 指定由spring负责action对象的创建      -->
     <constant name="struts.objectFactory" value="spring" />
-
+	<constant name="struts.action.excludePattern" value="/static/.*?"></constant>
     <!--
     不用注解模式
      <package name="book" namespace="/" extends="struts-default">
@@ -174,5 +174,4 @@
     </package>
 
 
-<constant name="struts.action.excludePattern" value="/static/.*?"></constant>
 </struts>
