@@ -174,5 +174,5 @@
     </package>
 
 
-
+<constant name="struts.action.excludePattern" value="/static/.*?"></constant>
 </struts>
