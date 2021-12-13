@@ -61,15 +61,24 @@
             </p>
             <ul>
                 <li>
-                        <%--parking里的add.jsp--%>
-                    <a  href="javascript:void(0);" url="${basePath}course?method=list"  title="车位发布">
+         
+                    <a  href="javascript:void(0);" url="${basePath}page/parking/ParkingAdd.jsp"  title="车位发布">
                         <i class="fa fa-caret-right"></i>
                         车位发布
                     </a>
                 </li>
+                
+                <li>
+ 
+                    <a  href="javascript:void(0);" url="${basePath}page/user/ParkingList.jsp"  title="车位列表">
+                        <i class="fa fa-caret-right"></i>
+                        车位列表
+                    </a>
+                </li>
+                
                 <li>
                         <%--parking里的dealing.jsp--%>
-                    <a  href="javascript:void(0);" url="${basePath}scquery?method=query_teacher"  title="签约合同">
+                    <a  href="javascript:void(0);" url="${basePath}page/parking/Dealing.jsp"  title="签约合同">
                         <i class="fa fa-caret-right"></i>
                         签约合同
                     </a>

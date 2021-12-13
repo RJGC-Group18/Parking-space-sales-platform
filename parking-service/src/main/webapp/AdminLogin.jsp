@@ -113,9 +113,9 @@
 					<s:submit theme="simple" value="登录"/>
 				</s:div>
 			</s:form>
-			<div cssClass="tips">
+			<s:div cssClass="tips">
 				${error}
-			</div>
+			</s:div>
 		</s:div>
 	</body>
 </html>

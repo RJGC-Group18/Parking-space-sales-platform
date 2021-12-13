@@ -7,8 +7,8 @@
 		<meta charset="utf-8">
 		<title>列表</title>
 		<link  rel="stylesheet"  href="${basePath}static/css/styles.css" />
-		<link rel="stylesheet"  href="${basePath}static/css/font-awesome-4.7.0/css/font-awesome.min.css" />
-		<script  src="${basePath}static/js/jquery.min.js" type="text/javascript"></script>
+	 <style  type="text/css"><!--<%@ include file="/static/css/styles.css"%>--></style>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 		<script type="text/javascript">
 			$(function(){
 				$('.remove').click(function(){
