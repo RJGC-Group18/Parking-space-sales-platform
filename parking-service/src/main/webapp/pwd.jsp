@@ -5,9 +5,9 @@
 <html style="height: 100%">
 <head>
 <meta charset="utf-8">
-<link  rel="stylesheet"  href="${basePath}static/css/styles.css" />
-		<link rel="stylesheet"  href="${basePath}static/css/font-awesome-4.7.0/css/font-awesome.min.css" />
-		<script  src="${basePath}static/js/jquery.min.js" type="text/javascript"></script>
+<style  type="text/css"><!--<%@ include file="static/css/styles.css"%>--></style>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script type="text/javascript" src="<s:url value="static/js/jquery.min.js"/>"></script>
 		<script  src="${basePath}static/js/jquery-validation-1.14.0/jquery.validate.js" type="text/javascript"></script>
 		<script  src="${basePath}static/js/jquery-validation-1.14.0/localization/messages_zh.js" type="text/javascript"></script>
 </head>

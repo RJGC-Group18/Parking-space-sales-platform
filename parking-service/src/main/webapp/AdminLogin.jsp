@@ -109,7 +109,6 @@
 				<s:div cssClass="p">
 					<s:password theme="simple" cssClass="pwd" name="user.password" value="密码"/>
 				</s:div>
-
 				<s:div cssClass="l">
 					<s:submit theme="simple" value="登录"/>
 				</s:div>

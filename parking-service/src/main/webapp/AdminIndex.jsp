@@ -7,10 +7,10 @@
 <head>
     <meta charset="utf-8" />
     <title>车位销售系统后台管理</title>
-    <style type="text/css"><!--<%@ include file="static/css/styles.css"%>--></style>
-    <style type="text/css"><!--<%@ include file="static/css/font-awesome-4.7.0/css/font-awesome.min.css"%>--></style>
-    <script  src="${basePath}static/js/jquery.min.js" type="text/javascript"></script>
-    <script type="text/javascript">//引入jquery
+    <style  type="text/css"><!--<%@ include file="static/css/styles.css"%>--></style>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script type="text/javascript" src="<s:url value="static/js/jquery.min.js"/>"></script>
+    <script type="text/javascript" >
     $(function(){
         $('.menux p').click(function(){
             $(this).siblings('ul').slideUp(200);
@@ -35,7 +35,7 @@
 </head>
 <body>
 <% session.setAttribute("type", 2); %><!-- 设置用户类型为2 -->
-<s:div cssClass="" class="header">
+<s:div cssClass="header">
     <s:div cssClass="logo">车位销售系统后台管理</s:div>
     <s:div cssClass="user">
         <i Class="fa fa-caret-down point"></i>
@@ -96,13 +96,11 @@
                     <%--		echart图--%>
                     <%--	</a>--%>
                     <%--</li>--%>
-
             </ul>
-
     </s:div>
 </s:div>
 <s:div cssClass="main">
-    <s:div cssClass="" class="location">
+    <s:div cssClass="location">
         <i class="fa fa-home"></i>
         <span class="menu_title">用户管理</span>
     </s:div>

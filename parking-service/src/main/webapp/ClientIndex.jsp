@@ -7,10 +7,10 @@
 <head>
     <meta charset="utf-8" />
     <title>车位销售系统首页</title>
-    <link rel="stylesheet" type="text/css" href=" <%=request.getContextPath()%>/static/css/styles.css"/>
-    <link rel="stylesheet" type="text/css" href=" <%=request.getContextPath()%>/static/css/font-awesome-4.7.0/css/font-awesome.min.css"/>
-    <script  src="${basePath}static/js/jquery.min.js" type="text/javascript"></script>
-    <script type="text/javascript">//引入jquery
+    <style  type="text/css"><!--<%@ include file="static/css/styles.css"%>--></style>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script type="text/javascript" src="<s:url value="static/js/jquery.min.js"/>"></script>
+    <script type="text/javascript" >
     $(function(){
         $('.menux p').click(function(){
             $(this).siblings('ul').slideUp(200);
@@ -35,7 +35,7 @@
 </head>
 <body>
 <% session.setAttribute("type", 0); %><!-- 设置用户类型为0 -->
-<s:div cssClass="" class="header">
+<s:div cssClass="header">
     <s:div cssClass="logo">车位销售系统</s:div>
     <s:div cssClass="user">
         <i class="fa fa-caret-down point"></i>
@@ -83,10 +83,10 @@
     </s:div>
 </s:div>
 <s:div cssClass="main">
-    <%-- <s:div cssClass="location">
+     <s:div cssClass="location">
         <i class="fa fa-home"></i>
         <span class="menu_title">用户管理</span>
-    </s:div> --%>
+    </s:div>
     <iframe src="welcome.jsp"  width="100%" height="90%" name="mainFrame"  id="mainFrame" frameborder="0px"></iframe>
 </s:div>
 </body>

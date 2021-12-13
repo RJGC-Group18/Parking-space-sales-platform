@@ -7,60 +7,58 @@
 <head>
     <meta charset="utf-8" />
     <title>车位销售系统首页</title>
-    <link  rel="stylesheet"  href="${basePath}static/css/styles.css" />
-    <link rel="stylesheet"  href="${basePath}static/css/font-awesome-4.7.0/css/font-awesome.min.css" />
-    <script  src="${basePath}static/js/jquery.min.js" type="text/javascript"></script>
-    <script type="text/javascript">//引入jquery
+    <style  type="text/css"><!--<%@ include file="static/css/styles.css"%>--></style>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script type="text/javascript" src="<s:url value="static/js/jquery.min.js"/>"></script>
+    <script type="text/javascript" >
     $(function(){
         $('.menux p').click(function(){
             $(this).siblings('ul').slideUp(200);
             $(this).next('ul').slideToggle(200);
         });
-
         $('.menux p:first').trigger("click");
-
         $('.menux ul a').click(function(){
             $('iframe').attr("src",$(this).attr("url"));
             $('.menu_title').html($(this).attr("title"));
         });
-
         $('.logout').click(function(){
             if(confirm("确定要退出吗？")){
                 window.location.href = "logout";
             }
         });
-
     })
     </script>
 </head>
 <body>
 <% session.setAttribute("type", 1); %><!-- 设置用户类型为1 -->
 <s:div cssClass="header">
-    <s:div cssClass="logo">车位销售系统</s:div>
+    <s:div cssClass="logo">车位销售系统首页</s:div>
     <s:div cssClass="user">
-        <i class="fa fa-caret-down point"></i>
-        <i class="fa fa-user"></i>
+        <i Class="fa fa-caret-down point"></i>
+        <i Class="fa fa-user"></i>
+
             ${user.username}
 
         <ul>
             <li><a  target="mainFrame" href="pwd.jsp">修改密码</a></li>
             <li><a  target="mainFrame" href="info.jsp">个人信息</a></li>
-            <li><a  href="userLoginOut.action" class="logout">退出登录</a></li>
+            <li><a  href="adminLoginOut.action" class="logout">退出登录</a></li>
         </ul>
     </s:div>
 </s:div>
+
 <s:div cssClass="left">
-    <s:div class="title">
+    <s:div cssClass="title">
         <i class="fa fa-home"></i>
         系统功能
     </s:div>
     <s:div cssClass="menux">
 
-          <!--   <p>
+            <p>
                 <i class="fa fa-info-circle"></i>
                 <i class="fa fa-angle-right point"></i>
                 经销商权限
-            </p> -->
+            </p>
             <ul>
                 <li>
                         <%--parking里的add.jsp--%>
@@ -76,10 +74,29 @@
                         签约合同
                     </a>
                 </li>
+
+                    <%--<li>--%>
+                    <%--	<a  href="javascript:void(0);" url="${basePath}scquery?method=query_range"  title="分数区间统计">--%>
+                    <%--		<i class="fa fa-caret-right"></i>--%>
+                    <%--		分数区间统计--%>
+                    <%--	</a>--%>
+                    <%--</li>--%>
+                    <%--<li>--%>
+                    <%--	<a  href="javascript:void(0);" url="${basePath}scquery?method=query_jgl"  title=及格率和总人数>--%>
+                    <%--		<i class="fa fa-caret-right"></i>--%>
+                    <%--		及格率和总人数--%>
+                    <%--	</a>--%>
+                    <%--</li>--%>
+                    <%--<li>--%>
+                    <%--	<a  href="javascript:void(0);" url="${basePath}main?method="  title=echart图>--%>
+                    <%--		<i class="fa fa-caret-right"></i>--%>
+                    <%--		echart图--%>
+                    <%--	</a>--%>
+                    <%--</li>--%>
             </ul>
+    </s:div>
 </s:div>
-</s:div>
-<s:div cssClass="" class="main">
+<s:div cssClass="main">
     <s:div cssClass="location">
         <i class="fa fa-home"></i>
         <span class="menu_title">用户管理</span>
