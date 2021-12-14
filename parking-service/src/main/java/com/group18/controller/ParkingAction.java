@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.group18.po.Client;
 import com.group18.po.Parking;
 import com.group18.po.User;
 import com.group18.service.ParkingService;
@@ -35,7 +36,8 @@ public class ParkingAction {
 		try
 		{
 			session.removeAttribute("msg");
-			parkingList=parkingService.findAll();
+			Client client=(Client) session.getAttribute("client");
+			parkingList=parkingService.findByClient(client);
 			return "success";
 		}
 		catch(Exception e)

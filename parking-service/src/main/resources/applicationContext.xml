@@ -95,6 +95,7 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 <bean id="parkingService" class="com.group18.service.ParkingService">
 	<property name="parkingDAO" ref="parkingDAO"/>
 	<property name="dealingDAO" ref="dealingDAO"/>
+	<property name="reservationDAO" ref="reservationDAO"/>
 </bean>
 <bean id="paymentService" class="com.group18.service.PaymentService">
 	<property name="paymentDAO" ref="paymentDAO"/>
