@@ -1,3 +1,4 @@
+@@ -0,0 +1,74 @@
 <%@page contentType="text/html; charset=utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
@@ -22,14 +23,14 @@
 					<tr>
 						<td>楼层</td>
 						<td>
-						<s:textfield theme="simple" cssClass="name" name="parking.sublevel" value=""/>
+						<s:textfield theme="simple" cssClass="name" name="parking.sublevel" />
 						</td>
 					</tr>
 					
 					<tr>
 						<td>面积</td>
 						<td>
-						<s:textfield theme="simple" cssClass="name" name="parking.area"	value="" />
+						<s:textfield theme="simple" cssClass="name" name="parking.area" />
 						</td>
 					</tr>
 					
@@ -37,27 +38,27 @@
 					<tr>
 						<td>价格</td>
 						<td>
-						<s:textfield theme="simple" cssClass="name" name="parking.priceUnit" value=""/>
+						<s:textfield theme="simple" cssClass="name" name="parking.priceUnit" />
 						</td>
 					</tr>
 					
 					<tr>
 						<td>车位类型</td>
 						<td>
-						<s:textfield theme="simple" cssClass="name" name="parking.type" value=""/>
+						<s:textfield theme="simple" cssClass="name" name="parking.type" />
 						</td>
 					</tr>
 		
 					<tr>
 						<td>地址</td>
 						<td>
-						<s:textfield theme="simple" cssClass="name" name="parking.address" value=""/>
+						<s:textfield theme="simple" cssClass="name" name="parking.address" />
 						</td>
 					</tr>
 					
 					<tr>
 						<td colspan="4" align="left">
-							<s:submit theme="simple" cssClass="Reg" value="添加"/>
+							<s:submit theme="simple" cssClass="Reg" value="修改"/>
 						</td>
 					</tr>
 					<tr>

@@ -77,31 +77,18 @@
                 </li>
                 
                 <li>
-                        <%--parking里的dealing.jsp--%>
                     <a  href="javascript:void(0);" url="${basePath}page/parking/Dealing.jsp"  title="签约合同">
                         <i class="fa fa-caret-right"></i>
                         签约合同
                     </a>
                 </li>
-
-                    <%--<li>--%>
-                    <%--	<a  href="javascript:void(0);" url="${basePath}scquery?method=query_range"  title="分数区间统计">--%>
-                    <%--		<i class="fa fa-caret-right"></i>--%>
-                    <%--		分数区间统计--%>
-                    <%--	</a>--%>
-                    <%--</li>--%>
-                    <%--<li>--%>
-                    <%--	<a  href="javascript:void(0);" url="${basePath}scquery?method=query_jgl"  title=及格率和总人数>--%>
-                    <%--		<i class="fa fa-caret-right"></i>--%>
-                    <%--		及格率和总人数--%>
-                    <%--	</a>--%>
-                    <%--</li>--%>
-                    <%--<li>--%>
-                    <%--	<a  href="javascript:void(0);" url="${basePath}main?method="  title=echart图>--%>
-                    <%--		<i class="fa fa-caret-right"></i>--%>
-                    <%--		echart图--%>
-                    <%--	</a>--%>
-                    <%--</li>--%>
+                
+                <li>
+                    <a  href="javascript:void(0);" url="${basePath}page/parking/ReservationList.jsp"  title="签约合同">
+                        <i class="fa fa-caret-right"></i>
+                        预约信息查看
+                    </a>
+                </li>
             </ul>
     </s:div>
 </s:div>

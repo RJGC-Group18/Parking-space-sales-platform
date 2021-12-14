@@ -25,28 +25,29 @@
 		
 			<thead>
 				<tr>
-					<th>支付编号</th>
+					<th>合同编号</th>
 					<th>车主ID</th>
+					<th>车主姓名</th>
+					<th>车主手机号</th>
 					<th>车位ID</th>
 					<th>经销商ID</th>
-					<th>支付时间</th>
-					<th>已支付</th>
-					<th>未支付</th>
-					<th>截止日期</th>
+					<th>订单时间</th>
+					<th>支付方式</th>
 					<th width="120px">操作</th>
 				</tr>
 			</thead>
 			
-			<c:forEach items="${pageInfo.list}" var="payment">
+			<c:forEach items="${pageInfo.list}" var="dealing">
 			<tr>
-				<td>${payment.no}</td>
-				<td>${payment.cid}</td>
-				<td>${payment.pid}</td>
-				<td>${payment.uid}</td>
-				<td>${payment.time}</td>
-				<td>${payment.paid}</td>
-				<td>${payment.unpaid}</td>
-				<td>${payment.deadline}</td>
+				<td>${No}</td>
+				<td>${dealing.cid}</td>
+				<td>${dealing.came}</td>
+				<td>${dealing.phone}</td>
+				<td>${dealing.pid}</td>
+				<td>${dealing.uid}</td>
+				<td>${dealing.time}</td>
+				<td>${dealing.pay}</td>
+				<th width="120px">操作</th>
 				<td>
 					<button class="edit" type="button" onclick="window.location.href='${basePath}course?method=edit&id=${course.cId}'">
 						<i class="fa fa-edit"></i>

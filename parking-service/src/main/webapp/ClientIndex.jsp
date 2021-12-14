@@ -63,13 +63,12 @@
             <ul>
                 <li>
                         <%--dealing里的select.jsp--%>
-                    <a  href="javascript:void(0);" url="clientLookParkingList.action"  title="报名摇号">
+                    <a  href="javascript:void(0);" url="clientLookParkingList.action"  title="查看车位">
                         <i class="fa fa-caret-right"></i>
                         报名
                     </a>
                 </li>
                 <li>
- 
                     <a  href="javascript:void(0);" url="clientLookParkingList.action"  title="车位列表">
                         <i class="fa fa-caret-right"></i>
                         车位列表
@@ -77,12 +76,12 @@
                 </li>
 
                 <li>
-                        <%--client里的dealing.jsp--%>
-                    <a  href="javascript:void(0);" url="${basePath}scquery?method=query_teacher"  title="签约合同">
+                    <a  href="javascript:void(0);" url="${basePath}page/parking/Dealing.jsp"  title="交易信息查看">
                         <i class="fa fa-caret-right"></i>
                         签约合同
                     </a>
                 </li>
+                
 
             </ul>
 
