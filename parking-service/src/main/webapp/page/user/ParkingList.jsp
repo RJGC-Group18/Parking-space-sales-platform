@@ -56,6 +56,7 @@
 				<td>${parking.priceUnit}</td>
 				<td>${parking.address}</td>
 				<td>
+					<c:if type =="1">
 					<button class="edit" type="button" onclick="window.location.href='${basePath}teacher?method=edit&id=${user.uId}'">
 						<i class="fa fa-edit"></i>
 						修改
@@ -64,6 +65,7 @@
 						<i class="fa fa-remove"></i>
 						删除
 					</button>
+					</c:if>
 					<button class="edit" type="button" onclick="window.location.href='lookParking.action?pid=${parking.pid}'">
 						<i class="fa fa-edit"></i>
 						查看详细信息

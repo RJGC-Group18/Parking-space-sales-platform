@@ -66,7 +66,13 @@
                     <a  href="javascript:void(0);" url="clientLookParkingList.action"  title="报名摇号">
                         <i class="fa fa-caret-right"></i>
                         报名
-                            <%--包括了查看车位状态--%>
+                    </a>
+                </li>
+                <li>
+ 
+                    <a  href="javascript:void(0);" url="${basePath}page/user/ParkingList.jsp"  title="车位列表">
+                        <i class="fa fa-caret-right"></i>
+                        车位列表
                     </a>
                 </li>
 
