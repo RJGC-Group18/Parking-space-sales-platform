@@ -56,12 +56,12 @@
 				<td>${parking.priceUnit}</td>
 				<td>${parking.address}</td>
 				<td>
-					<c:if type =="1">
-					<button class="edit" type="button" onclick="window.location.href='${basePath}teacher?method=edit&id=${user.uId}'">
+					<c:if test="${type == 1}">
+					<button class="edit" type="button" onclick="window.location.href=''">
 						<i class="fa fa-edit"></i>
 						修改
 					</button>
-					<button class="remove" type="button" keyword="${user.uId}">
+					<button class="remove" type="button" keyword="">
 						<i class="fa fa-remove"></i>
 						删除
 					</button>

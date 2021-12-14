@@ -47,7 +47,7 @@
 				<td><a href="reservation.action?pid=${parking.pid}">预约</a></td>
 			</tr>
 			<tr>
-				<a href="javascript:history.go(-1);">返回上一页</a>
+				<a href="clientLookParkingList.action">返回上一页</a>
 			</tr>
 		</c:if>
 		<c:if test="${type == 1}">
@@ -68,7 +68,7 @@
 				<td>${parking.address}</td>
 			</tr>
 			<tr>
-				<a href="javascript:history.go(-1);">返回上一页</a>
+				<a href="clientLookParkingList.action">返回上一页</a>
 			</tr>
 			
 		</c:if>
@@ -90,7 +90,7 @@
 				<td>${parking.address}</td>
 			</tr>
 			<tr>
-				<a href="javascript:history.go(-1);">返回上一页</a>
+				<a href="clientLookParkingList.action">返回上一页</a>
 			</tr>
 		</c:if>
 	</table>
