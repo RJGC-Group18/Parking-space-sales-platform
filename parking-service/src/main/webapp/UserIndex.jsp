@@ -42,7 +42,7 @@
         <ul>
             <li><a  target="mainFrame" href="pwd.jsp">修改密码</a></li>
             <li><a  target="mainFrame" href="info.jsp">个人信息</a></li>
-            <li><a  href="adminLoginOut.action" class="logout">退出登录</a></li>
+            <li><a  href="userLoginOut.action" class="logout">退出登录</a></li>
         </ul>
     </s:div>
 </s:div>

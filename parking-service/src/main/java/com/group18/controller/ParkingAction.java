@@ -70,6 +70,12 @@ public class ParkingAction {
 			int priceInt=-1;
 			if(price!=null&&!price.equals(""))
 				priceInt=Integer.parseInt(price);
+			//如果价格和地址都为空，且登录用户身份为user的话，返回销售方原本的车位列表
+			if(priceInt<=0&&address.equals("")&&session.getAttribute("user")!=null)
+			{
+				findAllByUser();
+				return "success";
+			}
 			for(Iterator<Parking> it=parkingList.iterator();it.hasNext();)
 			{
 				Parking p=it.next();
@@ -129,6 +135,7 @@ public class ParkingAction {
 	{
 		try
 		{
+			session.removeAttribute("msg");
 			parkingService.update(parking);
 			return "success";
 		}
@@ -141,11 +148,20 @@ public class ParkingAction {
 	{
 		try
 		{
+			session.removeAttribute("msg");
+			int pidInt=Integer.parseInt(pid);
+			parking=new Parking();
+			parking.setPid(pidInt);
+			parking=parkingService.findByPid(parking);
 			parkingService.delete(parking);
+			findAllByUser();
+			session.setAttribute("msg", "车位"+pid+"删除成功");
 			return "success";
 		}
 		catch(Exception e)
 		{
+			findAllByUser();
+			session.setAttribute("msg", "车位"+pid+"删除失败");
 			return "failed";	
 		}
 	}

@@ -63,11 +63,30 @@ public class ParkingService implements IParkingService {
 	}
 
 	public List<Parking> fingByUid(User user) {
-		String hql= "from Parking where uid='" + user.getUid()+"'";
+		String hql;
+		if(user.getIdentity())
+		{
+			hql= "from Parking";
+		}
+		else
+		{
+			hql= "from Parking where uid='" + user.getUid()+"'";
+		}
 		List list=parkingDAO.findByHql(hql);
 		if(list.isEmpty())
 		{
 			return null;
+		}
+		//处于交易阶段的车位禁止通过车位列表寻找
+		for(Iterator<Parking> it=list.iterator();it.hasNext();)
+		{
+			Parking p=it.next();
+			String hql2="from Dealing where pid='"+p.getPid()+"'";
+			List findDealing=dealingDAO.findByHql(hql2);
+			if(findDealing.size()!=0)
+			{
+				it.remove();
+			}
 		}
 		return list;
 	}

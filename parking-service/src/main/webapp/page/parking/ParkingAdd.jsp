@@ -16,7 +16,7 @@
 </head>
 <body style="height: 100%; margin: 0">
 	<s:div cssClass="add">
-					<s:form name="ParkingAdd" action="parkingAdd" method="post">
+					<s:form name="ParkingAdd" action="userAddParking" method="post">
 					<table class="tableadd" style="width: 50%;">
 				
 					<tr>
@@ -41,13 +41,6 @@
 						</td>
 					</tr>
 					
-					<tr>
-						<td>车位类型</td>
-						<td>
-						<s:textfield theme="simple" cssClass="name" name="parking.type" value=""/>
-						</td>
-					</tr>
-		
 					<tr>
 						<td>地址</td>
 						<td>

@@ -16,6 +16,10 @@
 	<table Class="tablelist" style="width: 50%;margin-left:50px">
 		<c:if test="${type == 0}">
 			<tr>
+				<td width="120px">车位id</td>
+				<td>${parking.pid}</td>
+			</tr>
+			<tr>
 				<td width="120px">楼层</td>
 				<td>${parking.sublevel}</td>
 			</tr>
@@ -51,7 +55,11 @@
 			</tr>
 		</c:if>
 		<c:if test="${type == 1}">
-		<tr>
+			<tr>
+				<td width="120px">车位id</td>
+				<td>${parking.pid}</td>
+			</tr>
+			<tr>
 				<td width="120px">楼层</td>
 				<td>${parking.sublevel}</td>
 			</tr>
@@ -68,12 +76,16 @@
 				<td>${parking.address}</td>
 			</tr>
 			<tr>
-				<a href="clientLookParkingList.action">返回上一页</a>
+				<a href="userLookParkingList.action">返回上一页</a>
 			</tr>
 			
 		</c:if>
 		<c:if test="${type == 2}">
-		<tr>
+			<tr>
+				<td width="120px">车位id</td>
+				<td>${parking.pid}</td>
+			</tr>
+			<tr>
 				<td width="120px">楼层</td>
 				<td>${parking.sublevel}</td>
 			</tr>
@@ -90,7 +102,7 @@
 				<td>${parking.address}</td>
 			</tr>
 			<tr>
-				<a href="clientLookParkingList.action">返回上一页</a>
+				<a href="userLookParkingList.action">返回上一页</a>
 			</tr>
 		</c:if>
 	</table>

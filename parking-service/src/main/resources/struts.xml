@@ -138,9 +138,14 @@
             <result name="failed">/welcome.jsp</result>
         </action>
         <!-- 添加车位信息 -->
-        <action name="parkingAdd" class="parkingAction" method="add">
+        <action name="userAddParking" class="parkingAction" method="add">
+        	<result name="success">/welcome.jsp</result>
+            <result name="failed">/welcome.jsp</result>
+        </action>
+        <!-- 删除车位信息 -->
+        <action name="userDeleteParking" class="parkingAction" method="delete">
         	<result name="success">/page/user/ParkingList.jsp</result>
-            <result name="failed">/user/Parking.jsp</result>
+            <result name="failed">/page/user/ParkingList.jsp</result>
         </action>
         
         <!--管理员-->

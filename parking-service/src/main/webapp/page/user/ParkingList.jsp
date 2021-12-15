@@ -44,6 +44,7 @@
 		<table class="tablelist">
 			<thead>
 				<tr>
+					<th>车位id</th>
 					<th>价格</th>
 					<th>地址</th>
 					<th width="120px">操作</th>
@@ -53,6 +54,7 @@
 			
 			<c:forEach items="${parkingList}" var="parking">
 			<tr>
+			    <td>${parking.pid}</td>
 				<td>${parking.priceUnit}</td>
 				<td>${parking.address}</td>
 				<td>
@@ -61,7 +63,7 @@
 						<i class="fa fa-edit"></i>
 						修改
 					</button>
-					<button class="remove" type="button" keyword="">
+					<button class="remove" type="button" onclick="window.location.href='userDeleteParking.action?pid=${parking.pid}'">
 						<i class="fa fa-remove"></i>
 						删除
 					</button>
