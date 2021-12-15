@@ -44,6 +44,7 @@
 		<table class="tablelist">
 			<thead>
 				<tr>
+					<th>ID</th>
 					<th>价格</th>
 					<th>地址</th>
 					<th width="120px">操作</th>
@@ -53,6 +54,7 @@
 			
 			<c:forEach items="${parkingList}" var="parking">
 			<tr>
+				<td>${parking.pid}</td>
 				<td>${parking.priceUnit}</td>
 				<td>${parking.address}</td>
 				<td>
