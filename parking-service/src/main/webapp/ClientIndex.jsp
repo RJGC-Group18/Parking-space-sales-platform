@@ -63,9 +63,9 @@
             <ul>
                 <li>
                         <%--dealing里的select.jsp--%>
-                    <a  href="javascript:void(0);" url="clientLookParkingList.action"  title="查看车位">
+                    <a  href="javascript:void(0);" url="clientLookParkingList.action"  title="预约信息列表">
                         <i class="fa fa-caret-right"></i>
-                        报名
+                        预约信息列表
                     </a>
                 </li>
                 <li>

@@ -54,7 +54,7 @@
 			
 			<c:forEach items="${parkingList}" var="parking">
 			<tr>
-			    <td>${parking.pid}</td>
+				<td>${parking.pid}</td>
 				<td>${parking.priceUnit}</td>
 				<td>${parking.address}</td>
 				<td>

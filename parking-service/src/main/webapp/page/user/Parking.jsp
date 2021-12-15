@@ -15,6 +15,10 @@
 <s:div cssClass="add">
 	<table Class="tablelist" style="width: 50%;margin-left:50px">
 		<c:if test="${type == 0}">
+		<tr>
+				<td width="120px">车位ID</td>
+				<td>${parking.pid}</td>
+			</tr>
 			<tr>
 				<td width="120px">车位id</td>
 				<td>${parking.pid}</td>
