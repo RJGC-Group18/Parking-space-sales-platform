@@ -136,11 +136,24 @@ public class ParkingAction {
 		try
 		{
 			session.removeAttribute("msg");
+			
+			//以下过程为查找原车位信息防止管理员更新信息的时候发生把销售方信息覆盖了的情况
+			int pidInt=Integer.parseInt(pid);
+			Parking parking1=new Parking();
+			parking1.setPid(pidInt);
+			parking1=parkingService.findByPid(parking1);
+			
+			parking.setPid(pidInt);
+			parking.setUser(parking1.getUser());
 			parkingService.update(parking);
+			findAllByUser();
+			session.setAttribute("msg", "车位信息更新成功");
 			return "success";
 		}
 		catch(Exception e)
 		{
+			findAllByUser();
+			session.setAttribute("msg", "车位信息更新失败");
 			return "failed";	
 		}
 	}

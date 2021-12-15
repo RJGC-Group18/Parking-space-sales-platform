@@ -147,7 +147,16 @@
         	<result name="success">/page/user/ParkingList.jsp</result>
             <result name="failed">/page/user/ParkingList.jsp</result>
         </action>
-        
+        <!-- 更新车位信息 -->
+        <action name="userUpdateParking" class="parkingAction" method="update">
+        	<result name="success">/page/user/ParkingList.jsp</result>
+            <result name="failed">/page/user/ParkingList.jsp</result>
+        </action>
+        <!-- 获取车位信息到更新页面中-->
+        <action name="lookParkingToUpdate" class="parkingAction" method="lookParking">
+        	<result name="success">/page/parking/ParkingUpdate.jsp</result>
+            <result name="failed">/welcome.jsp</result>
+        </action>
         <!--管理员-->
         <!--登录-->
         <action name="adminLogin" class="userAction" method="login">

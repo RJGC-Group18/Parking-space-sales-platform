@@ -59,7 +59,7 @@
 				<td>${parking.address}</td>
 				<td>
 					<c:if test="${type == 1}">
-					<button class="edit" type="button" onclick="window.location.href=''">
+					<button class="edit" type="button" onclick="window.location.href='lookParkingToUpdate.action?pid=${parking.pid}'">
 						<i class="fa fa-edit"></i>
 						修改
 					</button>

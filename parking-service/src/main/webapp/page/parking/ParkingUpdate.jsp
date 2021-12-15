@@ -17,13 +17,20 @@
 </head>
 <body style="height: 100%; margin: 0">
 	<s:div cssClass="add">
-					<s:form name="ParkingAdd" action="parkingAdd" method="post">
+					<s:form name="ParkingUpdate" action="userUpdateParking" method="post">
 					<table class="tableadd" style="width: 50%;">
-				
+					
+					<tr>
+						<td>车位id</td>
+						<td>
+						<s:textfield theme="simple" cssClass="name" name="pid" readonly="true"/>
+						</td>
+					</tr>
+					
 					<tr>
 						<td>楼层</td>
 						<td>
-						<s:textfield theme="simple" cssClass="name" name="parking.sublevel" />
+						<s:textfield theme="simple" cssClass="name" name="parking.sublevel"/>
 						</td>
 					</tr>
 					
@@ -41,13 +48,6 @@
 						<s:textfield theme="simple" cssClass="name" name="parking.priceUnit" />
 						</td>
 					</tr>
-					
-					<tr>
-						<td>车位类型</td>
-						<td>
-						<s:textfield theme="simple" cssClass="name" name="parking.type" />
-						</td>
-					</tr>
 		
 					<tr>
 						<td>地址</td>
@@ -58,7 +58,7 @@
 					
 					<tr>
 						<td colspan="4" align="left">
-							<s:submit theme="simple" cssClass="Reg" value="修改"/>
+							<s:submit theme="simple" cssClass="Reg" value="更新"/>
 						</td>
 					</tr>
 					<tr>
