@@ -84,7 +84,7 @@
                 </li>
                 
                 <li>
-                    <a  href="javascript:void(0);" url="${basePath}page/parking/ReservationList.jsp"  title="签约合同">
+                    <a  href="javascript:void(0);" url="userLookReservationList.action"  title="签约合同">
                         <i class="fa fa-caret-right"></i>
                         预约信息查看
                     </a>

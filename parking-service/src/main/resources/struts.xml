@@ -103,6 +103,11 @@
         	<result name="success">/page/user/ParkingList.jsp</result>
             <result name="failed">/welcome.jsp</result>
         </action>
+        <!-- 预约列表查看 -->
+        <action name="clientLookReservationList" class="reservationAction" method="findAllByClient">
+        	<result name="success">/page/parking/ReservationList.jsp</result>
+            <result name="failed">/welcome.jsp</result>
+        </action>
         
         <!--销售方-->
         <!--登录-->
@@ -157,10 +162,16 @@
         	<result name="success">/page/parking/ParkingUpdate.jsp</result>
             <result name="failed">/welcome.jsp</result>
         </action>
+        <!-- 预约列表查看 -->
+        <action name="userLookReservationList" class="reservationAction" method="findAllByUser">
+        	<result name="success">/page/parking/ReservationList.jsp</result>
+            <result name="failed">/welcome.jsp</result>
+        </action>
+        
         <!--管理员-->
         <!--登录-->
         <action name="adminLogin" class="userAction" method="login">
-        	<result name="success">/AdmingIndex.jsp</result>
+        	<result name="success">/AdminIndex.jsp</result>
             <result name="failed">/AdminLogin.jsp</result>
         </action>
         <!--登出-->
@@ -172,7 +183,7 @@
         	<result name="success">/welcome.jsp</result>
             <result name="failed">/pwd.jsp</result>
         </action>
-        <!-- 车位列表查看和user共用 -->
+        <!-- 车位列表查看\预约列表查看和user共用 -->
         
         <!-- 交易流程相关 -->
         <!-- 查看车位具体消息 -->
@@ -188,6 +199,16 @@
         <!-- 预约 -->
         <action name="reservation" class="reservationAction" method="add">
         	<result name="success">/welcome.jsp</result>
+            <result name="failed">/welcome.jsp</result>
+        </action>
+        <!-- 查看预约信息详情 -->
+        <action name="findReservation" class="reservationAction" method="findReservation">
+        	<result name="success">/page/parking/Reservation.jsp</result>
+            <result name="failed">/welcome.jsp</result>
+        </action>
+        <!-- 预约信息删除 -->
+        <action name="deleteReservation" class="reservationAction" method="delete">
+        	<result name="success">/page/parking/ReservationList.jsp</result>
             <result name="failed">/welcome.jsp</result>
         </action>
     </package>

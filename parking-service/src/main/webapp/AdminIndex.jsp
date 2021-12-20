@@ -77,7 +77,18 @@
                         经销商管理
                     </a>
                 </li>
-
+			<li>
+                    <a  href="javascript:void(0);" url="userLookParkingList.action"  title="车位列表">
+                        <i class="fa fa-caret-right"></i>
+                        车位管理
+                    </a>
+             </li>
+             <li>
+                    <a  href="javascript:void(0);" url="userLookReservationList.action"  title="签约合同">
+                        <i class="fa fa-caret-right"></i>
+                        预约信息管理
+                    </a>
+                </li>
                     <%--<li>--%>
                     <%--	<a  href="javascript:void(0);" url="${basePath}scquery?method=query_range"  title="分数区间统计">--%>
                     <%--		<i class="fa fa-caret-right"></i>--%>

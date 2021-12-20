@@ -32,17 +32,17 @@
 				</tr>
 			</thead>
 			
-			<c:forEach items="${pageInfo.list}" var="reservation">
+			<c:forEach items="${reservationList}" var="reservation">
 			<tr>
-				<td>${reservation.cid}</td>
-				<td>${reservation.pid}</td>
+				<td>${reservation.id.cid}</td>
+				<td>${reservation.id.pid}</td>
 				<td>${reservation.time}</td>
 				<td>
-					<button class="edit" type="button" onclick="window.location.href='${basePath}course?method=edit&id=${course.cId}'">
+					<button class="edit" type="button" onclick="window.location.href='findReservation.action?cid=${reservation.id.cid}&pid=${reservation.id.pid}'">
 						<i class="fa fa-edit"></i>
 						确认
 					</button>
-					<button class="remove" type="button" keyword="${No}">
+					<button class="remove" type="button" onclick="window.location.href='deleteReservation.action?cid=${reservation.id.cid}&pid=${reservation.id.pid}'">
 						<i class="fa fa-remove"></i>
 						删除
 					</button>

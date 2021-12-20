@@ -14,96 +14,76 @@
 <body style="height: 100%; margin: 0">
 <s:div cssClass="add">
 	<table Class="tablelist" style="width: 50%;margin-left:50px">
-		<c:if test="${type == 0}">
-		<tr>
+			<tr>
+				<td width="120px">预约时间</td>
+				<td>${reservation.time}</td>
+			</tr>
+			<tr>
 				<td width="120px">车位ID</td>
-				<td>${parking.pid}</td>
+				<td>${reservation.parking.pid}</td>
 			</tr>
 			<tr>
 				<td width="120px">楼层</td>
-				<td>${parking.sublevel}</td>
+				<td>${reservation.parking.sublevel}</td>
 			</tr>
 			<tr>
 				<td width="120px">面积</td>
-				<td>${parking.area}</td>
+				<td>${reservation.parking.area}</td>
 			</tr>
 			<tr>
 				<td width="120px">价格</td>
-				<td>${parking.priceUnit}</td>
+				<td>${reservation.parking.priceUnit}</td>
 			</tr>
 			<tr>
 				<td width="120px">地址</td>
-				<td>${parking.address}</td>
+				<td>${reservation.parking.address}</td>
 			</tr>
 			<tr>
 				<td width="120px">销售公司名</td>
-				<td>${parking.user.userInformation.name}</td>
+				<td>${reservation.parking.user.userInformation.name}</td>
 			</tr>
 			<tr>
 				<td width="120px">销售公司联系人</td>
-				<td>${parking.user.userInformation.contactsName}</td>
+				<td>${reservation.parking.user.userInformation.contactsName}</td>
 			</tr>
 			<tr>
 				<td width="120px">销售公司联系电话</td>
-				<td>${parking.user.userInformation.contactsPhone}</td>
+				<td>${reservation.parking.user.userInformation.contactsPhone}</td>
 			</tr>
 			<tr>
-				<td><a href="reservation.action?pid=${parking.pid}">预约</a></td>
+				<td width="120px">预约用户ID</td>
+				<td>${reservation.client.cid}</td>
 			</tr>
 			<tr>
-				<a href="clientLookParkingList.action">返回上一页</a>
-			</tr>
-		</c:if>
-		<c:if test="${type == 1}">
-			<tr>
-				<td width="120px">车位id</td>
-				<td>${parking.pid}</td>
+				<td width="120px">预约用户名</td>
+				<td>${reservation.client.username}</td>
 			</tr>
 			<tr>
-				<td width="120px">楼层</td>
-				<td>${parking.sublevel}</td>
+				<td width="120px">预约用户真实姓名</td>
+				<td>${reservation.client.clientInformation.name}</td>
 			</tr>
 			<tr>
-				<td width="120px">面积</td>
-				<td>${parking.area}</td>
+				<td width="120px">预约用户联系电话</td>
+				<td>${reservation.client.clientInformation.phone}</td>
 			</tr>
 			<tr>
-				<td width="120px">价格</td>
-				<td>${parking.priceUnit}</td>
+				<td width="120px">预约用户联系邮箱</td>
+				<td>${reservation.client.clientInformation.email}</td>
 			</tr>
-			<tr>
-				<td width="120px">地址</td>
-				<td>${parking.address}</td>
-			</tr>
-			<tr>
-				<a href="userLookParkingList.action">返回上一页</a>
-			</tr>
-			
-		</c:if>
-		<c:if test="${type == 2}">
-			<tr>
-				<td width="120px">车位id</td>
-				<td>${parking.pid}</td>
-			</tr>
-			<tr>
-				<td width="120px">楼层</td>
-				<td>${parking.sublevel}</td>
-			</tr>
-			<tr>
-				<td width="120px">面积</td>
-				<td>${parking.area}</td>
-			</tr>
-			<tr>
-				<td width="120px">价格</td>
-				<td>${parking.priceUnit}</td>
-			</tr>
-			<tr>
-				<td width="120px">地址</td>
-				<td>${parking.address}</td>
-			</tr>
-			<tr>
-				<a href="userLookParkingList.action">返回上一页</a>
-			</tr>
+			<c:if test="${type == 0}">
+				<tr>
+					<a href="clientLookParkingList.action">返回上一页</a>
+				</tr>
+			</c:if>
+			<c:if test="${type == 1}">
+				<tr>
+					<a href="userLookReservationList.action">返回上一页</a>
+				</tr>			
+			</c:if>
+			<c:if test="${type == 2}">
+				<tr>
+					<a href="userLookReservationList.action">返回上一页</a>
+				</tr>
 		</c:if>
 	</table>
 </s:div>
