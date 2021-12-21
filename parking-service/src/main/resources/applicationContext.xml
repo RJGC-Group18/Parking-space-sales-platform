@@ -126,6 +126,7 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 	<property name="dealingService" ref="dealingService" />
 	<property name="clientInformationService" ref="clientInformationService"/>
 	<property name="userInformationService" ref="userInformationService"/>
+	<property name="paymentService" ref="paymentService"/>
 </bean>
 <bean id="dealingAction" class="com.group18.controller.DealingAction" scope="prototype">
 	<property name="dealingService" ref="dealingService" />

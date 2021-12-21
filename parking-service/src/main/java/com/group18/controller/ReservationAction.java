@@ -15,6 +15,7 @@ import com.group18.po.ClientInformation;
 import com.group18.po.Dealing;
 import com.group18.po.Parking;
 import com.group18.po.Payment;
+import com.group18.po.PaymentId;
 import com.group18.po.Reservation;
 import com.group18.po.ReservationId;
 import com.group18.po.User;
@@ -23,6 +24,7 @@ import com.group18.service.ClientInformationService;
 import com.group18.service.ClientService;
 import com.group18.service.DealingService;
 import com.group18.service.ParkingService;
+import com.group18.service.PaymentService;
 import com.group18.service.ReservationService;
 import com.group18.service.UserInformationService;
 import com.group18.service.UserService;
@@ -40,6 +42,7 @@ public class ReservationAction {
 	UserService userService=null;
 	UserInformationService userInformationService=null;
 	DealingService dealingService=null;
+	PaymentService paymentService=null;
 	
 	HttpServletRequest request;
 	HttpSession session;
@@ -184,46 +187,67 @@ public class ReservationAction {
 			return "failed";
 		}
 	}
-	public String SelectReservation()//摇号
+	public String selectReservation()//摇号
 	{
 		try
 		{
+			session.removeAttribute("msg");
 			List<Parking> parkingList=parkingService.findAll();
+			int number=0;//记录摇号成功数量
 			for(Parking selectedParking:parkingList)
 			{
-				Reservation selectedReservation=reservationService.selectReservation(selectedParking);		
+				Reservation selectedReservation=reservationService.selectReservation(selectedParking);
+				if(selectedReservation==null)
+				{
+					continue;
+				}
 				Client client=new Client(selectedReservation.getId().getCid());
 				client=clientService.findById(client);
+				ClientInformation clientInformation=clientInformationService.findById(client);
+				client.setClientInformation(clientInformation);
+				Parking parking=new Parking();
+				parking.setPid(selectedReservation.getId().getPid());
+				parking=parkingService.findByPid(parking);
+				User user=parking.getUser();
+				user=userService.findById(user);
 				
 				Dealing dealing=new Dealing();
 				dealing.setClient(client);
-				dealing.setName(client.getUsername());
+				dealing.setName(client.getClientInformation().getName());
 				dealing.setPhone(client.getClientInformation().getPhone());
 				dealing.setTime(null);
 				dealing.setParking(selectedParking);
 				dealing.setPay(false);
-				dealing.setUser(selectedParking.getUser());
+				dealing.setUser(user);
 				dealingService.add(dealing);
 				
 				Payment payment=new Payment();
 				Date dealline=new Date();
+				PaymentId paymentId=new PaymentId();
+				paymentId.setNo(dealing.getNo());
+				paymentId.setCid(client.getCid());
+				paymentId.setPid(parking.getPid());
 				dealline.setTime(dealline.getTime()+604800000);
+				payment.setId(paymentId);
 				payment.setClient(client);
 				payment.setDealing(dealing);
 				payment.setPaid(new BigDecimal(0));
-				payment.setPay(false);
+				payment.setPay(null);
 				payment.setParking(selectedParking);
-				payment.setTime(new Date());
-				payment.setUnpaid(new BigDecimal(selectedParking.getPriceUnit()));
+				payment.setTime(null);
+				payment.setUnpaid(new BigDecimal(selectedParking.getPriceUnit()*selectedParking.getArea()));
 				payment.setUser(selectedParking.getUser());
 				payment.setDeadline(dealline);
-				
+				paymentService.add(payment);
 				reservationService.delete(selectedReservation);
+				number++;
 			}
+			session.setAttribute("msg", "摇号成功，已对"+number+"个车位进行摇号");
 			return "success";
 		}
 		catch(Exception e)
 		{
+			session.setAttribute("msg", "摇号失败");
 			return "failed";
 		}
 	}
@@ -298,5 +322,11 @@ public class ReservationAction {
 	}
 	public void setUserInformationService(UserInformationService userInformationService) {
 		this.userInformationService = userInformationService;
+	}
+	public PaymentService getPaymentService() {
+		return paymentService;
+	}
+	public void setPaymentService(PaymentService paymentService) {
+		this.paymentService = paymentService;
 	}
 }

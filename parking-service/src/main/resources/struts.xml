@@ -211,6 +211,11 @@
         	<result name="success">/page/parking/ReservationList.jsp</result>
             <result name="failed">/welcome.jsp</result>
         </action>
+        <!-- 摇号 -->
+        <action name="selectReservation" class="reservationAction" method="selectReservation">
+        	<result name="success">/welcome.jsp</result>
+            <result name="failed">/welcome.jsp</result>
+        </action>
     </package>
 
 

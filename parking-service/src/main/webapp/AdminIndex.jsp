@@ -84,9 +84,15 @@
                     </a>
              </li>
              <li>
-                    <a  href="javascript:void(0);" url="userLookReservationList.action"  title="签约合同">
+                    <a  href="javascript:void(0);" url="userLookReservationList.action"  title="预约信息列表">
                         <i class="fa fa-caret-right"></i>
                         预约信息管理
+                    </a>
+                </li>
+                <li>
+                    <a  href="javascript:void(0);" url="selectReservation.action"  title="摇号">
+                        <i class="fa fa-caret-right"></i>
+                       摇号
                     </a>
                 </li>
                     <%--<li>--%>

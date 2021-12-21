@@ -24,9 +24,11 @@ public class ReservationService implements IReservationService {
 	}
 
 	public List<Reservation> findByPid(Parking parking) {
-		String hql= "from Reservation where pid='" + String.valueOf(parking.getPid())+"'";
+		String hql= "from Reservation where pid='" + parking.getPid()+"'";
+		System.out.println("pp1");
 		List list=reservationDAO.findByHql(hql);
-		if(list.isEmpty())
+		System.out.println("pp2");
+		if(list==null||list.isEmpty())
 		{
 			return null;
 		}
@@ -44,6 +46,10 @@ public class ReservationService implements IReservationService {
 	public Reservation selectReservation(Parking parking)//车位摇号,返回被选中的预约信息
 	{
 		List<Reservation> reservationList=findByPid(parking);
+		if(reservationList==null||reservationList.size()==0)
+		{
+			return null;
+		}
 		int selected=(int)(Math.random()*(reservationList.size()));//随机选择
 		Reservation reservation=reservationList.get(selected);
 		return reservation;
