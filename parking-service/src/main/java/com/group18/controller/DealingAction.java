@@ -9,13 +9,17 @@ import org.apache.struts2.ServletActionContext;
 
 import com.group18.po.Client;
 import com.group18.po.Dealing;
+import com.group18.po.Payment;
 import com.group18.po.User;
 import com.group18.service.DealingService;
+import com.group18.service.PaymentService;
 
 public class DealingAction {
 	Dealing dealing;
 	List<Dealing> dealingList;
 	DealingService dealingService=null;
+	PaymentService paymentService=null;
+	String no;
 	HttpServletRequest request;
 	HttpSession session;
 	public DealingAction()
@@ -27,6 +31,7 @@ public class DealingAction {
 	{
 		try
 		{
+			session.removeAttribute("msg");
 			Client client=(Client) session.getAttribute("client");
 			dealingList=dealingService.findByCid(client);
 			return "success";
@@ -40,6 +45,7 @@ public class DealingAction {
 	{
 		try
 		{
+			session.removeAttribute("msg");
 			User user=(User)session.getAttribute("user");
 			dealingList=dealingService.findByUid(user);
 			return "success";
@@ -77,11 +83,28 @@ public class DealingAction {
 	{
 		try
 		{
+			session.removeAttribute("msg");
+			int noInt=Integer.parseInt(no);
+			dealing=new Dealing();
+			dealing.setNo(noInt);
+			dealing=dealingService.findByNo(dealing);
+			Payment payment=paymentService.findByNo(dealing);
+			paymentService.delete(payment);
 			dealingService.delete(dealing);
+			session.setAttribute("msg", "删除成功");
+			if(session.getAttribute("client")==null)
+			{
+				findAllByUser();
+			}
+			else
+			{
+				findAllByClient();
+			}
 			return "success";
 		}
 		catch(Exception e)
 		{
+			session.setAttribute("msg", e.getMessage());
 			return "failed";	
 		}
 	}
@@ -102,6 +125,18 @@ public class DealingAction {
 	}
 	public void setDealingService(DealingService dealingService) {
 		this.dealingService = dealingService;
+	}
+	public PaymentService getPaymentService() {
+		return paymentService;
+	}
+	public void setPaymentService(PaymentService paymentService) {
+		this.paymentService = paymentService;
+	}
+	public String getNo() {
+		return no;
+	}
+	public void setNo(String no) {
+		this.no = no;
 	}
 	
 }

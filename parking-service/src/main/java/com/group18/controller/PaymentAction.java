@@ -9,13 +9,21 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.group18.po.Client;
+import com.group18.po.ClientInformation;
 import com.group18.po.Dealing;
 import com.group18.po.Parking;
 import com.group18.po.Payment;
 import com.group18.po.Reservation;
+import com.group18.po.User;
+import com.group18.po.UserInformation;
+import com.group18.service.ClientInformationService;
+import com.group18.service.ClientService;
 import com.group18.service.DealingService;
 import com.group18.service.PaymentService;
 import com.group18.service.ReservationService;
+import com.group18.service.UserInformationService;
+import com.group18.service.UserService;
 
 public class PaymentAction {
 	Payment payment;
@@ -23,6 +31,11 @@ public class PaymentAction {
 	Dealing dealing;
 	DealingService dealingService=null;
 	ReservationService reservationService=null;
+	ClientService clientService=null;
+	UserService userService=null;
+	ClientInformationService clientInformationService=null;
+	UserInformationService userInformationService=null;
+	String no;
 	HttpServletRequest request;
 	HttpSession session;
 	public PaymentAction()
@@ -30,15 +43,37 @@ public class PaymentAction {
 		request= ServletActionContext.getRequest();
 		session = request.getSession();
 	}
-	public String find()//查找交易的支付信息
+	public String findDealing()//查找交易信息和其支付信息
+	//（由于设计缺陷，事实上只用payment反而方便展示交易信息）
 	{
 		try
 		{
+			session.removeAttribute("msg");
+			int noInt=Integer.parseInt(no);
+			dealing=new Dealing();
+			dealing.setNo(noInt);
+			dealing=dealingService.findByNo(dealing);
 			payment=paymentService.findByNo(dealing);
+			payment.setDealing(dealing);
+			
+			Client client=payment.getClient();
+			client=clientService.findById(client);
+			ClientInformation clientInformation=clientInformationService.findById(client);
+			client.setClientInformation(clientInformation);
+			payment.setClient(client);
+			
+			User user=payment.getUser();
+			user=userService.findById(user);
+			UserInformation userInformation=userInformationService.findById(user);
+			user.setUserInformation(userInformation);
+			payment.setUser(user);
+			
+			session.setAttribute("payment", payment);
 			return "success";
 		}
 		catch(Exception e)
 		{
+			session.setAttribute("msg", e.getMessage());
 			return "failed";
 		}
 	}
@@ -119,5 +154,35 @@ public class PaymentAction {
 	}
 	public void setReservationService(ReservationService reservationService) {
 		this.reservationService = reservationService;
+	}
+	public String getNo() {
+		return no;
+	}
+	public void setNo(String no) {
+		this.no = no;
+	}
+	public ClientService getClientService() {
+		return clientService;
+	}
+	public void setClientService(ClientService clientService) {
+		this.clientService = clientService;
+	}
+	public UserService getUserService() {
+		return userService;
+	}
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+	public ClientInformationService getClientInformationService() {
+		return clientInformationService;
+	}
+	public void setClientInformationService(ClientInformationService clientInformationService) {
+		this.clientInformationService = clientInformationService;
+	}
+	public UserInformationService getUserInformationService() {
+		return userInformationService;
+	}
+	public void setUserInformationService(UserInformationService userInformationService) {
+		this.userInformationService = userInformationService;
 	}
 }

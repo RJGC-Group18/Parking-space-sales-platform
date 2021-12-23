@@ -130,10 +130,14 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 </bean>
 <bean id="dealingAction" class="com.group18.controller.DealingAction" scope="prototype">
 	<property name="dealingService" ref="dealingService" />
+	<property name="paymentService" ref="paymentService"/>
 </bean>
 <bean id="paymentAction" class="com.group18.controller.PaymentAction" scope="prototype">
 	<property name="paymentService" ref="paymentService"/>
 	<property name="dealingService" ref="dealingService"/>
-	<property name="parkingService" ref="parkingService"/>
+	<property name="clientService" ref="clientService" />
+	<property name="userService" ref="userService" />
+	<property name="clientInformationService" ref="clientInformationService"/>
+	<property name="userInformationService" ref="userInformationService"/>
 </bean>
 </beans>

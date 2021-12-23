@@ -25,41 +25,59 @@
 		
 			<thead>
 				<tr>
-					<th>支付编号</th>
-					<th>车主ID</th>
+					<th>交易ID</th>
+					<th>交易生成时间</th>
+					<th>买方ID</th>
+					<th>买方联系人</th>
+					<th>买方联系电话</th>
 					<th>车位ID</th>
 					<th>经销商ID</th>
-					<th>支付时间</th>
-					<th>已支付</th>
-					<th>未支付</th>
-					<th>截止日期</th>
+					<th>经销商公司名</th>
+					<th>经销商联系人</th>
+					<th>经销商联系电话</th>
+					
+					<c:if test="${payment.time != null}">
+					<th>上次支付时间</th>
+					</c:if>
+					
+					<th>已支付金额</th>
+					<th>未支付金额</th>
+					<th>支付截止日期</th>
 					<th width="120px">操作</th>
 				</tr>
 			</thead>
 			
-			<c:forEach items="${pageInfo.list}" var="payment">
 			<tr>
-				<td>${payment.no}</td>
-				<td>${payment.cid}</td>
-				<td>${payment.pid}</td>
-				<td>${payment.uid}</td>
-				<td>${payment.time}</td>
+				<td>${payment.id.no}</td>
+				<td>${payment.dealing.time }</td>
+				<td>${payment.client.cid}</td>
+				<td>${payment.client.clientInformation.name}</td>
+				<td>${payment.client.clientInformation.phone}</td>
+				<td>${payment.parking.pid}</td>
+				<td>${payment.user.uid}</td>
+				<td>${payment.user.userInformation.name}</td>
+				<td>${payment.user.userInformation.contactsName}</td>
+				<td>${payment.user.userInformation.contactsPhone}</td>
+				
+				<c:if test="${payment.time != null}">
+					<td>${payment.time}</td>
+				</c:if>
+
 				<td>${payment.paid}</td>
 				<td>${payment.unpaid}</td>
 				<td>${payment.deadline}</td>
 				<td>
-					<button class="edit" type="button" onclick="window.location.href='${basePath}course?method=edit&id=${course.cId}'">
-						<i class="fa fa-edit"></i>
-						确认
+				<c:if test="${(payment.pay == null || payment.pay == false) && type == 0}">
+					<button class="edit" type="button" onclick="window.location.href=''">
+							<i class="fa fa-edit"></i>
+							支付
 					</button>
-					<button class="remove" type="button" keyword="${No}">
-						<i class="fa fa-remove"></i>
-						删除
-					</button>
+				</c:if>
 				</td>
 			</tr>
-			</c:forEach>
 		</table>
+		<c:if test="${type == 0}"><a href="clientLookDealingList.action">返回上一页</a></c:if>
+		<c:if test="${type == 1||type == 2}"><a href="clientLookDealingList.action">返回上一页</a></c:if>
 <%-- 		<%@include file="../inc/page.jsp"%> --%>
 	</body>
 </html>

@@ -25,38 +25,45 @@
 		
 			<thead>
 				<tr>
-					<th>合同编号</th>
+					<th>交易编号</th>
 					<th>车主ID</th>
-					<th>车主姓名</th>
-					<th>车主手机号</th>
 					<th>车位ID</th>
 					<th>经销商ID</th>
 					<th>订单时间</th>
-					<th>支付方式</th>
+					<th>支付状况</th>
 					<th width="120px">操作</th>
 				</tr>
 			</thead>
 			
-			<c:forEach items="${pageInfo.list}" var="dealing">
+			<c:forEach items="${dealingList}" var="dealing">
 			<tr>
-				<td>${No}</td>
-				<td>${dealing.cid}</td>
-				<td>${dealing.came}</td>
-				<td>${dealing.phone}</td>
-				<td>${dealing.pid}</td>
-				<td>${dealing.uid}</td>
+				<td>${dealing.no}</td>
+				<td>${dealing.client.cid}</td>
+				<td>${dealing.parking.pid}</td>
+				<td>${dealing.user.uid}</td>
 				<td>${dealing.time}</td>
-				<td>${dealing.pay}</td>
-				<th width="120px">操作</th>
 				<td>
-					<button class="edit" type="button" onclick="window.location.href='${basePath}course?method=edit&id=${course.cId}'">
+					<c:if test="${dealing.pay == null}">
+					尚未支付
+					</c:if>
+					<c:if test="${dealing.pay == true}">
+					支付完毕
+					</c:if>
+					<c:if test="${dealing.pay == false}">
+					仍有部分未支付
+					</c:if>
+				</td>
+				<td>
+					<button class="edit" type="button" onclick="window.location.href='lookDealing.action?no=${dealing.no}'">
 						<i class="fa fa-edit"></i>
-						确认
+						查看交易详情
 					</button>
-					<button class="remove" type="button" keyword="${No}">
+					<c:if test="${dealing.pay != true}">
+					<button class="remove" type="button" onclick="window.location.href='deleteDealing.action?no=${dealing.no}'" keyword="${No}">
 						<i class="fa fa-remove"></i>
-						删除
+						取消交易
 					</button>
+					</c:if>
 				</td>
 			</tr>
 			</c:forEach>

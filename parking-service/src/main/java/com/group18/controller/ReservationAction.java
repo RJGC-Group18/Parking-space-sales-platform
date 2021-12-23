@@ -44,6 +44,8 @@ public class ReservationAction {
 	DealingService dealingService=null;
 	PaymentService paymentService=null;
 	
+	private final long deadTime=604800000;//默认交易期限（七天）
+	
 	HttpServletRequest request;
 	HttpSession session;
 	public ReservationAction()
@@ -210,24 +212,24 @@ public class ReservationAction {
 				parking=parkingService.findByPid(parking);
 				User user=parking.getUser();
 				user=userService.findById(user);
+				Date date=new Date();
 				
 				Dealing dealing=new Dealing();
 				dealing.setClient(client);
 				dealing.setName(client.getClientInformation().getName());
 				dealing.setPhone(client.getClientInformation().getPhone());
-				dealing.setTime(null);
+				dealing.setTime(date);
 				dealing.setParking(selectedParking);
 				dealing.setPay(false);
 				dealing.setUser(user);
 				dealingService.add(dealing);
 				
 				Payment payment=new Payment();
-				Date dealline=new Date();
 				PaymentId paymentId=new PaymentId();
 				paymentId.setNo(dealing.getNo());
 				paymentId.setCid(client.getCid());
 				paymentId.setPid(parking.getPid());
-				dealline.setTime(dealline.getTime()+604800000);
+				date.setTime(date.getTime()+deadTime);
 				payment.setId(paymentId);
 				payment.setClient(client);
 				payment.setDealing(dealing);
@@ -237,7 +239,7 @@ public class ReservationAction {
 				payment.setTime(null);
 				payment.setUnpaid(new BigDecimal(selectedParking.getPriceUnit()*selectedParking.getArea()));
 				payment.setUser(selectedParking.getUser());
-				payment.setDeadline(dealline);
+				payment.setDeadline(date);
 				paymentService.add(payment);
 				reservationService.delete(selectedReservation);
 				number++;
