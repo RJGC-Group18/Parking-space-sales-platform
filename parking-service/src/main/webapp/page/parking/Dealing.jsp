@@ -21,60 +21,79 @@
 	</head>
 	<body>
 	
-		<table class="tablelist">
-		
-			<thead>
-				<tr>
-					<th>交易ID</th>
-					<th>交易生成时间</th>
-					<th>买方ID</th>
-					<th>买方联系人</th>
-					<th>买方联系电话</th>
-					<th>车位ID</th>
-					<th>经销商ID</th>
-					<th>经销商公司名</th>
-					<th>经销商联系人</th>
-					<th>经销商联系电话</th>
-					
-					<c:if test="${payment.time != null}">
-					<th>上次支付时间</th>
-					</c:if>
-					
-					<th>已支付金额</th>
-					<th>未支付金额</th>
-					<th>支付截止日期</th>
-					<th width="120px">操作</th>
-				</tr>
-			</thead>
-			
-			<tr>
-				<td>${payment.id.no}</td>
-				<td>${payment.dealing.time }</td>
-				<td>${payment.client.cid}</td>
-				<td>${payment.client.clientInformation.name}</td>
-				<td>${payment.client.clientInformation.phone}</td>
-				<td>${payment.parking.pid}</td>
-				<td>${payment.user.uid}</td>
-				<td>${payment.user.userInformation.name}</td>
-				<td>${payment.user.userInformation.contactsName}</td>
-				<td>${payment.user.userInformation.contactsPhone}</td>
-				
-				<c:if test="${payment.time != null}">
-					<td>${payment.time}</td>
-				</c:if>
+		<table class="tablelist" style="width: 50%;margin-left:50px">
 
-				<td>${payment.paid}</td>
-				<td>${payment.unpaid}</td>
-				<td>${payment.deadline}</td>
-				<td>
+				<tr>
+					<td width="120px">交易ID</td>
+					<td>${payment.id.no}</td>
+				</tr>	
+				<tr>
+					<td width="120px">交易生成时间</td>
+					<td>${payment.dealing.time }</td>
+				</tr>	
+				<tr>
+					<td width="120px">买方ID</td>
+					<td>${payment.client.cid}</td>
+				</tr>	
+				<tr>
+					<td width="120px">买方联系人</td>
+					<td>${payment.client.clientInformation.name}</td>
+				</tr>	
+				<tr>
+					<td width="120px">买方联系电话</td>
+					<td>${payment.client.clientInformation.phone}</td>
+				</tr>	
+				<tr>
+					<td width="120px">车位ID</td>
+					<td>${payment.parking.pid}</td>
+				</tr>	
+				<tr>
+					<td width="120px">经销商ID</td>
+					<td>${payment.user.uid}</td>
+				</tr>
+				<tr>
+					<td width="120px">经销商公司名</td>
+					<td>${payment.user.userInformation.name}</td>
+				</tr>	
+				<tr>
+					<td width="120px">经销商联系人</td>
+					<td>${payment.user.userInformation.contactsName}</td>
+				</tr>	
+				<tr>
+					<td width="120px">经销商联系电话</td>
+					<td>${payment.user.userInformation.contactsPhone}</td>
+				</tr>	
+			<c:if test="${payment.time != null}">
+				<tr>
+					<td width="120px">上次支付时间</td>
+					<td>${payment.time}</td>
+				</tr>	
+			</c:if>
+				<tr>
+					<td width="120px">未支付金额</td>
+					<td>${payment.paid}</td>
+				</tr>
+				<tr>
+					<td width="120px">已支付金额</td>
+					<td>${payment.paid}</td>
+				</tr>
+				<tr>
+					<td width="120px">未支付金额</td>
+					<td>${payment.unpaid}</td>
+				</tr>
+				<tr>
+					<td width="120px">支付截止日期</td>
+					<td>${payment.deadline}</td>
+				</tr>
+				
+				<tr>
 				<c:if test="${(payment.pay == null || payment.pay == false) && type == 0}">
 					<button class="edit" type="button" onclick="window.location.href=''">
 							<i class="fa fa-edit"></i>
 							支付
 					</button>
 				</c:if>
-				</td>
-			</tr>
+				</tr>
 		</table>
 		<c:if test="${type == 0}"><a href="clientLookDealingList.action">返回上一页</a></c:if>
 		<c:if test="${type == 1||type == 2}"><a href="clientLookDealingList.action">返回上一页</a></c:if>
