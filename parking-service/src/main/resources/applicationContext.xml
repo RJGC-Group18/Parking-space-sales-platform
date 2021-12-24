@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/data/jpa
+http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+
+    <!--
+    <context:component-scan base-package="com.demo.usermanager"></context:component-scan>
+    @Service  @Con  @Res @Aut @Com
+     -->
+    <!--扫描包事务包，这里是扫描的基本包，只要前缀是一样的都会被spring扫描-->
+
+    <context:component-scan base-package="com.group18"> </context:component-scan>
+    <!-- 激活jpa 接口注册  spring data jpa 提供实现类，这里是使用的hibernate提供的jpa方法  -->
+    <context:property-placeholder location="classpath:jdbc.properties" />
+    <!--sprin容器配置c3p0连接池-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${driver}"/>
+		<property name="jdbcUrl" value="${url}"/>
+		<property name="user" value="${user}"/>
+		<property name="password" value="${password}"/>
+    </bean>
+    <!--  sessionFactory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+	<property name="dataSource" ref="dataSource"/>
+	<property name="hibernateProperties">
+		<props>
+			<prop key="hibernate.dialect">
+				org.hibernate.dialect.MySQLDialect
+			</prop>
+			<!-- <prop key="hibernate.show_sql">
+				true
+			</prop>
+			<prop key="hibernate.format_sql">
+				true
+			</prop>
+			<prop key="hibernate.use_sql_comments">
+				true
+			</prop> -->
+		</props>
+	</property>
+		<property name="mappingDirectoryLocations" value="classpath:com/group18/po"/>
+	</bean>
+
+<bean id="baseDAO" class="com.group18.dao.BaseHibernateDAO">
+	<property name="sessionFactory" ref="sessionFactory"/>
+</bean>
+
+<!-- DAO -->
+<bean id="clientDAO" class="com.group18.dao.ClientDAO" parent="baseDAO" />
+<bean id="userDAO" class="com.group18.dao.UserDAO" parent="baseDAO"/>
+<bean id="clientInformationDAO" class="com.group18.dao.ClientInformationDAO" parent="baseDAO"/>
+<bean id="userInformationDAO" class="com.group18.dao.UserInformationDAO" parent="baseDAO"/>
+<bean id="clientQualificationDAO" class="com.group18.dao.ClientQualificationDAO" parent="baseDAO"/>
+<bean id="userQualificationDAO" class="com.group18.dao.UserQualificationDAO" parent="baseDAO"/>
+<bean id="dealingDAO" class="com.group18.dao.DealingDAO" parent="baseDAO"/>
+<bean id="parkingDAO" class="com.group18.dao.ParkingDAO" parent="baseDAO"/>
+<bean id="paymentDAO" class="com.group18.dao.PaymentDAO" parent="baseDAO"/>
+<bean id="reservationDAO" class="com.group18.dao.ReservationDAO" parent="baseDAO"/>
+<!-- Service -->
+<bean id="clientService" class="com.group18.service.ClientService">
+	<property name="clientDAO" ref="clientDAO"/>
+</bean>
+<bean id="userService" class="com.group18.service.UserService">
+	<property name="userDAO" ref="userDAO"/>
+</bean>
+<bean id="clientInformationService" class="com.group18.service.ClientInformationService">
+	<property name="clientInformationDAO" ref="clientInformationDAO"/>
+</bean>
+<bean id="userInformationService" class="com.group18.service.UserInformationService">
+	<property name="userInformationDAO" ref="userInformationDAO"/>
+</bean>
+<bean id="clientQualificationService" class="com.group18.service.ClientQualificationService">
+	<property name="clientQualificationDAO" ref="clientQualificationDAO"/>
+</bean>
+<bean id="userQualificationService" class="com.group18.service.UserQualificationService">
+	<property name="userQualificationDAO" ref="userQualificationDAO"/>
+</bean>
+<bean id="dealingService" class="com.group18.service.DealingService">
+	<property name="dealingDAO" ref="dealingDAO"/>
+</bean>
+<bean id="parkingService" class="com.group18.service.ParkingService">
+	<property name="parkingDAO" ref="parkingDAO"/>
+	<property name="dealingDAO" ref="dealingDAO"/>
+	<property name="reservationDAO" ref="reservationDAO"/>
+</bean>
+<bean id="paymentService" class="com.group18.service.PaymentService">
+	<property name="paymentDAO" ref="paymentDAO"/>
+</bean>
+<bean id="reservationService" class="com.group18.service.ReservationService">
+	<property name="reservationDAO" ref="reservationDAO"/>
+</bean>
+
+<!-- Controller/Action -->
+<bean id="clientAction" class="com.group18.controller.ClientAction" scope="prototype">
+	<property name="clientService" ref="clientService" />
+	<property name="clientQualificationService" ref="clientQualificationService" />
+</bean>
+<bean id="userAction" class="com.group18.controller.UserAction" scope="prototype">
+	<property name="userService" ref="userService" />
+	<property name="userQualificationService" ref="userQualificationService" />
+	<property name="userInformationService" ref="userInformationService"/>
+</bean>
+<bean id="parkingAction" class="com.group18.controller.ParkingAction" scope="prototype">
+	<property name="parkingService" ref="parkingService" />
+	<property name="userService" ref="userService" />
+</bean>
+<bean id="reservationAction" class="com.group18.controller.ReservationAction" scope="prototype">
+	<property name="reservationService" ref="reservationService" />
+	<property name="parkingService" ref="parkingService" />
+	<property name="clientService" ref="clientService" />
+	<property name="userService" ref="userService" />
+	<property name="dealingService" ref="dealingService" />
+	<property name="clientInformationService" ref="clientInformationService"/>
+	<property name="userInformationService" ref="userInformationService"/>
+	<property name="paymentService" ref="paymentService"/>
+</bean>
+<bean id="dealingAction" class="com.group18.controller.DealingAction" scope="prototype">
+	<property name="dealingService" ref="dealingService" />
+	<property name="paymentService" ref="paymentService"/>
+</bean>
+<bean id="paymentAction" class="com.group18.controller.PaymentAction" scope="prototype">
+	<property name="paymentService" ref="paymentService"/>
+	<property name="dealingService" ref="dealingService"/>
+	<property name="clientService" ref="clientService" />
+	<property name="userService" ref="userService" />
+	<property name="clientInformationService" ref="clientInformationService"/>
+	<property name="userInformationService" ref="userInformationService"/>
+</bean>
+</beans>

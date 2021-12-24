@@ -108,6 +108,7 @@ public class DealingAction {
 			return "failed";	
 		}
 	}
+	
 	public Dealing getDealing() {
 		return dealing;
 	}

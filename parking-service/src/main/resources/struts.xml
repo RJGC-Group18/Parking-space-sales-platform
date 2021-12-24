@@ -173,6 +173,11 @@
         	<result name="success">/page/parking/ReservationList.jsp</result>
             <result name="failed">/welcome.jsp</result>
         </action>
+        <!-- 交易列表查看 -->
+        <action name="userLookDealingList" class="dealingAction" method="findAllByUser">
+        	<result name="success">/page/parking/DealingList.jsp</result>
+            <result name="failed">/welcome.jsp</result>
+        </action>
         
         <!--管理员-->
         <!--登录-->
@@ -231,6 +236,16 @@
         <action name="deleteDealing" class="dealingAction" method="delete">
         	<result name="success">/page/parking/DealingList.jsp</result>
             <result name="failed">/page/parking/DealingList.jsp</result>
+        </action>
+        <!-- 查看支付信息 -->
+        <action name="lookPayment" class="paymentAction" method="lookPayment">
+        	<result name="success">/page/parking/Payment.jsp</result>
+            <result name="failed">/page/parking/Dealing.jsp</result>
+        </action>
+        <!-- 支付 -->
+        <action name="updatePayment" class="paymentAction" method="pay">
+        	<result name="success">/welcome.jsp</result>
+            <result name="failed">/welcome.jsp</result>
         </action>
     </package>
 

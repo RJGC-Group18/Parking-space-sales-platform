@@ -70,10 +70,6 @@
 				</tr>	
 			</c:if>
 				<tr>
-					<td width="120px">未支付金额</td>
-					<td>${payment.paid}</td>
-				</tr>
-				<tr>
 					<td width="120px">已支付金额</td>
 					<td>${payment.paid}</td>
 				</tr>
@@ -86,17 +82,16 @@
 					<td>${payment.deadline}</td>
 				</tr>
 				
-				<tr>
 				<c:if test="${(payment.pay == null || payment.pay == false) && type == 0}">
-					<button class="edit" type="button" onclick="window.location.href=''">
+					<tr><td><button class="edit" type="button" onclick="window.location.href='lookPayment.action'">
 							<i class="fa fa-edit"></i>
 							支付
 					</button>
-				</c:if>
-				</tr>
+				</td>
+				</tr></c:if>
 		</table>
 		<c:if test="${type == 0}"><a href="clientLookDealingList.action">返回上一页</a></c:if>
-		<c:if test="${type == 1||type == 2}"><a href="clientLookDealingList.action">返回上一页</a></c:if>
+		<c:if test="${type == 1||type == 2}"><a href="userLookDealingList.action">返回上一页</a></c:if>
 <%-- 		<%@include file="../inc/page.jsp"%> --%>
 	</body>
 </html>

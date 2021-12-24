@@ -16,48 +16,33 @@
 </head>
 <body style="height: 100%; margin: 0">
 	<s:div cssClass="add">
-					<s:form name="ParkingUpdate" action="userUpdateParking" method="post">
+					<s:form name="Payment" action="updatePayment" method="post">
 					<table class="tableadd" style="width: 50%;">
 					
 					<tr>
-						<td>车位id</td>
+						<td>交易id</td>
 						<td>
-						<s:textfield theme="simple" cssClass="name" name="pid" readonly="true"/>
+						<s:textfield theme="simple" cssClass="name" name="payment.id.no" readonly="true"/>
 						</td>
 					</tr>
 					
 					<tr>
-						<td>楼层</td>
+						<td>未支付金额</td>
 						<td>
-						<s:textfield theme="simple" cssClass="name" name="parking.sublevel"/>
+						<s:textfield theme="simple" cssClass="name" name="payment.unpaid" readonly="true"/>
 						</td>
 					</tr>
 					
 					<tr>
-						<td>面积</td>
+						<td>本次支付金额</td>
 						<td>
-						<s:textfield theme="simple" cssClass="name" name="parking.area" />
-						</td>
-					</tr>
-					
-					
-					<tr>
-						<td>价格</td>
-						<td>
-						<s:textfield theme="simple" cssClass="name" name="parking.priceUnit" />
-						</td>
-					</tr>
-		
-					<tr>
-						<td>地址</td>
-						<td>
-						<s:textfield theme="simple" cssClass="name" name="parking.address" />
+						<s:textfield theme="simple" cssClass="name" name="payment.paid" value="" />
 						</td>
 					</tr>
 					
 					<tr>
 						<td colspan="4" align="left">
-							<s:submit theme="simple" cssClass="Reg" value="更新"/>
+							<s:submit theme="simple" cssClass="Reg" value="确认支付"/>
 						</td>
 					</tr>
 					<tr>
@@ -66,6 +51,7 @@
 						</td>
 					</tr>
 				</table>
+				<a href="lookDealing.action?no=${payment.id.no}">返回上一页</a>
 					</s:form>
 		</s:div>
 		<s:div>

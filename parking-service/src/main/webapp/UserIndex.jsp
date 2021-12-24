@@ -77,9 +77,9 @@
                 </li>
                 
                 <li>
-                    <a  href="javascript:void(0);" url="${basePath}page/parking/Dealing.jsp"  title="签约合同">
+                    <a  href="javascript:void(0);" url="userLookDealingList.action"  title="签约合同">
                         <i class="fa fa-caret-right"></i>
-                        签约合同
+                        交易信息查看
                     </a>
                 </li>
                 
@@ -89,6 +89,7 @@
                         预约信息查看
                     </a>
                 </li>
+                
             </ul>
     </s:div>
 </s:div>

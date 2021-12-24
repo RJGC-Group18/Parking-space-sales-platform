@@ -43,6 +43,18 @@ public class PaymentAction {
 		request= ServletActionContext.getRequest();
 		session = request.getSession();
 	}
+	public String lookPayment()
+	{
+		try
+		{
+			payment=(Payment) session.getAttribute("payment");
+			return "success";
+		}
+		catch(Exception e)
+		{
+			return "failed";
+		}
+	}
 	public String findDealing()//查找交易信息和其支付信息
 	//（由于设计缺陷，事实上只用payment反而方便展示交易信息）
 	{
@@ -81,19 +93,24 @@ public class PaymentAction {
 	{
 		try
 		{
+			session.removeAttribute("msg");
+			dealing=new Dealing();
+			dealing.setNo(payment.getId().getNo());
+			dealing=dealingService.findByNo(dealing);
 			Payment oldPayment=paymentService.findByNo(dealing);
 			BigDecimal Unpaid=oldPayment.getUnpaid().add(payment.getPaid().negate());//Unpaid=oldPayment.unpaid-payment.paid
-			if(Unpaid.compareTo(new BigDecimal(0))<0)//如果成立则说明能支付
+			if(Unpaid.compareTo(new BigDecimal(0))>=0)//如果成立则说明能支付
 			{
-				oldPayment.setPaid(oldPayment.getPaid().add(Unpaid));
+				oldPayment.setPaid(oldPayment.getPaid().add(payment.getPaid()));
 				oldPayment.setTime(new Date());
-				oldPayment.setUnpaid(oldPayment.getUnpaid().add(Unpaid.negate()));//oldPayment.unpaid=oldPayment.unpaid-Unpaid
+				oldPayment.setUnpaid(Unpaid);
 				
 				if(Unpaid.compareTo(new BigDecimal(0))==0)//如果钱正好支付完
 				{
 					Dealing dealing=oldPayment.getDealing();
 					oldPayment.setPay(true);
 					dealing.setPay(true);
+					oldPayment.setDeadline(null);
 				}
 				paymentService.update(oldPayment);
 				dealingService.update(dealing);
@@ -107,15 +124,18 @@ public class PaymentAction {
 						reservationService.delete(reservation);
 					}
 				}
+				session.setAttribute("msg", "成功支付"+payment.getPaid()+"元");
 				return "success";
 			}
 			else
 			{
+				session.setAttribute("msg", "支付量超出需支付的金额");
 				return "failed";
 			}
 		}
 		catch(Exception e)
 		{
+			session.setAttribute("msg", e.getMessage());
 			return "failed";
 		}
 	}
