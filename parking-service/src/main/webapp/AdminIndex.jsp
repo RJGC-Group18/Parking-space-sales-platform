@@ -63,20 +63,18 @@
                 管理员权限
             </p>
             <ul>
-                <li>
-                        <%--client里的list.jsp--%>
+                <%-- <li>
                     <a  href="javascript:void(0);" url="${basePath}client?method=list"  title="车主管理">
                         <i class="fa fa-caret-right"></i>
                         车主管理
                     </a>
                 </li>
                 <li>
-                        <%--user里的list.jsp--%>
                     <a  href="javascript:void(0);" url="${basePath}teacher?method=list"  title="经销商管理">
                         <i class="fa fa-caret-right"></i>
                         经销商管理
                     </a>
-                </li>
+                </li> --%>
 			<li>
                     <a  href="javascript:void(0);" url="userLookParkingList.action"  title="车位列表">
                         <i class="fa fa-caret-right"></i>
@@ -87,6 +85,12 @@
                     <a  href="javascript:void(0);" url="userLookReservationList.action"  title="预约信息列表">
                         <i class="fa fa-caret-right"></i>
                         预约信息管理
+                    </a>
+                </li>
+                <li>
+                    <a  href="javascript:void(0);" url="userLookDealingList.action"  title="签约合同">
+                        <i class="fa fa-caret-right"></i>
+                        交易信息管理
                     </a>
                 </li>
                 <li>

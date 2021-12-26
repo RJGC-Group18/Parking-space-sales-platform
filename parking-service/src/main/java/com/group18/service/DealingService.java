@@ -54,6 +54,17 @@ public class DealingService implements IDealingService {
 		return (Dealing)list.get(0);
 	}
 	
+	public List<Dealing> findAll()
+	{
+		String hql= "from Dealing";
+		List list=dealingDAO.findByHql(hql);
+		if(list.isEmpty())
+		{
+			return null;
+		}
+		return list;
+	}
+	
 	public boolean checkDealing(Dealing dealing) {
 		Dealing findDealing=findByNo(dealing);
 		if(findDealing.getPay())

@@ -47,7 +47,14 @@ public class DealingAction {
 		{
 			session.removeAttribute("msg");
 			User user=(User)session.getAttribute("user");
-			dealingList=dealingService.findByUid(user);
+			if(user.getIdentity())
+			{
+				dealingList=dealingService.findAll();
+			}
+			else
+			{
+				dealingList=dealingService.findByUid(user);
+			}
 			return "success";
 		}
 		catch(Exception e)
