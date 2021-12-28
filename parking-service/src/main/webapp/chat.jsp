@@ -4,7 +4,7 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Date" %>
-<%@ page import="com.group18.po.Chat"%>
+<%@ page import="com.group18.po.*"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -477,7 +477,7 @@ function myfunction(name,time,message){
         var imgnum;
         var talktxt=$("#tool_talkinput").find(".textarea").html();
         var myname=$("#person_name_id").text();
-        var mmyname="user4";
+        var mmyname="${Username}";
         var zz=/<IMG src=\"([^\"]*?)\">/gi;
         //var reg =new RegExp("\\<(.| )+?\\>","igm");
         var arr= talktxt.match(zz);
