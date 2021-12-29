@@ -23,31 +23,31 @@
 		<table class="tablelist" style="width: 50%;margin-left:50px">	
 				<tr>
 					<td width="120px">ID</td>
-					<td>${gClient.clientInformation.cid}</td>
+					<td>${geClient.clientInformation.cid}</td>
 				</tr>	
 				<tr>
 					<td width="120px">姓名</td>
-					<td>${gClient.clientInformation.name}</td>
+					<td>${geClient.clientInformation.name}</td>
 				</tr>
 				<tr>
 					<td width="120px">性别</td>
-					<td>${gClient.clientInformation.sex}</td>
+					<td>${geClient.clientInformation.sex}</td>
 				</tr>
 				<tr>
 					<td width="120px">年龄</td>
-					<td>${gClient.clientInformation.age}</td>
+					<td>${geClient.clientInformation.age}</td>
 				</tr>
 				<tr>
 					<td width="120px">生日</td>
-					<td>${gClient.clientInformation.birthday}</td>
+					<td>${geClient.clientInformation.birthday}</td>
 				</tr>
 				<tr>
 					<td width="120px">电子邮箱</td>
-					<td>${gClient.clientInformation.email}</td>
+					<td>${geClient.clientInformation.email}</td>
 				</tr>
 				<tr>
 					<td width="120px">手机号</td>
-					<td>${gClient.clientInformation.phone}</td>
+					<td>${geClient.clientInformation.phone}</td>
 				</tr>
 		</table>
 		<a href="lookAllClient.action">返回上一页</a>

@@ -23,31 +23,27 @@
 		<table class="tablelist" style="width: 50%;margin-left:50px">	
 				<tr>
 					<td width="120px">ID</td>
-					<td>${gUser.clientInformation.cid}</td>
+					<td>${geUser.uid}</td>
 				</tr>	
 				<tr>
 					<td width="120px">姓名</td>
-					<td>${gClient.clientInformation.name}</td>
+					<td>${geUser.userInformation.name}</td>
 				</tr>
 				<tr>
 					<td width="120px">地址</td>
-					<td>${gUser.clientInformation.address}</td>
+					<td>${geUser.userInformation.address}</td>
 				</tr>
 				<tr>
 					<td width="120px">联系人姓名</td>
-					<td>${gUser.clientInformation.contactsName}</td>
+					<td>${geUser.userInformation.contactsName}</td>
 				</tr>
 				<tr>
 					<td width="120px">联系电话</td>
-					<td>${gUser.clientInformation.contactsPhone}</td>
+					<td>${geUser.userInformation.contactsPhone}</td>
 				</tr>
 				<tr>
 					<td width="120px">介绍</td>
-					<td>${gUser.clientInformation.intro}</td>
-				</tr>
-				<tr>
-					<td width="120px">手机号</td>
-					<td>${gClientInformation.phone}</td>
+					<td>${geUser.userInformation.intro}</td>
 				</tr>
 		</table>
 		<a href="lookAllUser.action">返回上一页</a>

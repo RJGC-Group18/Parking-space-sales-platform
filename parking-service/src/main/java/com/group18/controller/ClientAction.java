@@ -21,7 +21,7 @@ import com.group18.service.ClientService;
 
 public class ClientAction {
 	private Client client;
-	private Client gClient;
+	private Client geClient;
 	private List<Client> clientList;
 	private ClientQualification clientQualification;
 	private ClientService clientService=null;
@@ -138,11 +138,11 @@ public class ClientAction {
 	{
 		try
 		{
-			Client gClient=new Client();
-			gClient.setCid(Integer.parseInt(cid));
-			gClient=clientService.findById(gClient);
-			ClientInformation gClientInformation=clientInformationService.findById(gClient);
-			gClient.setClientInformation(gClientInformation);
+			geClient=new Client();
+			geClient.setCid(Integer.parseInt(cid));
+			geClient=clientService.findById(geClient);
+			ClientInformation geClientInformation=clientInformationService.findById(geClient);
+			geClient.setClientInformation(geClientInformation);
 			return "success";
 		}
 		catch(Exception e)
@@ -258,12 +258,12 @@ public class ClientAction {
 		this.birthday = birthday;
 	}
 
-	public Client getgClient() {
-		return gClient;
+	public Client getGeClient() {
+		return geClient;
 	}
 
-	public void setgClient(Client gClient) {
-		this.gClient = gClient;
+	public void setGeClient(Client geClient) {
+		this.geClient = geClient;
 	}
 
 	public List<Client> getClientList() {

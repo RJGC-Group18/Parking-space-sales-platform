@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -28,7 +29,7 @@ public class UserAction extends ActionSupport{
 	private static final long serialVersionUID = 1L;
 	
 	private User user;
-	private User gUser;
+	private User geUser;
 	private List<User> userList;
 	private UserQualification userQualification;
 	private UserService userService=null;
@@ -141,11 +142,11 @@ public class UserAction extends ActionSupport{
 	{
 		try
 		{
-			User gUser=new User();
-			gUser.setUid(Integer.parseInt(uid));
-			gUser=userService.findById(gUser);
-			UserInformation gUserInformation=userInformationService.findById(gUser);
-			gUser.setUserInformation(gUserInformation);
+			geUser=new User();
+			geUser.setUid(Integer.parseInt(uid));
+			geUser=userService.findById(geUser);
+			UserInformation geUserInformation=userInformationService.findById(geUser);
+			geUser.setUserInformation(geUserInformation);
 			return "success";
 		}
 		catch(Exception e)
@@ -159,6 +160,14 @@ public class UserAction extends ActionSupport{
 		try
 		{
 			userList=userService.findAll();
+			for(Iterator<User>i=userList.iterator();i.hasNext();)
+			{
+				User u=i.next();
+				if(u.getIdentity())//去除管理员的信息
+				{
+					i.remove();
+				}
+			}
 			return "success";
 		}
 		catch(Exception e)
@@ -238,11 +247,11 @@ public class UserAction extends ActionSupport{
 	public void setUserInformationService(UserInformationService userInformationService) {
 		this.userInformationService = userInformationService;
 	}
-	public User getgUser() {
-		return gUser;
+	public User getGeUser() {
+		return geUser;
 	}
-	public void setgUser(User gUser) {
-		this.gUser = gUser;
+	public void setGeUser(User geUser) {
+		this.geUser = geUser;
 	}
 	public List<User> getUserList() {
 		return userList;
