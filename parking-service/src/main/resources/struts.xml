@@ -232,6 +232,27 @@
         	<result name="success">/page/parking/Dealing.jsp</result>
             <result name="failed">/welcome.jsp</result>
         </action>
+        
+        <!-- 查看销售方信息 -->
+         <action name="lookAllUser" class="userAction" method="lookAllUser">
+        	<result name="success">/page/user/UserInfo.jsp</result>
+            <result name="failed">/welcome.jsp</result>
+        </action>
+        <action name="lookUser" class="userAction" method="lookUser">
+        	<result name="success">/page/user/Userdetail.jsp</result>
+            <result name="failed">/welcome.jsp</result>
+        </action>
+        
+        <!-- 查看购买方信息 -->
+        <action name="lookAllClient" class="clientAction" method="lookAllClient">
+        	<result name="success">/page/user/ClientInfo.jsp</result>
+            <result name="failed">/welcome.jsp</result>
+        </action>
+         <action name="lookClient" class="clientAction" method="lookClient">
+        	<result name="success">/page/user/Clientdetail.jsp</result>
+            <result name="failed">/welcome.jsp</result>
+        </action>
+        
         <!-- 取消交易 -->
         <action name="deleteDealing" class="dealingAction" method="delete">
         	<result name="success">/page/parking/DealingList.jsp</result>

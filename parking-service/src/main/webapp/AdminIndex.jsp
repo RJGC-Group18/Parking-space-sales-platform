@@ -99,6 +99,18 @@
                        摇号
                     </a>
                 </li>
+                <li>
+                    <a  href="javascript:void(0);" url="lookAllUser.action"  title="销售方信息">
+                        <i class="fa fa-caret-right"></i>
+                        销售方信息
+                    </a>
+                </li>
+                <li>
+                    <a  href="javascript:void(0);" url="lookAllClient.action"  title="购买方信息">
+                        <i class="fa fa-caret-right"></i>
+                        购买方信息
+                    </a>
+                </li>
                     <%--<li>--%>
                     <%--	<a  href="javascript:void(0);" url="${basePath}scquery?method=query_range"  title="分数区间统计">--%>
                     <%--		<i class="fa fa-caret-right"></i>--%>

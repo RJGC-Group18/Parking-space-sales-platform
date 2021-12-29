@@ -1,5 +1,4 @@
 <!-- 导入 ssh  -->
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
@@ -23,7 +22,7 @@
     <!--c3p0连接池的版本  -->
     <c3p0.version>0.9.1.2</c3p0.version>
     <!--mysql的版本  -->
-    <mysql.version>5.0.8</mysql.version>
+    <mysql.version>5.1.48</mysql.version>
     <!--servlet的版本  -->
     <servlet.version>2.5</servlet.version>
     <!-- jsp的版本 -->

@@ -7,7 +7,7 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Date" %>
-<%@ page import="com.group18.po.Chat"%>
+<%@ page import="com.group18.po.*"%>
 <%--通过type的类型来设置登陆后的权限，即看到的内容--%>
 <!DOCTYPE html>
 <html>

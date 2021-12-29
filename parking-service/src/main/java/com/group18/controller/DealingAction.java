@@ -41,6 +41,7 @@ public class DealingAction {
 			return "failed";	
 		}
 	}
+	
 	public String findAllByUser()//查找一个销售方所有的交易信息
 	{
 		try

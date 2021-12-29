@@ -153,6 +153,7 @@ public class UserAction extends ActionSupport{
 			return "failed";
 		}
 	}
+	
 	public String lookAllUser()//查找所有用户信息
 	{
 		try
