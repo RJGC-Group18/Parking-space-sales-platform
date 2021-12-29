@@ -90,6 +90,12 @@
                     </a>
                 </li>
                 
+                <li>
+                    <a  href="javascript:void(0);" url="chat.jsp"  title="联系客户">
+                        <i class="fa fa-caret-right"></i>
+                        联系客户
+                    </a>
+                </li>
             </ul>
     </s:div>
 </s:div>

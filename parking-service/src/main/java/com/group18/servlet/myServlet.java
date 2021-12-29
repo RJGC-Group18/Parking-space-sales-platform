@@ -25,7 +25,7 @@ public class myServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         String userName = "root";//这里是你最开始刚下载mysql是输入的账号
         String password = "123456";//这里是你最开始mysql设置的密码，
-        String url = "jdbc:mysql://localhost:3306/pss?characterEncoding=utf-8&serverTimezone=GMT&useSSL=false";
+        String url = "jdbc:mysql://localhost:3306/parkingsafesdb?useSSL=false&serverTimezone=Asia/Shanghai";
         //获取ajax传递的参数，和获取表单数据的方式一样
 
 

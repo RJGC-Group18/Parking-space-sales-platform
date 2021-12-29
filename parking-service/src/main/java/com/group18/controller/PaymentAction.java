@@ -89,7 +89,7 @@ public class PaymentAction {
 			return "failed";
 		}
 	}
-	public String pay()//支付（请在支付页面的表单中包含dealing.no传递交易id以及使用payment.paid传递当前支付金额）
+	public String pay()//支付
 	{
 		try
 		{
@@ -99,29 +99,31 @@ public class PaymentAction {
 			dealing=dealingService.findByNo(dealing);
 			Payment oldPayment=paymentService.findByNo(dealing);
 			BigDecimal Unpaid=oldPayment.getUnpaid().add(payment.getPaid().negate());//Unpaid=oldPayment.unpaid-payment.paid
-			if(Unpaid.compareTo(new BigDecimal(0))>=0)//如果成立则说明能支付
+			if(Unpaid.compareTo(BigDecimal.ZERO)>=0)//如果成立则说明能支付
 			{
 				oldPayment.setPaid(oldPayment.getPaid().add(payment.getPaid()));
 				oldPayment.setTime(new Date());
 				oldPayment.setUnpaid(Unpaid);
-				
-				if(Unpaid.compareTo(new BigDecimal(0))==0)//如果钱正好支付完
+				if(Unpaid.compareTo(BigDecimal.ZERO)==0)//如果钱正好支付完
 				{
-					Dealing dealing=oldPayment.getDealing();
 					oldPayment.setPay(true);
 					dealing.setPay(true);
 					oldPayment.setDeadline(null);
 				}
+				
 				paymentService.update(oldPayment);
 				dealingService.update(dealing);
 				
-				if(Unpaid.compareTo(new BigDecimal(0))==0)//如果交易成功，删除剩下的预定信息
+				if(Unpaid.compareTo(BigDecimal.ZERO)==0)//如果交易成功，删除剩下的预定信息
 				{
-					Parking parking=dealing.getParking();
-					List<Reservation> reservationList=reservationService.findByPid(parking);
-					for(Reservation reservation:reservationList)
+					System.out.print(dealing.getParking().getPid());				
+					List<Reservation> reservationList=reservationService.findByPid(dealing.getParking());
+					if(reservationList!=null&&reservationList.size()!=0)
 					{
-						reservationService.delete(reservation);
+						for(Reservation reservation:reservationList)
+						{
+							reservationService.delete(reservation);
+						}
 					}
 				}
 				session.setAttribute("msg", "成功支付"+payment.getPaid()+"元");

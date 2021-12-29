@@ -34,6 +34,7 @@ public class HandlerServlet extends HttpServlet {
         String url = "jdbc:mysql://localhost:3306/parkingsafesdb?useSSL=false&serverTimezone=Asia/Shanghai";
         //获取ajax传递的参数，和获取表单数据的方式一样
         String name=request.getParameter("name");
+        String name1=request.getParameter("name1");
         try {
             //这里不用更改，如果你要连的不是mysql的话再换这个括号内的代码
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -44,6 +45,8 @@ public class HandlerServlet extends HttpServlet {
             PreparedStatement pst = conn.prepareStatement(sql);//用来执行SQL语句查询，对sql语句进行预编译处理
             pst.setString(1,name);
             pst.setString(2,name);
+//            pst.setString(3,name1);
+//            pst.setString(4,name1);
             ResultSet rs = pst.executeQuery();
 
 

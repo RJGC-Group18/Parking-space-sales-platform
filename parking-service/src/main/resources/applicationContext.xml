@@ -139,5 +139,6 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 	<property name="userService" ref="userService" />
 	<property name="clientInformationService" ref="clientInformationService"/>
 	<property name="userInformationService" ref="userInformationService"/>
+	<property name="reservationService" ref="reservationService" />
 </bean>
 </beans>

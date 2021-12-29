@@ -25,9 +25,7 @@ public class ReservationService implements IReservationService {
 
 	public List<Reservation> findByPid(Parking parking) {
 		String hql= "from Reservation where pid='" + parking.getPid()+"'";
-		System.out.println("pp1");
 		List list=reservationDAO.findByHql(hql);
-		System.out.println("pp2");
 		if(list==null||list.isEmpty())
 		{
 			return null;

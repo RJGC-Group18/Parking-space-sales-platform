@@ -58,7 +58,7 @@
 				<td>${parking.priceUnit}</td>
 				<td>${parking.address}</td>
 				<td>
-					<c:if test="${type == 1}">
+					<c:if test="${type == 1||type == 2}">
 					<button class="edit" type="button" onclick="window.location.href='lookParkingToUpdate.action?pid=${parking.pid}'">
 						<i class="fa fa-edit"></i>
 						修改

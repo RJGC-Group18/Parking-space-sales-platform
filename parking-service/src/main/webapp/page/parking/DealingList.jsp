@@ -43,14 +43,11 @@
 				<td>${dealing.user.uid}</td>
 				<td>${dealing.time}</td>
 				<td>
-					<c:if test="${dealing.pay == null}">
-					尚未支付
-					</c:if>
 					<c:if test="${dealing.pay == true}">
 					支付完毕
 					</c:if>
 					<c:if test="${dealing.pay == false}">
-					仍有部分未支付
+					未支付完成
 					</c:if>
 				</td>
 				<td>

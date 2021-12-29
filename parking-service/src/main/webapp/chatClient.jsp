@@ -17,7 +17,8 @@
 </head>
 
 <body>
-<input type="hidden" id="username" value="${user.username }">
+<input type="hidden" id="username" value="${client.username }">
+
 <!--聊天-->
 <div class="tstart_toolbar">
     <div class="ico_nav">
@@ -48,10 +49,10 @@
                         Connection conn = DriverManager.getConnection(url, userName, password);
                         System.out.println("数据库连接成功！");
 
-                        String sql="select * from client where client.cid in(select DISTINCT cid from dealing where pay is null or pay=0 and uid=?) ORDER BY cid";
+                        String sql="select * from user where user.uid in(select DISTINCT uid from dealing where pay is null or pay=0 and cid=?) ORDER BY uid";
                         PreparedStatement pst = conn.prepareStatement(sql);//用来执行SQL语句查询，对sql语句进行预编译处理
-                        User user=(User)session.getAttribute("user");
-                        pst.setString(1,String.valueOf(user.getUid()));
+                        Client client=(Client)session.getAttribute("client");
+                        pst.setString(1,String.valueOf(client.getCid()));
                         ResultSet result1 = pst.executeQuery();
                         while (result1.next()) {
                             users.add(result1.getString("username"));
@@ -110,7 +111,7 @@
         </div>
         <div class="tool_s_b_r">
             <div class="tool_s_b_r_box">
-           <!--      <p><b>jingqixin</b><br />
+                <!-- <p><b>jingqixin</b><br />
                     来自：襄阳<br />
                     性别：保密<br />
                     注册时间：2010-6-12<br />
@@ -161,7 +162,7 @@
         $.ajax({
             type: "GET", //请求的方式，默认get请求
             url: "HandlerServlet", //请求地址，后台提供的
-            data: {name:$("#person_name_id").text(),name1:getusername()},//data是传给后台的字段，后台需要哪些就传入哪些
+            data: {name:$("#person_name_id").text()},//data是传给后台的字段，后台需要哪些就传入哪些
             dataType: "text", //json格式，如果后台返回的数据为json格式的数据，那么前台会收到Object
             success: function(result){
                 var j=0;
@@ -469,9 +470,8 @@ function myfunction(name,time,message){
         var numStr = num.replace(/[^0-9]/ig, "");
         var numS=numStr.substring(6,8);
         //var reg =new RegExp("\\[(.| )+?\\]","igm");
-         var s ='<p>'+ s1+'</p>'+'<i class="i_biaoqing"><img src="images/biaoqing/'+numS+'.png"></i>';
+        var s ='<p>'+s1+'</p>'+'<i class="i_biaoqing"><img src="images/biaoqing/'+numS+'.png"></i>';
 
-        //var reg = /\[[^\)]+\]/g;
         return s;
 
     }

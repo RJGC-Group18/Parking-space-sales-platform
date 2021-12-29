@@ -90,7 +90,7 @@
                 </li>
                 
 				<li>
-                    <a  href="javascript:void(0);" url="chat.jsp?Username=${client.username}"  title="联系客服">
+                    <a  href="javascript:void(0);" url="chatClient.jsp"  title="联系客服">
                         <i class="fa fa-caret-right"></i>
                         联系客服
                     </a>
