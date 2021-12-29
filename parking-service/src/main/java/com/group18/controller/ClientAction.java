@@ -20,6 +20,7 @@ import com.group18.service.ClientService;
 
 public class ClientAction {
 	private Client client;
+	private List<Client> clientList;
 	private ClientQualification clientQualification;
 	private ClientService clientService=null;
 	private List<ClientQualification> clientQualificationList;
@@ -142,7 +143,18 @@ public class ClientAction {
 			return "failed";
 		}
 	}
-	
+	public String lookAllClient()
+	{
+		try
+		{
+			clientList=clientService.findAll();
+			return "success";
+		}
+		catch(Exception e)
+		{
+			return "failed";
+		}
+	}
 	public String lookClientQualification()//查看业主资质信息
 	{
 		try

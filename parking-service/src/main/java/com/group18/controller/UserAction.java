@@ -28,6 +28,7 @@ public class UserAction extends ActionSupport{
 	private static final long serialVersionUID = 1L;
 	
 	private User user;
+	private List<User> userList;
 	private UserQualification userQualification;
 	private UserService userService=null;
 	private List<UserQualification> userQualificationList;
@@ -140,6 +141,18 @@ public class UserAction extends ActionSupport{
 		{
 			User inUser=(User) session.getAttribute("user");
 			user=userService.findById(inUser);
+			return "success";
+		}
+		catch(Exception e)
+		{
+			return "failed";
+		}
+	}
+	public String lookAllUser()//查找所有用户信息
+	{
+		try
+		{
+			userList=userService.findAll();
 			return "success";
 		}
 		catch(Exception e)
