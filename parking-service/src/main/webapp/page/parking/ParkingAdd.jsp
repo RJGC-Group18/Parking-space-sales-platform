@@ -53,13 +53,22 @@
 							<s:submit theme="simple" cssClass="Reg" value="添加"/>
 						</td>
 					</tr>
+			    </table>
+			    </s:form>
+				<s:form name="ParkingAddFromExcel" action="userAddParkingFromExcel" method="post">
+				<table class="tableaddfromexcel" style="width: 50%;">
+					<tr>
+						<td colspan="4" align="left">
+							<s:submit theme="simple" cssClass="Reg" value="通过excel添加"/>
+						</td>
+					</tr>
 					<tr>
 						<td colspan="4" align="left">
 							${msg}
 						</td>
 					</tr>
 				</table>
-					</s:form>
+				</s:form>
 		</s:div>
 		<s:div>
 	</s:div>

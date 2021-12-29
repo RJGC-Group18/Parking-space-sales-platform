@@ -1,5 +1,12 @@
 package com.group18.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,6 +20,11 @@ import com.group18.po.Parking;
 import com.group18.po.User;
 import com.group18.service.ParkingService;
 import com.group18.service.UserService;
+
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
 
 public class ParkingAction {
 	Parking parking;
@@ -130,6 +142,75 @@ public class ParkingAction {
 			session.setAttribute("msg",e.getMessage());
 			return "failed";	
 		}
+	}
+	public String addFromExcel() 
+	{
+		User user=(User) session.getAttribute("user");
+		int uid=user.getUid();
+		int pid=27;
+		try {
+			//1:创建workbook
+	        Workbook workbook=Workbook.getWorkbook(new File("C:\\Users\\86182\\Desktop\\parking.xls")); 
+	        //2:获取第一个工作表sheet
+	        Sheet sheet=workbook.getSheet(0);
+	        //3:获取数据
+	        System.out.println("行："+sheet.getRows());
+	        System.out.println("列："+sheet.getColumns());
+	        for(int i=0;i<sheet.getRows();i++){
+	        	Cell cell1=sheet.getCell(0,i);
+	            Cell cell2=sheet.getCell(1,i);
+	            Cell cell3=sheet.getCell(2,i);
+	            Cell cell4=sheet.getCell(3,i);
+	            System.out.println
+	            (cell1.getContents()+" "+cell2.getContents()+" "+cell3.getContents()+" "+cell4.getContents());
+	            
+	            //加载驱动程序
+	            String URL = "jdbc:mysql://localhost:3306/parkingsafesdb?serverTimezone=GMT";
+			    String USER = "root";
+			    String PASSWORD = "root";
+			    try {
+			    	//获得数据库链接
+				    Class.forName("com.mysql.cj.jdbc.Driver");
+				    Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+				    //楼层
+				    String Sublevel=cell1.getContents();
+				    int sublevel=Integer.parseInt(Sublevel);
+				    //面积
+				    String Area=cell2.getContents();
+				    int area=Integer.parseInt(Area);
+				    //价格
+				    String Price=cell3.getContents();
+				    int price=Integer.parseInt(Price);
+				    //地址
+				    String address=cell4.getContents();
+				    //处理数据
+				    String sql="insert into parking(pid,uid,sublevel,area,price_unit,address) values (?,?,?,?,?,?)";
+				    PreparedStatement statement = conn.prepareStatement(sql);
+				    statement.setLong(1, pid);
+				    statement.setLong(2, uid);
+				    statement.setLong(3, sublevel);
+				    statement.setLong(4, area);
+				    statement.setLong(5, price);
+				    statement.setString(6, address);
+				    statement.executeUpdate();	
+				    pid++;
+			        //关闭资源
+			        statement.close();	
+			        conn.close();
+			    }
+			    catch (SQLException e) 
+		        {			
+				    e.printStackTrace();
+			    }
+			} 
+	        //最后一步：关闭资源
+	        workbook.close();
+		    return "success";
+		}
+	    catch (Exception e) {			
+	    	e.printStackTrace();
+	    	return "failed";
+		}		
 	}
 	public String update()//更新车位信息
 	{
