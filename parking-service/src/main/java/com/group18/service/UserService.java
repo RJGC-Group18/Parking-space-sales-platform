@@ -49,6 +49,16 @@ public class UserService implements IUserService {
 		return (User)list.get(0);
 	}
 
+	public List<User> findAll(){
+		String hql="from User";
+		List list=userDAO.findByHql(hql);
+		if(list.isEmpty())
+		{
+			return null;
+		}
+		return list;
+	}
+	
 	public IUserDAO getUserDAO() {
 		return userDAO;
 	}

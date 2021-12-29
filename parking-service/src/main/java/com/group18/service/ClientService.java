@@ -47,6 +47,16 @@ public class ClientService implements IClientService {
 		return (Client)list.get(0);
 	}
 	
+	public List<Client> findAll(){
+		String hql="from Client";
+		List list=clientDAO.findByHql(hql);
+		if(list.isEmpty())
+		{
+			return null;
+		}
+		return list;
+	}
+	
 	public IClientDAO getClientDAO() {
 		return clientDAO;
 	}
