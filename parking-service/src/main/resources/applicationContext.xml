@@ -108,6 +108,7 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 <bean id="clientAction" class="com.group18.controller.ClientAction" scope="prototype">
 	<property name="clientService" ref="clientService" />
 	<property name="clientQualificationService" ref="clientQualificationService" />
+	<property name="clientInformationService" ref="clientInformationService"/>
 </bean>
 <bean id="userAction" class="com.group18.controller.UserAction" scope="prototype">
 	<property name="userService" ref="userService" />

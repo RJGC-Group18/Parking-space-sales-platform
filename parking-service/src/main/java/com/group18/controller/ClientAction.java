@@ -15,17 +15,21 @@ import org.apache.struts2.ServletActionContext;
 import com.group18.po.Client;
 import com.group18.po.ClientInformation;
 import com.group18.po.ClientQualification;
+import com.group18.service.ClientInformationService;
 import com.group18.service.ClientQualificationService;
 import com.group18.service.ClientService;
 
 public class ClientAction {
 	private Client client;
+	private Client gClient;
 	private List<Client> clientList;
 	private ClientQualification clientQualification;
 	private ClientService clientService=null;
 	private List<ClientQualification> clientQualificationList;
 	private ClientQualificationService clientQualificationService=null;
+	private ClientInformationService clientInformationService=null;
 	
+	String cid;
 	String birthday;
 	String enterPassword;
 	HttpServletRequest request;
@@ -134,8 +138,11 @@ public class ClientAction {
 	{
 		try
 		{
-			Client inClient=(Client) session.getAttribute("client");
-			client=clientService.findById(inClient);
+			Client gClient=new Client();
+			gClient.setCid(Integer.parseInt(cid));
+			gClient=clientService.findById(gClient);
+			ClientInformation gClientInformation=clientInformationService.findById(gClient);
+			gClient.setClientInformation(gClientInformation);
 			return "success";
 		}
 		catch(Exception e)
@@ -249,5 +256,37 @@ public class ClientAction {
 
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
+	}
+
+	public Client getgClient() {
+		return gClient;
+	}
+
+	public void setgClient(Client gClient) {
+		this.gClient = gClient;
+	}
+
+	public List<Client> getClientList() {
+		return clientList;
+	}
+
+	public void setClientList(List<Client> clientList) {
+		this.clientList = clientList;
+	}
+
+	public ClientInformationService getClientInformationService() {
+		return clientInformationService;
+	}
+
+	public void setClientInformationService(ClientInformationService clientInformationService) {
+		this.clientInformationService = clientInformationService;
+	}
+
+	public String getCid() {
+		return cid;
+	}
+
+	public void setCid(String cid) {
+		this.cid = cid;
 	}
 }

@@ -28,6 +28,7 @@ public class UserAction extends ActionSupport{
 	private static final long serialVersionUID = 1L;
 	
 	private User user;
+	private User gUser;
 	private List<User> userList;
 	private UserQualification userQualification;
 	private UserService userService=null;
@@ -36,6 +37,7 @@ public class UserAction extends ActionSupport{
 	private UserInformationService userInformationService=null;
 	/*private File upFile;*/
 	
+	String uid;
 	String enterPassword;
 	HttpServletRequest request;
 	HttpSession session;
@@ -139,8 +141,11 @@ public class UserAction extends ActionSupport{
 	{
 		try
 		{
-			User inUser=(User) session.getAttribute("user");
-			user=userService.findById(inUser);
+			User gUser=new User();
+			gUser.setUid(Integer.parseInt(uid));
+			gUser=userService.findById(gUser);
+			UserInformation gUserInformation=userInformationService.findById(gUser);
+			gUser.setUserInformation(gUserInformation);
 			return "success";
 		}
 		catch(Exception e)
@@ -231,5 +236,23 @@ public class UserAction extends ActionSupport{
 	}
 	public void setUserInformationService(UserInformationService userInformationService) {
 		this.userInformationService = userInformationService;
+	}
+	public User getgUser() {
+		return gUser;
+	}
+	public void setgUser(User gUser) {
+		this.gUser = gUser;
+	}
+	public List<User> getUserList() {
+		return userList;
+	}
+	public void setUserList(List<User> userList) {
+		this.userList = userList;
+	}
+	public String getUid() {
+		return uid;
+	}
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 }
