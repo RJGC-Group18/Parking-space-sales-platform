@@ -153,6 +153,11 @@
         	<result name="success">/welcome.jsp</result>
             <result name="failed">/welcome.jsp</result>
         </action>
+        <!-- 从excel添加车位信息 -->
+        <action name="userAddParkingFromExcel" class="parkingAction" method="addFromExcel">
+        	<result name="success">/welcome.jsp</result>
+            <result name="failed">/welcome.jsp</result>
+        </action>
         <!-- 删除车位信息 -->
         <action name="userDeleteParking" class="parkingAction" method="delete">
         	<result name="success">/page/user/ParkingList.jsp</result>
@@ -232,7 +237,7 @@
         	<result name="success">/page/parking/Dealing.jsp</result>
             <result name="failed">/welcome.jsp</result>
         </action>
-        
+
         <!-- 查看销售方信息 -->
          <action name="lookAllUser" class="userAction" method="lookAllUser">
         	<result name="success">/page/user/UserInfo.jsp</result>
@@ -242,7 +247,7 @@
         	<result name="success">/page/user/Userdetail.jsp</result>
             <result name="failed">/welcome.jsp</result>
         </action>
-        
+
         <!-- 查看购买方信息 -->
         <action name="lookAllClient" class="clientAction" method="lookAllClient">
         	<result name="success">/page/user/ClientInfo.jsp</result>
@@ -252,7 +257,7 @@
         	<result name="success">/page/user/Clientdetail.jsp</result>
             <result name="failed">/welcome.jsp</result>
         </action>
-        
+
         <!-- 取消交易 -->
         <action name="deleteDealing" class="dealingAction" method="delete">
         	<result name="success">/page/parking/DealingList.jsp</result>
