@@ -31,7 +31,8 @@
 				</tr>
 				<tr>
 					<td width="120px">性别</td>
-					<td>${geClient.clientInformation.sex}</td>
+					<c:if test="${geClient.clientInformation.sex == true}"><td>男</td></c:if>
+					<c:if test="${geClient.clientInformation.sex == false}"><td>女</td></c:if>
 				</tr>
 				<tr>
 					<td width="120px">年龄</td>

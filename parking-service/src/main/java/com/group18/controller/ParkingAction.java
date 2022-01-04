@@ -143,14 +143,15 @@ public class ParkingAction {
 			return "failed";	
 		}
 	}
-	public String addFromExcel() 
+	public String addFromExcel()//批量导入车位 
 	{
 		User user=(User) session.getAttribute("user");
 		int uid=user.getUid();
 		int pid=27;
 		try {
+			session.removeAttribute("msg");
 			//1:创建workbook
-	        Workbook workbook=Workbook.getWorkbook(new File("C:\\Users\\86182\\Desktop\\parking.xls")); 
+	        Workbook workbook=Workbook.getWorkbook(new File("C:\\Users\\24036\\Desktop\\parking.xls")); 
 	        //2:获取第一个工作表sheet
 	        Sheet sheet=workbook.getSheet(0);
 	        //3:获取数据
@@ -165,9 +166,9 @@ public class ParkingAction {
 	            (cell1.getContents()+" "+cell2.getContents()+" "+cell3.getContents()+" "+cell4.getContents());
 	            
 	            //加载驱动程序
-	            String URL = "jdbc:mysql://localhost:3306/parkingsafesdb?serverTimezone=GMT";
+	            String URL = "jdbc:mysql://localhost:3306/parkingsafesdb?useSSL=false&serverTimezone=Asia/Shanghai";
 			    String USER = "root";
-			    String PASSWORD = "root";
+			    String PASSWORD = "123456";
 			    try {
 			    	//获得数据库链接
 				    Class.forName("com.mysql.cj.jdbc.Driver");
@@ -205,9 +206,11 @@ public class ParkingAction {
 			} 
 	        //最后一步：关闭资源
 	        workbook.close();
+	        session.setAttribute("msg", "车位添加成功");
 		    return "success";
 		}
-	    catch (Exception e) {			
+	    catch (Exception e) {	
+	    	session.setAttribute("msg", "车位添加失败");
 	    	e.printStackTrace();
 	    	return "failed";
 		}		
