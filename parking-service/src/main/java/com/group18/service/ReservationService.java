@@ -45,23 +45,14 @@ public class ReservationService implements IReservationService {
 	{
 		List<Reservation> reservationList=findByPid(parking);
 		Reservation reservation=null;
-		List<Reservation> r=null;
 		if(reservationList==null||reservationList.size()==0)
 		{
 			return null;
 		}
-		do {
-			if(r!=null||r.size()!=0)
-			{
-				delete(reservation);
-				reservationList=findByPid(parking);
-			}
-			int selected=(int)(Math.random()*(reservationList.size()));//随机选择
-			reservation=reservationList.get(selected);
-			Client client=new Client();
-			client.setCid(reservation.getId().getCid());
-			r=findByCid(client);
-		}while(r!=null||r.size()!=0);	
+		int selected=(int)(Math.random()*(reservationList.size()));//随机选择
+		reservation=reservationList.get(selected);
+		Client client=new Client();
+		client.setCid(reservation.getId().getCid());
 		return reservation;
 	}
 	

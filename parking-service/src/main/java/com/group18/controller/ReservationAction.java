@@ -203,7 +203,22 @@ public class ReservationAction {
 				{
 					continue;
 				}
+				
 				Client client=new Client(selectedReservation.getId().getCid());
+				while(dealingService.findByCid(client)!=null)//该循环用来剔除已经拥有进入交易阶段车位的用户
+				{
+					reservationService.delete(selectedReservation);
+					selectedReservation=reservationService.selectReservation(selectedParking);
+					if(selectedReservation==null)
+					{
+						break;
+					}
+					client=new Client(selectedReservation.getId().getCid());
+				}
+				if(selectedReservation==null)
+				{
+					continue;
+				}
 				client=clientService.findById(client);
 				ClientInformation clientInformation=clientInformationService.findById(client);
 				client.setClientInformation(clientInformation);

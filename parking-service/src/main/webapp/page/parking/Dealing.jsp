@@ -90,7 +90,21 @@
 				</td>
 				</tr></c:if>
 		</table>
-		<a href="lookAllClient.action">返回上一页</a>
+		<c:if test="${type == 0}">
+				<tr>
+					<a href="clientLookDealingList.action">返回上一页</a>
+				</tr>
+			</c:if>
+			<c:if test="${type == 1}">
+				<tr>
+					<a href="userLookDealingList.action">返回上一页</a>
+				</tr>			
+			</c:if>
+			<c:if test="${type == 2}">
+				<tr>
+					<a href="userLookDealingList.action">返回上一页</a>
+				</tr>
+		</c:if>
 <%-- 		<%@include file="../inc/page.jsp"%> --%>
 	</body>
 </html>
